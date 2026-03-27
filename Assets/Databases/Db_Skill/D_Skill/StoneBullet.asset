@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111c5ab749b19024599fbcd5b04c983c, type: 3}
+  m_Name: StoneBullet
+  m_EditorClassIdentifier: 
+  name: "\u30B9\u30C8\u30FC\u30F3\u30D0\u30EC\u30C3\u30C8"
+  id: 100
+  ItemDescription: "\u77F3\u3092\u9B54\u6CD5\u3067\u98DB\u3070\u3059"
+  EfficacyItemDescription: "\u7A2E\u985E\uFF1A\u30A2\u30BF\u30C3\u30AF\n\u9B54\u6CD5\uFF1A\u4E2D\u30C0\u30E1\u30FC\u30B8\n\u5C5E\u6027\uFF1A\u571F"
+  attribute: 5
+  skillRange: 3
+  attack_or_Magic: 1
+  kind: 0
+  buff_DeBuff_kind: 0
+  efficacy1: 1.5
+  efficacy2: 0
+  duration: 0
+  mpConsumption: 10
+  needSp: 3
+  Unlock: 1
+  Icon: {fileID: 0}
+  B_Icon: {fileID: 2077527046347190955, guid: 2b47aaa53cf89774d9244cd1c6b19fc0, type: 3}
+  Effect: {fileID: 0}
+  SoundEffects: {fileID: 0}

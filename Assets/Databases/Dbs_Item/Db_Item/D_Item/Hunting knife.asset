@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f649b18aab3e44aa8e633b768b9696, type: 3}
+  m_Name: Hunting knife
+  m_EditorClassIdentifier: 
+  name: "\u72E9\u731F\u30CA\u30A4\u30D5"
+  id: 501
+  ItemDescription: aaaaaa
+  EfficacyItemDescription: 
+  attribute: 0
+  kinds: 0
+  abnormalstatus: 0
+  Equipment:
+    MaxHpup: 0
+    MaxMpup: 0
+    Attackup: 5
+    Magicup: 0
+    Defenceup: 2
+    MagicDefenseup: 0
+    Speedup: 1
+  efficacy1: 0
+  efficacy2: 0
+  duration: 0
+  number: 1
+  price: 0
+  Icon: {fileID: 2077527046347190955, guid: c3285e1dc1e8a2146ad85f1d744a884d, type: 3}
+  B_Icon: {fileID: 0}
+  Effect: {fileID: 0}
+  SoundEffects: {fileID: 0}
+  Event: {fileID: 0}

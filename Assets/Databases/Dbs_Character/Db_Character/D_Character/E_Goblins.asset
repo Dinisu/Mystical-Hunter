@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ddc16f201cc4b4e8827f8d02d425de, type: 3}
+  m_Name: E_Goblins
+  m_EditorClassIdentifier: 
+  name: "\u30B4\u30D6\u30EA\u30F3"
+  id: 0
+  ItemDescription: 
+  level: 1
+  exp: 3
+  LevelExp: []
+  sp: 0
+  attribute: 0
+  maxhp: 20
+  hp: 20
+  maxmp: 5
+  mp: 5
+  attack: 15
+  magic: 0
+  defense: 0
+  magicDefense: 5
+  speed: 2
+  criticalRate: 0
+  money: 5
+  Weapon: {fileID: 0}
+  Armor: {fileID: 0}
+  Accessories1: {fileID: 0}
+  Accessories2: {fileID: 0}
+  SkillList: {fileID: 11400000, guid: 3fef7060afa267445874c04926c90f3b, type: 2}
+  ActiveBuffs: []
+  ActiveBuffs_It: []
+  abnormalstatus: 0
+  Character: {fileID: 0}
+  B_Character: {fileID: 7465381492159604352, guid: 9012517a96117d441bc13b7ac4eb72bb, type: 3}
+  B_Icon: {fileID: 8917708082994333342, guid: 0cffc85f3ffe9cc47a45b86cbe59f8d2, type: 3}
+  B_Icon_Ch: {fileID: 0}
+  Icon_Character1: {fileID: 0}
+  Icon_Character2: {fileID: 0}
+  DroppedItems: []
+  Status: {fileID: 0}
+  Event: {fileID: 0}

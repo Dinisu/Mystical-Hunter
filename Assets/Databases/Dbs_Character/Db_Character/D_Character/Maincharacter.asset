@@ -1,0 +1,140 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ddc16f201cc4b4e8827f8d02d425de, type: 3}
+  m_Name: Maincharacter
+  m_EditorClassIdentifier: 
+  name: "\u4E3B\u4EBA\u516C"
+  id: 1
+  ItemDescription: 
+  level: 1
+  exp: 0
+  LevelExp:
+  - Levelup: 2
+    NeedExp: 10
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 3
+    NeedExp: 15
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 4
+    NeedExp: 20
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 5
+    NeedExp: 25
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 6
+    NeedExp: 30
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 7
+    NeedExp: 35
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 8
+    NeedExp: 40
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 9
+    NeedExp: 45
+    AcquisitionSp: 0
+    MaxHpup: 5
+    MaxMpup: 2
+    Attackup: 3
+    Magicup: 1
+    Defenceup: 3
+    MagicDefenseup: 1
+    Speedup: 0
+  - Levelup: 10
+    NeedExp: 60
+    AcquisitionSp: 0
+    MaxHpup: 10
+    MaxMpup: 10
+    Attackup: 5
+    Magicup: 2
+    Defenceup: 5
+    MagicDefenseup: 3
+    Speedup: 0
+  sp: 0
+  attribute: 0
+  maxhp: 60
+  hp: 43
+  maxmp: 10
+  mp: 10
+  attack: 15
+  magic: 3
+  defense: 2
+  magicDefense: 5
+  speed: 3
+  criticalRate: 0.05
+  money: 0
+  Weapon: {fileID: 11400000, guid: 463d0aa0f1368a145bf8ee386c548e5b, type: 2}
+  Armor: {fileID: 0}
+  Accessories1: {fileID: 11400000, guid: c0f14ef513f4ac84aaa6d500650afaa9, type: 2}
+  Accessories2: {fileID: 0}
+  SkillList: {fileID: 11400000, guid: cfa638e9bb24b2e4aa45e27cae17e469, type: 2}
+  ActiveBuffs: []
+  ActiveBuffs_It: []
+  abnormalstatus: 0
+  Character: {fileID: 8923146222536966875, guid: aa2b918b94ffa844897df2ad6e71aaec, type: 3}
+  B_Character: {fileID: 8923146222536966875, guid: 17d5b6e29ca506947a1fef5fa0599ee5, type: 3}
+  B_Icon: {fileID: 2067552422183913671, guid: 937c6021ddd0e604bb6ccf8f9752ae46, type: 3}
+  B_Icon_Ch: {fileID: 1041890884971692534, guid: 837a943c8aa3c15498636b4f3c3bd18e, type: 3}
+  Icon_Character1: {fileID: 4061459361558028655, guid: 80d255e83a0b8bd42b893204f2883f79, type: 3}
+  Icon_Character2: {fileID: 1041890884971692534, guid: 7acef78d9ee517640897cfc5ba12c706, type: 3}
+  DroppedItems: []
+  Status: {fileID: 0}
+  Event: {fileID: 0}

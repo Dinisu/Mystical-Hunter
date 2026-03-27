@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f649b18aab3e44aa8e633b768b9696, type: 3}
+  m_Name: Medicinal herbs
+  m_EditorClassIdentifier: 
+  name: "\u85AC\u8349"
+  id: 101
+  ItemDescription: "\u56DE\u5FA9\u52B9\u679C\u306E\u3042\u308B\u85AC\u8349"
+  EfficacyItemDescription: "HP\uFF1A10\u56DE\u5FA9"
+  attribute: 0
+  itemRange: 0
+  kinds: 7
+  buff_DeBuff_kind: 0
+  abnormalstatus: 0
+  Equipment:
+    MaxHpup: 0
+    MaxMpup: 0
+    Attackup: 0
+    Magicup: 0
+    Defenceup: 0
+    MagicDefenseup: 0
+    Speedup: 0
+    Criticalup: 0
+  efficacy1: 10
+  efficacy2: 0
+  criticalRate: 0
+  duration: 0
+  number: 7
+  price: 5
+  Icon: {fileID: 2077527046347190955, guid: 1a7aa00770467da46aa9a13897231177, type: 3}
+  B_Icon: {fileID: 0}
+  Effect: {fileID: 0}
+  SoundEffects: {fileID: 0}
+  Event: {fileID: 0}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111c5ab749b19024599fbcd5b04c983c, type: 3}
+  m_Name: Spirit
+  m_EditorClassIdentifier: 
+  name: "\u6C17\u5408\u3044"
+  id: 200
+  ItemDescription: "\u6C17\u5408\u3044\u3092\u5165\u308C\u3066\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B"
+  EfficacyItemDescription: "\uFF13\u30BF\u30FC\u30F3\n\u653B\u6483\u529B\u304C\u5C0FUP"
+  attribute: 0
+  skillRange: 0
+  attack_or_Magic: 0
+  kind: 4
+  buff_DeBuff_kind: 1
+  efficacy1: 20
+  efficacy2: 0
+  criticalRate: 0
+  duration: 3
+  mpConsumption: 3
+  needSp: 1
+  Unlock: 1
+  Icon: {fileID: 0}
+  B_Icon: {fileID: 2077527046347190955, guid: c4e89a216b912fa42b88385859d17ae6, type: 3}
+  Effect: {fileID: 0}
+  SoundEffects: {fileID: 0}

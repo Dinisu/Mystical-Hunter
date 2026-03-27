@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff14d3c88cd6964b8ee7a0e1fb05674, type: 3}
+  m_Name: Tutorial Stage Enemy List
+  m_EditorClassIdentifier: 
+  itemList:
+  - {fileID: 11400000, guid: ecde0da55cda11a40a7e3e7ee7f00016, type: 2}
+  - {fileID: 11400000, guid: 7d7433d1d7687344d8c3a63e9b519362, type: 2}

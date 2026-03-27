@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66bfaba32051aa24ea4c50ca96b675b0, type: 3}
+  m_Name: ItemBOX1
+  m_EditorClassIdentifier: 
+  name: "\u5B9D\u7BB11"
+  id: 0
+  ItemDescription: "\u30B7\u30FC\u30F3\u306E\u5B9D\u7BB1\u304C\u5165\u624B\u6E08\u307F\u304B\u3069\u3046\u304B\u306E\u30C1\u30A7\u30C3\u30AF"
+  Event1Explanation: "\u30B7\u30FC\u30F3\u306E\u5B9D\u7BB1\u304C\u5165\u624B\u6E08\u307F\u304B\u3069\u3046\u304B\u306E\u30C1\u30A7\u30C3\u30AF"
+  Event1: 0
+  Event2Explanation: 
+  Event2: 0
+  Event3Explanation: 
+  Event3: 0
