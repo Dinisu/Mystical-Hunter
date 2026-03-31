@@ -61,11 +61,13 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
 
         public enum Kinds
         {
-            //上からアタック、ディフェンス、ファスト、クイック、バフ、デバフ、アビリティ
+            //上からアタック、ディフェンス、ファスト、スロー、クイック、回復、バフ、デバフ、アビリティ
             Attack,
             Defense,
             Fast,
+            slow,
             Quick,
+            Recovery,
             Buff,
             DeBuff,
             Abilities

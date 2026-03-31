@@ -322,7 +322,7 @@ public class NumericalProcessing : MonoBehaviour
                 Debug.Log($"{skill.MpConsumption}MPを消費しました。");
 
                 // ステータス更新処理
-                if (Use_ChData == Use_subject_ChData)
+                if (attacker == defender)
                 {
                     RestoreOriginalStats(defBuffData);
                 }
@@ -335,17 +335,21 @@ public class NumericalProcessing : MonoBehaviour
                 UpdateAllStatusIcons();
                 return;
 
+            case D_Sk_StatusData.Kinds.Recovery:
+                //回復の処理を作る
             case D_Sk_StatusData.Kinds.Attack:
             case D_Sk_StatusData.Kinds.Defense:
             case D_Sk_StatusData.Kinds.Fast:
+            case D_Sk_StatusData.Kinds.slow:
             case D_Sk_StatusData.Kinds.Quick:
+                //のデバフをattackerに付与してダメージ計算へ
             case D_Sk_StatusData.Kinds.Abilities:
                 // ↓↓↓ このままダメージ計算へ ↓↓↓
                 break;
 
             default:
                 Debug.LogWarning("未対応のスキル種類");
-                if (Use_ChData == Use_subject_ChData)
+                if (attacker == defender)
                 {
                     RestoreOriginalStats(defBuffData);
                 }
@@ -405,7 +409,7 @@ public class NumericalProcessing : MonoBehaviour
         );
 
         // ▼ 元のステータスに戻す
-        if (Use_ChData == Use_subject_ChData)
+        if (attacker == defender)
         {
             RestoreOriginalStats(defBuffData);
         }

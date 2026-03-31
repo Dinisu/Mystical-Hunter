@@ -51,7 +51,9 @@ public class TimelineIconController : MonoBehaviour
             if (state == TimelineState.Moving || state == TimelineState.Acting_up)
             {
                 float currentSpeed = numericalProcessing.GetEffectiveSpeed(characterData);
-                currentProgress += currentSpeed * speedScale * 0.02f; // 固定時間進行
+                float actionMultiplier = GetActionSpeedMultiplier();//行動速度倍率
+                currentProgress += currentSpeed * actionMultiplier * speedScale * 0.02f; // 固定時間進行
+
 
                 // 行動ゾーンから出た場合、isActionTriggeredをリセット
                 if (currentProgress < actionZoneStart && isActionTriggered)
@@ -65,6 +67,13 @@ public class TimelineIconController : MonoBehaviour
                     isActionTriggered = true;
                     state = TimelineState.WaitingForCommand;
                     OnEnterActionZone?.Invoke(this);//ここで処理をするように送る
+                }
+
+                // 即時発動
+                if (IsInstantAction() && state == TimelineState.Acting_up)
+                {
+                    currentProgress = actionZoneEnd;
+                    Debug.Log("即時発動!");
                 }
 
                 // 行動発動
@@ -101,6 +110,60 @@ public class TimelineIconController : MonoBehaviour
 
             // 必要なら AudioTrack, ControlTrack, ScriptTrack も追加可能
         }
+    }
+
+    /// <summary>
+    /// 発動予定のスキル、アイテムの行動速度倍率を取得する
+    /// </summary>
+    private float GetActionSpeedMultiplier()
+    {
+        // スキル優先
+        if (ActivatedSkills != null)
+        {
+            switch (ActivatedSkills.SeeKinds)
+            {
+                case D_Sk_StatusData.Kinds.Fast:
+                    return 2f;
+
+                case D_Sk_StatusData.Kinds.slow:
+                    return 0.6f;
+            }
+        }
+
+        // アイテム
+        if (ActivatedItem != null)
+        {
+           /* switch (ActivatedItem.SeeKinds)
+            {
+                case D_It_StatusData.Kinds.HP_Recovery:
+                case D_It_StatusData.Kinds.MP_Recovery:
+                    return 999f; // 即時発動用
+            }*/
+        }
+
+        return 1f;
+    }
+
+    /// <summary>
+    /// 発動予定のスキル、アイテムの即時発動判定
+    /// </summary>
+    private bool IsInstantAction()
+    {
+        if (ActivatedSkills != null)
+        {
+            if (ActivatedSkills.SeeKinds == D_Sk_StatusData.Kinds.Quick ||
+                ActivatedSkills.SeeKinds == D_Sk_StatusData.Kinds.Defense)
+                return true;
+        }
+
+        if (ActivatedItem != null)
+        {
+            if (ActivatedItem.SeeKinds == D_It_StatusData.Kinds.HP_Recovery ||
+                ActivatedItem.SeeKinds == D_It_StatusData.Kinds.MP_Recovery)
+                return true;
+        }
+
+        return false;
     }
 
     public void ResumeMovement()

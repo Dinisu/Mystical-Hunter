@@ -735,6 +735,9 @@ public class BattleManager : MonoBehaviour
         icon.ResumeMovement();
     }
 
+    /// <summary>
+    /// バフのターン経過処理
+    /// </summary>
     private void ProcessBuffDurations(D_Ch_StatusData character)
     {
         if (character == null) return;
@@ -1328,6 +1331,9 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        //念のため入れる前にリセット
+        currentIcon.ActionReset();
+
         if (currentIcon != null)
         {
             currentIcon.ActivatedSkills = targetSkill;
@@ -1442,6 +1448,9 @@ public class BattleManager : MonoBehaviour
                 break;
             }
         }
+
+        //念のため入れる前にリセット
+        currentIcon.ActionReset();
 
         if (currentIcon != null)
         {
