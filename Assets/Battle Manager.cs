@@ -1059,16 +1059,19 @@ public class BattleManager : MonoBehaviour
 
         SelectUI = uiElements[currentIndex];
 
-        // UI か 3Dキャラかで処理を切り替える
-        if (SelectUI.GetComponent<RectTransform>() != null)
+        if (SelectUI != null)
         {
-            // UI要素 → FrameをUIに合わせて移動
-            MoveFrameTo(SelectUI);
-        }
-        else
-        {
-            // UIでない = Area_of_Effect (キャラオブジェクト)
-            MoveFrametoObject(SelectUI);
+            // UI か 3Dキャラかで処理を切り替える
+            if (SelectUI.GetComponent<RectTransform>() != null)
+            {
+                // UI要素 → FrameをUIに合わせて移動
+                MoveFrameTo(SelectUI);
+            }
+            else
+            {
+                // UIでない = Area_of_Effect (キャラオブジェクト)
+                MoveFrametoObject(SelectUI);
+            }
         }
 
         StartBlink();
