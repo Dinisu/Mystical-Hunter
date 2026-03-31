@@ -110,6 +110,13 @@ public class TimelineIconController : MonoBehaviour
         currentProgress = 0f;
     }
 
+    public void ActionReset()
+    {
+        ActivatedSkills = null;
+        ActivatedItem = null;
+        Target_of_Action = null;
+    }
+
     /*public void ApplySpeedModifier(float multiplier, float duration)
     {
         StartCoroutine(TemporarySpeedChange(multiplier, duration));

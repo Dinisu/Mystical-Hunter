@@ -480,9 +480,8 @@ public class BattleManager : MonoBehaviour
         numericalProcessing.ItemUse_ItData = null;
         numericalProcessing.SkillUse_SkData = null;
 
-        icon.ActivatedSkills = null;
-        icon.ActivatedItem = null;
-        icon.Target_of_Action = null;
+
+        icon.ActionReset();
 
         // コマンド選択完了後、実際のスキルデータをセットして再開
         //skillUIを行動ゾーンに入った味方に子オブジェクトとして生成
@@ -725,9 +724,7 @@ public class BattleManager : MonoBehaviour
         numericalProcessing.ItemUse_ItData = null;
         numericalProcessing.SkillUse_SkData = null;
 
-        icon.ActivatedSkills = null;
-        icon.ActivatedItem = null;
-        icon.Target_of_Action = null;
+        icon.ActionReset();
 
         // ターン経過処理
         ProcessBuffDurations(icon.characterData);

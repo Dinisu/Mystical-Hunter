@@ -684,9 +684,7 @@ public class NumericalProcessing : MonoBehaviour
         }
 
         //行動リセット
-        targetIcon.ActivatedSkills = null;
-        targetIcon.ActivatedItem = null;
-        targetIcon.Target_of_Action = null;
+        targetIcon.ActionReset();
 
         // stateがActing_upならcurrentProgressを3下げる（滑らかに）
         if (targetIcon.state == TimelineIconController.TimelineState.Acting_up)
