@@ -503,6 +503,11 @@ public class InventManager : MonoBehaviour
                 itemField.SetActive(false);
                 selectionField.SetActive(true);
 
+                foreach(var Status in CharacterStatus)
+                {
+                    Status.GetComponent<CharacterIconStatus>()?.StatusUpdates();
+                }
+
                 // アイテムメニューのアイテムオブジェクトを削除
                 foreach (Transform child in itemChoiceField.transform)
                 {
@@ -1697,6 +1702,12 @@ public class InventManager : MonoBehaviour
                 statusField.SetActive(false);
                 itemField.SetActive(false);
                 EquipmentChoiceField.SetActive(false);
+
+                //ステータスの更新
+                foreach (var Status in CharacterStatus)
+                {
+                    Status.GetComponent<CharacterIconStatus>()?.StatusUpdates();
+                }
 
                 //アイテムを使用しようとしているキャラクターをクリア
                 foreach (var obj in Charactersuseitems)

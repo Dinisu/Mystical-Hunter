@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using static UnityEngine.GraphicsBuffer;
 
 public class NumericalProcessing : MonoBehaviour
 {
@@ -1366,6 +1367,8 @@ public class NumericalProcessing : MonoBehaviour
             Use_subject_ChData.Hp += Mathf.RoundToInt(ItemUse_ItData.Efficacy1);//Mathf.RoundToInt,floatをintに入れるやつ
             ItemUse_ItData.Number -= 1;
 
+            DamageText(Use_subject_ChData, Mathf.RoundToInt(ItemUse_ItData.Efficacy1), false);
+
             if (ItemUse_ItData.Number <= 0)
             {
                 db_PlayerItem.ItemList.RemoveAll(item => item.Number <= 0);
@@ -1381,6 +1384,8 @@ public class NumericalProcessing : MonoBehaviour
         {
             Use_subject_ChData.Mp += Mathf.RoundToInt(ItemUse_ItData.Efficacy1);//Mathf.RoundToInt,floatをintに入れるやつ
             ItemUse_ItData.Number -= 1;
+
+            DamageText(Use_subject_ChData, Mathf.RoundToInt(ItemUse_ItData.Efficacy1), false);
 
             if (ItemUse_ItData.Number <= 0)
             {
