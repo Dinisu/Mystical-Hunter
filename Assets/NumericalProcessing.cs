@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 public class NumericalProcessing : MonoBehaviour
 {
@@ -497,6 +498,7 @@ public class NumericalProcessing : MonoBehaviour
                     blinkSeq.OnComplete(() =>
                     {
                         battleManager.RemoveCharacterOnDeath(target);
+                        DamageText(target, damage, true);
                     });
 
                     //メモ　blinkSeq.OnCompleteはこのアニメーション（Sequence）が全部終わったら、この中の処理を実行してくださいという意味
@@ -505,6 +507,7 @@ public class NumericalProcessing : MonoBehaviour
                 {
                     // フェイルセーフ
                     battleManager.RemoveCharacterOnDeath(target);
+                    DamageText(target, damage, true);
                 }
             }
             else
@@ -516,6 +519,7 @@ public class NumericalProcessing : MonoBehaviour
         {
             // ダメージを受けたキャラクターのオブジェクトを点滅させる
             BlinkHitObject(target);
+            DamageText(target, damage, true);
             // ダメージを受けたキャラクターのTimelineIconControllerを探して、currentProgressを下げる
             ReduceTimelineProgress(target);
         }
@@ -576,6 +580,53 @@ public class NumericalProcessing : MonoBehaviour
         if (_hitBlinkSequences.TryGetValue(id, out Sequence seq) && seq != null && seq.IsActive())
             seq.Kill();
         _hitBlinkSequences.Remove(id);
+    }
+
+    /// <summary>
+    /// ダメージを受けたキャラクターオブジェクトにダメージ数を表示。
+    /// 後にダメージか回復かで色を変える、メソッド名もその時変える
+    /// true: ダメージ, false: 回復
+    /// </summary>
+    private void DamageText(D_Ch_StatusData targetCheck, int damage, bool Damage_or_healing)
+    {
+        if (targetCheck == null) return;
+        if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) return;
+
+        // Damage display を取得
+        Transform damageDisplay = root.transform.Find("Damage display");
+        if (damageDisplay == null) return;
+
+        Transform damageTextTransform = damageDisplay.Find("DamageText");
+        if (damageTextTransform == null) return;
+
+        TMP_Text tmp = damageTextTransform.GetComponent<TMP_Text>();
+        if (tmp == null) return;
+
+
+        // 表示ON
+        damageDisplay.gameObject.SetActive(true);
+
+        // テキスト設定
+        tmp.text = damage.ToString();
+
+        // スケール初期化
+        damageTextTransform.localScale = Vector3.zero;
+
+        // 既存Tween停止（連続被弾対策）
+        damageTextTransform.DOKill();
+
+
+
+        // アニメーション
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(damageTextTransform.DOScale(1.4f, 0.2f).SetEase(Ease.OutBack)) // ぽん
+           .Append(damageTextTransform.DOScale(1f, 0.15f))                         // 戻る
+           .AppendInterval(0.65f)                                                   // 合計約1秒
+           .OnComplete(() =>
+           {
+               damageDisplay.gameObject.SetActive(false);
+           });
     }
 
     /// <summary>

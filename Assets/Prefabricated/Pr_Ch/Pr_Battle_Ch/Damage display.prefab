@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 704873612196963456}
   - component: {fileID: 8297342468063588382}
   m_Layer: 5
-  m_Name: 'DamageText '
+  m_Name: DamageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
