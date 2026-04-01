@@ -159,9 +159,9 @@ public class St_PlayerController : MonoBehaviour
         // Itemタグのオブジェクトに触れている場合
         if (currentItemObject != null)
         {
-            // 判定だけ（中身は後に実装）
+            //アイテムを入手する処理を呼び出す
+            currentItemObject.GetComponent<Ev_Itemacquisitionevent>()?.Getitems();
             Debug.Log($"Itemタグのオブジェクトに触れています: {currentItemObject.name}");
-            // TODO: ここにItemタグのオブジェクトに対する処理を追加
             return;
         }
     }

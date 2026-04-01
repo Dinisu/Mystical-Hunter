@@ -33,48 +33,46 @@ public class Ev_Itemacquisitionevent : MonoBehaviour
     /// </summary>
     public void Getitems()
     {
-        //このオブジェクトからアイテムを既に入手済みでないなら
-        if (!Ev_StatusData.Event1)
+        // 既に所持リストに同一アイテムがあるなら個数加算
+        D_It_StatusData existingItem = null;
+        foreach (var owned in db_PlayerItem.ItemList)
         {
-            // 既に所持リストに同一アイテムがあるなら個数加算
-            D_It_StatusData existingItem = null;
-            foreach (var owned in db_PlayerItem.ItemList)
+            if (owned == null) continue;
+            if (owned == It_StatusData || owned.Id == It_StatusData.Id || owned.Name == It_StatusData.Name)
             {
-                if (owned == null) continue;
-                if (owned == It_StatusData || owned.Id == It_StatusData.Id || owned.Name == It_StatusData.Name)
-                {
-                    existingItem = owned;
-                    break;
-                }
+                existingItem = owned;
+                break;
             }
+        }
 
-            if (existingItem != null)
+        if (existingItem != null)
+        {
+            existingItem.Number += 1;
+        }
+        else
+        {
+            // 新規入手（ScriptableObjectアセット参照を追加）
+            if (It_StatusData.Number <= 0)
             {
-                existingItem.Number += 1;
+                It_StatusData.Number = 1;
             }
             else
             {
-                // 新規入手（ScriptableObjectアセット参照を追加）
-                if (It_StatusData.Number <= 0)
-                {
-                    It_StatusData.Number = 1;
-                }
-                else
-                {
-                    It_StatusData.Number += 1;
-                }
-                db_PlayerItem.ItemList.Add(It_StatusData);
+                It_StatusData.Number += 1;
             }
-
-            //イベント1をtrueにしてアイテムを入手済みにする
-            Ev_StatusData.Event1 = true;
-            Objectafteracquisition();
+            db_PlayerItem.ItemList.Add(It_StatusData);
         }
+
+        Debug.Log($"{It_StatusData}を手に入れた");
+
+        //イベント1をtrueにしてアイテムを入手済みにする
+        Ev_StatusData.Event1 = true;
+        Objectafteracquisition();
     }
 
     private void Objectafteracquisition()
     {
-        if (!Ev_StatusData.Event1)
+        if (Ev_StatusData.Event1!)
         {
             if (Treasurechest)
             {
