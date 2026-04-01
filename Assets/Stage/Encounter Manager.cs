@@ -106,9 +106,7 @@ public class EncounterManager : MonoBehaviour
         isPlayerInside = false;
 
         // ▼ プレイヤー位置保存
-        GameManager.Instance.SceneName = SceneName;
-        GameManager.Instance.PlayerPosition = playerTransform.position;
-        GameManager.Instance.ShouldRestorePlayerPosition = true;
+        GameManager.Instance.SavePlayerPosition(SceneName, playerTransform);
 
         // ▼ 敵をランダムで 1～3 体（重複なし）
         GameManager.Instance.EncounteredEnemys = new List<D_Ch_StatusData>();

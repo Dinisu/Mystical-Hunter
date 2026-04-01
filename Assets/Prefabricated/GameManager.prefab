@@ -55,6 +55,8 @@ MonoBehaviour:
   SceneName: 0
   PlayerPosition: {x: 0, y: 0, z: 0}
   ShouldRestorePlayerPosition: 0
+  PlayerObject: {fileID: 8923146222536966875, guid: aa2b918b94ffa844897df2ad6e71aaec, type: 3}
+  EncounteredEnemys: []
 --- !u!114 &1979487674841337316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,5 +195,6 @@ MonoBehaviour:
   InventManager: {fileID: 0}
   Use_ChData: {fileID: 0}
   Use_subject_ChData: {fileID: 0}
+  Use_characterObject: {fileID: 0}
   ItemUse_ItData: {fileID: 0}
   SkillUse_SkData: {fileID: 0}

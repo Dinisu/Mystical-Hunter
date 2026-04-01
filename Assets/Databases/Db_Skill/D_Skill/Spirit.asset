@@ -19,7 +19,7 @@ MonoBehaviour:
   attribute: 0
   skillRange: 0
   attack_or_Magic: 0
-  kind: 4
+  kind: 6
   buff_DeBuff_kind: 1
   efficacy1: 20
   efficacy2: 0

@@ -21,7 +21,7 @@ MonoBehaviour:
   sp: 0
   attribute: 0
   maxhp: 15
-  hp: 0
+  hp: 15
   maxmp: 3
   mp: 3
   attack: 10
@@ -47,6 +47,6 @@ MonoBehaviour:
   Icon_Character2: {fileID: 0}
   DroppedItems:
   - DroppedItem: {fileID: 11400000, guid: 8a82fc880a05f864ba9e7a07e3976696, type: 2}
-    Droprate: 50
+    Droprate: 100
   Status: {fileID: 0}
   Event: {fileID: 0}

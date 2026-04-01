@@ -23,6 +23,7 @@ MonoBehaviour:
   buff_DeBuff_kind: 0
   efficacy1: 1.5
   efficacy2: 0
+  criticalRate: 0
   duration: 0
   mpConsumption: 10
   needSp: 3

@@ -111,13 +111,13 @@ MonoBehaviour:
   sp: 0
   attribute: 0
   maxhp: 60
-  hp: 43
+  hp: 60
   maxmp: 10
   mp: 10
   attack: 15
   magic: 3
   defense: 2
-  magicDefense: 5
+  magicDefense: 1
   speed: 3
   criticalRate: 0.05
   money: 0

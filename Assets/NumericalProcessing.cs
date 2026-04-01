@@ -742,10 +742,10 @@ public class NumericalProcessing : MonoBehaviour
         //行動リセット
         targetIcon.ActionReset();
 
-        // stateがActing_upならcurrentProgressを3下げる（滑らかに）
+        // stateがActing_upならcurrentProgressを4下げる（滑らかに）
         if (targetIcon.state == TimelineIconController.TimelineState.Acting_up)
         {
-            float targetProgress = Mathf.Max(0f, targetIcon.currentProgress - 0.3f);
+            float targetProgress = Mathf.Max(0f, targetIcon.currentProgress - 0.4f);
             
             // DOTweenで滑らかに下げる
             DOTween.To(

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameConstants;
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        RestorePlayerPosition();
+    }
+
     // エンカウントした敵の情報をクリア
     public void ClearEncounteredEnemies()
     {
@@ -42,10 +58,36 @@ public class GameManager : MonoBehaviour
         EncounteredEnemys.Clear();
     }
 
+    // プレイヤーの位置情報を保存
+    public void SavePlayerPosition(SceneName sceneName, Transform playerTransform)
+    {
+        SceneName = sceneName;
+        PlayerPosition = playerTransform.position;
+        ShouldRestorePlayerPosition = true;
+    }
+
     // プレイヤーの位置情報をクリア
     public void ClearPlayerPosition()
     {
         PlayerPosition = Vector3.zero;
+        ShouldRestorePlayerPosition = false;
+    }
+
+    public void RestorePlayerPosition()
+    {
+        if (!ShouldRestorePlayerPosition)
+            return;
+
+        GameObject player = GameObject.FindWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogWarning("Player が見つかりません");
+            return;
+        }
+
+        player.transform.position = PlayerPosition;
+
         ShouldRestorePlayerPosition = false;
     }
 }
