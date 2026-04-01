@@ -15,11 +15,12 @@ MonoBehaviour:
   name: "\u4E3B\u4EBA\u516C"
   id: 1
   ItemDescription: 
+  ID: 
   level: 1
-  exp: 0
+  exp: 8
   LevelExp:
   - Levelup: 2
-    NeedExp: 10
+    NeedExp: 100
     AcquisitionSp: 0
     MaxHpup: 5
     MaxMpup: 2
@@ -111,9 +112,9 @@ MonoBehaviour:
   sp: 0
   attribute: 0
   maxhp: 60
-  hp: 60
+  hp: 32
   maxmp: 10
-  mp: 10
+  mp: 0
   attack: 15
   magic: 3
   defense: 2

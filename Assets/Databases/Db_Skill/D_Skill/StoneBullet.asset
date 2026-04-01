@@ -15,6 +15,7 @@ MonoBehaviour:
   name: "\u30B9\u30C8\u30FC\u30F3\u30D0\u30EC\u30C3\u30C8"
   id: 100
   ItemDescription: "\u77F3\u3092\u9B54\u6CD5\u3067\u98DB\u3070\u3059"
+  ID: 
   EfficacyItemDescription: "\u7A2E\u985E\uFF1A\u30A2\u30BF\u30C3\u30AF\n\u9B54\u6CD5\uFF1A\u4E2D\u30C0\u30E1\u30FC\u30B8\n\u5C5E\u6027\uFF1A\u571F"
   attribute: 5
   skillRange: 3
@@ -27,7 +28,7 @@ MonoBehaviour:
   duration: 0
   mpConsumption: 10
   needSp: 3
-  Unlock: 1
+  Unlock: 0
   Icon: {fileID: 0}
   B_Icon: {fileID: 2077527046347190955, guid: 2b47aaa53cf89774d9244cd1c6b19fc0, type: 3}
   Effect: {fileID: 0}

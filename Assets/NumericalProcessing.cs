@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using static UnityEngine.GraphicsBuffer;
+using System.Linq;
 
 public class NumericalProcessing : MonoBehaviour
 {
@@ -213,6 +214,9 @@ public class NumericalProcessing : MonoBehaviour
             case D_Sk_StatusData.Buff_DeBuff_Kinds.Speed:
                 character.Speed = Mathf.RoundToInt(character.Speed * multiplier);
                 break;
+            case D_Sk_StatusData.Buff_DeBuff_Kinds.Critical:
+                character.CriticalRate = Mathf.RoundToInt(character.CriticalRate * multiplier);
+                break;
         }
         Debug.Log($"{D_Sk_StatusData.Buff_DeBuff_Kinds.Attack}に{multiplier}を付与しました。");
     }
@@ -297,6 +301,7 @@ public class NumericalProcessing : MonoBehaviour
         {
             case D_Sk_StatusData.Kinds.Buff:
             case D_Sk_StatusData.Kinds.DeBuff:
+            case D_Sk_StatusData.Kinds.Defense:
                 // ActiveBuff を作成して付与 → その前に同一バフがあるか確認
                 var existingBuff = defender.ActiveBuffs.Find(b => b.baseData == skill);
 
@@ -337,8 +342,7 @@ public class NumericalProcessing : MonoBehaviour
 
             case D_Sk_StatusData.Kinds.Recovery:
                 //回復の処理を作る
-            case D_Sk_StatusData.Kinds.Attack:
-            case D_Sk_StatusData.Kinds.Defense:
+            case D_Sk_StatusData.Kinds.Attack:  
             case D_Sk_StatusData.Kinds.Fast:
             case D_Sk_StatusData.Kinds.slow:
             case D_Sk_StatusData.Kinds.Quick:
@@ -394,6 +398,15 @@ public class NumericalProcessing : MonoBehaviour
         int minDamage = Mathf.FloorToInt(baseDamage * 0.8f);
         int maxDamage = Mathf.CeilToInt(baseDamage * 1.2f);
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
+
+        // ▼ 防御していればダメージ半減
+        bool hasDefense = defender.ActiveBuffs.Any(buff => buff.baseData != null && buff.baseData.name == "Defense");
+
+        if (hasDefense)
+        {
+            finalDamage /= 2;
+            Debug.Log("Defenseバフによりダメージ半減");
+        }
 
         // ▼ ダメージ適用
         ApplyDamage(defender, finalDamage);
@@ -589,7 +602,7 @@ public class NumericalProcessing : MonoBehaviour
 
     /// <summary>
     /// ダメージを受けたキャラクターオブジェクトにダメージ数を表示。
-    /// 後にダメージか回復かで色を変える、メソッド名もその時変える
+    /// 後にダメージか回復かで色を変える、メソッド名もその時変える　　クリティカル時黄色
     /// true: ダメージ, false: 回復
     /// </summary>
     private void DamageText(D_Ch_StatusData targetCheck, int damage, bool Damage_or_healing)

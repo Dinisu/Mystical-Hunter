@@ -15,6 +15,7 @@ MonoBehaviour:
   name: "\u30AA\u30AA\u30AB\u30DF"
   id: 0
   ItemDescription: 
+  ID: 
   level: 1
   exp: 5
   LevelExp: []

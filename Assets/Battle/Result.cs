@@ -257,7 +257,7 @@ public class Result : MonoBehaviour
             }
         }
 
-        // ▼ メインキャラに加算
+        // ▼ 所持金に加算
         if (GameManager.Instance != null)
         {
             GameManager.Instance.PlayerMoney += acquisitionMoney;
