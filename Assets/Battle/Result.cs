@@ -257,6 +257,12 @@ public class Result : MonoBehaviour
             }
         }
 
+        // ▼ メインキャラに加算
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerMoney += acquisitionMoney;
+        }
+
         // ObtainedItemsの表示
         ObtainedItems.DOFade(1f, 1f).SetUpdate(true);
         yield return new WaitForSecondsRealtime(1f);

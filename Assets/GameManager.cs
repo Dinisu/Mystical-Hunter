@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public Vector3 PlayerPosition = Vector3.zero;
     public bool ShouldRestorePlayerPosition = false;
 
+    [SerializeField, Header("所持金")]
+    public int PlayerMoney;
+
     // エンカウントした敵の情報を保存
     public List<D_Ch_StatusData> EncounteredEnemys = new List<D_Ch_StatusData>();
 

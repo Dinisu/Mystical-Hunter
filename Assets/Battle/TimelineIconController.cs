@@ -47,41 +47,44 @@ public class TimelineIconController : MonoBehaviour
         // 無限ループ
         while (true)
         {
-            // Moving か Acting_up のときだけ処理
-            if (state == TimelineState.Moving || state == TimelineState.Acting_up)
+            if (characterData.Hp > 0)
             {
-                float currentSpeed = numericalProcessing.GetEffectiveSpeed(characterData);
-                float actionMultiplier = GetActionSpeedMultiplier();//行動速度倍率
-                currentProgress += currentSpeed * actionMultiplier * speedScale * 0.02f; // 固定時間進行
-
-
-                // 行動ゾーンから出た場合、isActionTriggeredをリセット
-                if (currentProgress < actionZoneStart && isActionTriggered)
+                // Moving か Acting_up のときだけ処理
+                if (state == TimelineState.Moving || state == TimelineState.Acting_up)
                 {
-                    isActionTriggered = false;
-                }
+                    float currentSpeed = numericalProcessing.GetEffectiveSpeed(characterData);
+                    float actionMultiplier = GetActionSpeedMultiplier();//行動速度倍率
+                    currentProgress += currentSpeed * actionMultiplier * speedScale * 0.02f; // 固定時間進行
 
-                // 行動ゾーン突入
-                if (currentProgress >= actionZoneStart && !isActionTriggered)
-                {
-                    isActionTriggered = true;
-                    state = TimelineState.WaitingForCommand;
-                    OnEnterActionZone?.Invoke(this);//ここで処理をするように送る
-                }
 
-                // 即時発動
-                if (IsInstantAction() && state == TimelineState.Acting_up)
-                {
-                    currentProgress = actionZoneEnd;
-                    Debug.Log("即時発動!");
-                }
+                    // 行動ゾーンから出た場合、isActionTriggeredをリセット
+                    if (currentProgress < actionZoneStart && isActionTriggered)
+                    {
+                        isActionTriggered = false;
+                    }
 
-                // 行動発動
-                if (currentProgress >= actionZoneEnd)
-                {
-                    currentProgress = actionZoneEnd;
-                    state = TimelineState.Acting_up;
-                    OnActionExecute?.Invoke(this);
+                    // 行動ゾーン突入
+                    if (currentProgress >= actionZoneStart && !isActionTriggered)
+                    {
+                        isActionTriggered = true;
+                        state = TimelineState.WaitingForCommand;
+                        OnEnterActionZone?.Invoke(this);//ここで処理をするように送る
+                    }
+
+                    // 即時発動
+                    if (IsInstantAction() && state == TimelineState.Acting_up)
+                    {
+                        currentProgress = actionZoneEnd;
+                        Debug.Log("即時発動!");
+                    }
+
+                    // 行動発動
+                    if (currentProgress >= actionZoneEnd)
+                    {
+                        currentProgress = actionZoneEnd;
+                        state = TimelineState.Acting_up;
+                        OnActionExecute?.Invoke(this);
+                    }
                 }
             }
 

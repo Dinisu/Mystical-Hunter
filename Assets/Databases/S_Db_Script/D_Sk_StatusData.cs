@@ -8,6 +8,8 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
     [CreateAssetMenu(menuName = "ScriptableObject/Data/SkillStatus")]
     public class D_Sk_StatusData : BaseData
     {
+        [SerializeField, Header("セーブ用ID")]
+        public string ID;
         [TextArea, Header("効果説明")]
         public string EfficacyItemDescription;
         public enum Attribute
