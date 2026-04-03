@@ -54,7 +54,9 @@ public class BattleManager : MonoBehaviour
     [SerializeField, Header("アイテム選択")]public List<GameObject> ItemSelection = new List<GameObject>();
     [SerializeField, Header("味方交代")]public List<GameObject> Switching_sides = new List<GameObject>();
     [SerializeField, Header("範囲選択")]public List<GameObject> Area_of_Effect = new List<GameObject>();
-    
+
+    private bool QuickAction;//行動選択外でクイックを発動しようとしているか
+
     //UI生成する場合
     private GameObject actionField;
     private GameObject skillField;

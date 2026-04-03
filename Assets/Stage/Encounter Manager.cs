@@ -16,15 +16,6 @@ public class EncounterManager : MonoBehaviour
     [Range(0f, 100f)]
     private float encounterRatePerSecond = 3f;
 
-    /* 
-       | encounterRatePerSecond | 体感             |
-       |------------------------|------------------|
-       | 1%                     | かなり低い       |
-       | 3%                     | 普通のフィールド |
-       | 5%                     | やや多い         |
-       | 8%以上                 | ダンジョン       |
-    */
-
 
     private enum BattleStage
     {
@@ -61,6 +52,21 @@ public class EncounterManager : MonoBehaviour
         lastPlayerPos = playerTransform.position;
         if (!isMoving) return;
 
+        // 1秒あたり encounterRatePerSecond % の確率にする
+        float probabilityThisFrame = encounterRatePerSecond / 100f * Time.deltaTime;
+        Debug.Log("エンカウントエリアでプレイヤーが動いている");
+
+        if (Random.value < probabilityThisFrame)
+        {
+            StartEncounter();
+        }
+
+        /*if (!isPlayerInside) return;
+
+        bool isMoving = Vector3.Distance(playerTransform.position, lastPlayerPos) > 0.01f;
+        lastPlayerPos = playerTransform.position;
+        if (!isMoving) return;
+
         Debug.Log("エンカウントエリアでプレイヤーが動いている");
 
         encounterGauge += encounterRatePerSecond * Time.deltaTime;
@@ -69,7 +75,7 @@ public class EncounterManager : MonoBehaviour
         {
             encounterGauge = 0f;
             StartEncounter();
-        }
+        }*/
     }
 
 
