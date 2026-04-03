@@ -15,6 +15,23 @@ public class EncounterManager : MonoBehaviour
     [SerializeField, Header("毎秒エンカウント確率(%)")]
     [Range(0f, 100f)]
     private float encounterRatePerSecond = 3f;
+    /*
+     * 例： encounterRatePerSecond = 3
+
+       1秒後 → ゲージ3 → 3%抽選
+       5秒後 → ゲージ15 → 15%抽選
+       10秒後 → ゲージ30 → 30%抽選
+       長時間歩く → ほぼ確定レベル
+     */
+
+    /*
+     | Rate | 体感      |
+     | ---- | ------- |
+     | 2    | 広いフィールド |
+     | 3    | 通常      |
+     | 5    | 洞窟      |
+     | 8    | 高危険地帯   |
+     */
 
 
     private enum BattleStage
@@ -52,12 +69,15 @@ public class EncounterManager : MonoBehaviour
         lastPlayerPos = playerTransform.position;
         if (!isMoving) return;
 
-        // 1秒あたり encounterRatePerSecond % の確率にする
-        float probabilityThisFrame = encounterRatePerSecond / 100f * Time.deltaTime;
-        Debug.Log("エンカウントエリアでプレイヤーが動いている");
+        // ゲージ増加（時間依存）
+        encounterGauge += encounterRatePerSecond * Time.deltaTime;
 
-        if (Random.value < probabilityThisFrame)
+        // 確率は「現在のゲージ割合」
+        float probability = encounterGauge / 100f;
+
+        if (Random.value < probability)
         {
+            encounterGauge = 0f;
             StartEncounter();
         }
 
@@ -113,6 +133,8 @@ public class EncounterManager : MonoBehaviour
 
         // ▼ プレイヤー位置保存
         GameManager.Instance.SavePlayerPosition(SceneName, playerTransform);
+
+        GameManager.Instance.ClearEncounteredEnemies();
 
         // ▼ 敵をランダムで 1～3 体（重複なし）
         GameManager.Instance.EncounteredEnemys = new List<D_Ch_StatusData>();
