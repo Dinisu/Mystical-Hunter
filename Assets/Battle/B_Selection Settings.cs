@@ -13,7 +13,8 @@ public class B_SelectionSettings : MonoBehaviour
         Character_Switching,
         AreaofEffect,
         run_away,
-        StatusCheck
+        StatusCheck,
+        Quick_Action
     }
     [SerializeField, Header("選択し")]
     public Choose choose;

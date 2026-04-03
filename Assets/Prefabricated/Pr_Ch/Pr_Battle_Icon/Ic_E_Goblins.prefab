@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3481214003554576615}
   - component: {fileID: 7276606402553886822}
   m_Layer: 5
-  m_Name: Icon_E_Wolf
+  m_Name: Ic_E_Goblins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   actionZoneStart: 0.7
   actionZoneEnd: 1
   state: 0
-  characterData: {fileID: 11400000, guid: 7d7433d1d7687344d8c3a63e9b519362, type: 2}
+  characterData: {fileID: 11400000, guid: ecde0da55cda11a40a7e3e7ee7f00016, type: 2}
   characterObject: {fileID: 0}
   director: {fileID: 0}
   ActivatedSkills: {fileID: 0}

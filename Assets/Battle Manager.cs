@@ -55,7 +55,7 @@ public class BattleManager : MonoBehaviour
     [SerializeField, Header("味方交代")]public List<GameObject> Switching_sides = new List<GameObject>();
     [SerializeField, Header("範囲選択")]public List<GameObject> Area_of_Effect = new List<GameObject>();
 
-    private bool QuickAction;//行動選択外でクイックを発動しようとしているか
+    private bool QuickAction = false;//行動選択外でクイックを発動しようとしているか
 
     //UI生成する場合
     private GameObject actionField;
@@ -98,7 +98,7 @@ public class BattleManager : MonoBehaviour
     public AudioSource audioSource;
 
     private PlayerInput playerInput;
-    private bool inputEnabled = false; // 入力処理の有効/無効フラグ
+    private bool NormalinputEnabled = false; // 入力処理の有効/無効フラグ
 
     // 現在選択中のキャラクターデータ（スキル生成用）
     [SerializeField] private D_Ch_StatusData currentCharacterData;
@@ -165,7 +165,6 @@ public class BattleManager : MonoBehaviour
             icon.OnEnterActionZone += HandleEnemyAction;
             icon.OnActionExecute += HandleActionExecution;
         }
-
 
         // UI操作の初期化
         InitializeUI();
@@ -506,8 +505,11 @@ public class BattleManager : MonoBehaviour
             actionField.SetActive(true);
         }
 
-        // 履歴をクリア
-        menuHistory.Clear();
+        // クイック行動中でなければ履歴をクリア
+        if (QuickAction)
+        {
+            menuHistory.Clear();
+        }
 
         // ActionSelectionから開始
         uiElements = ActionSelection.ToArray();
@@ -735,6 +737,9 @@ public class BattleManager : MonoBehaviour
 
         // 発動後、タイムラインをリセットして再開
         icon.ResumeMovement();
+
+        // UI操作を有効化
+        SetInputEnabled(false);
     }
 
     /// <summary>
@@ -812,7 +817,7 @@ public class BattleManager : MonoBehaviour
         var move = playerInput.actions["Move"];
         move.performed -= OnMove;
         move.canceled -= OnMove;
-
+        
         var attack = playerInput.actions["Attack"];
         attack.performed -= OnAttack;
 
@@ -825,7 +830,7 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (!inputEnabled) return;
+        if (!NormalinputEnabled) return;
         if (!context.performed) return;
 
         Vector2 input = context.ReadValue<Vector2>();
@@ -845,8 +850,15 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (!inputEnabled) return;
         if (!context.performed) return;
+
+        //通常入力有効がfalseならクイック行動に入る
+        if (!NormalinputEnabled)
+        {
+            QuickActionSelection();
+
+        }
+        if (!NormalinputEnabled) return;
 
         if (SelectUI != null)
         {
@@ -891,6 +903,30 @@ public class BattleManager : MonoBehaviour
                     case B_SelectionSettings.Choose.run_away://逃げる
                         RunAwayProcess();
                         break;
+                    case B_SelectionSettings.Choose.Quick_Action://クイック行動対象決定
+
+                        string rawName = SelectUI.name;
+                        string targetName = rawName;
+                        // 先頭の "B_" を除去
+                        if (targetName.StartsWith("Ic_"))
+                            targetName = targetName.Substring(3);
+
+                        // 後ろの "(Clone)" を除去
+                        targetName = targetName.Replace("(Clone)", "");
+                        
+                        // --- AllyParticipationList / EnemyParticipationList の中から一致する名前を探す ---
+                        D_Ch_StatusData foundTarget = null;
+
+                        // まず味方
+                        foreach (var Ic_data in allyIcons)
+                        {
+                            if (Ic_data.name == targetName)
+                            {
+                                QuickActionDecision(Ic_data);
+                                break;
+                            }
+                        }
+                        break;
 
                     default:
                         Debug.Log("未対応の Choose: " + settings.choose);
@@ -909,8 +945,10 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void OnCancel(InputAction.CallbackContext context)
     {
-        if (!inputEnabled) return;
+        if (!NormalinputEnabled) return;
         if (!context.performed) return;
+
+        string currentType = GetCurrentMenuType();
 
         Debug.Log("Cancel pressed");
         PreviousList();
@@ -1002,6 +1040,36 @@ public class BattleManager : MonoBehaviour
                 if (skillField != null) skillField.SetActive(false);
                 //if (actionField != null) actionField.SetActive(false);
             }
+        }
+
+        //クイック行動対象選択に戻る
+        if (currentType == "ActionSelection" && QuickAction)
+        {
+            actionField.SetActive(false);
+        }
+
+        //クイック行動をやめる
+        if (currentType == "Area_of_Effect" && QuickAction)
+        {
+            // --- タイムライン上の全アイコンを動かす ---
+            foreach (var ally in allyIcons)
+            {
+                if (ally.state == TimelineIconController.TimelineState.Interrupted)
+                    ally.state = TimelineIconController.TimelineState.Acting_up;
+                else
+                    ally.state = TimelineIconController.TimelineState.Moving;
+            }
+
+            foreach (var enemy in enemyIcons)
+            {
+                if (enemy.state == TimelineIconController.TimelineState.Interrupted)
+                    enemy.state = TimelineIconController.TimelineState.Acting_up;
+                else
+                    enemy.state = TimelineIconController.TimelineState.Moving;
+            }
+            Area_of_Effect.Clear();
+
+            marker.Hide();//行動UIを閉じる
         }
 
         // 履歴から復元
@@ -1206,12 +1274,12 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void SetInputEnabled(bool enabled)
     {
-        inputEnabled = enabled;
+        NormalinputEnabled = enabled;
 
         if (!enabled)
         {
             UnregisterInputEvents();
-            StopBlink();
+            //StopBlink();
         }
         else
         {
@@ -1319,6 +1387,22 @@ public class BattleManager : MonoBehaviour
         if (targetSkill == null)
         {
             Debug.LogError("スキルデータが見つかりません！");
+            return;
+        }
+
+        //クイック行動中クイック以外のスキルを発動できなくする
+        if (QuickAction　== true && targetSkill.SeeKinds != D_Sk_StatusData.Kinds.Quick)
+        {
+            Debug.Log("クイック行動中はクイックスキル以外を発動できません");
+            return;
+        }
+
+        //スキルを発動するキャラクターに疲労があればクイックスキルを発動できなくする。
+        bool hasfatigue = currentCharacterData.ActiveBuffs.Any(buff => buff.baseData != null && buff.baseData.name == "Fatigue");
+
+        if (hasfatigue)
+        {
+            Debug.Log("疲労のデバフによりクイックスキルを発動できません。");
             return;
         }
 
@@ -1437,6 +1521,13 @@ public class BattleManager : MonoBehaviour
         if (targetItem == null)
         {
             Debug.LogError("アイテムデータが見つかりません！");
+            return;
+        }
+
+        //クイック行動中クイックスキル以外発動できない
+        if (QuickAction)
+        {
+            Debug.Log("クイック行動中はクイックスキル以外を発動できません");
             return;
         }
 
@@ -1636,6 +1727,8 @@ public class BattleManager : MonoBehaviour
 
         marker.Hide();//行動UIを閉じる
 
+        QuickAction = false;
+
         Debug.Log("行動対象選択処理");
     }
 
@@ -1647,6 +1740,83 @@ public class BattleManager : MonoBehaviour
         // TODO: 逃げる処理を実装
         Debug.Log("逃げる処理");
     }
+
+    /// <summary>
+    /// クイック行動開始
+    /// 対象選択
+    /// </summary>
+    private void QuickActionSelection()
+    {
+        //クイック行動開始
+        QuickAction = true;
+        Debug.Log("クイック行動開始");
+
+        // UI操作を有効化
+        SetInputEnabled(true);
+
+        // --- タイムライン上の全アイコンを停止 ---
+        foreach (var ally in allyIcons)
+        {
+            if (ally.state == TimelineIconController.TimelineState.Acting_up)
+                ally.state = TimelineIconController.TimelineState.Interrupted;
+            else
+                ally.state = TimelineIconController.TimelineState.WaitingForCommand;
+        }
+
+        foreach (var enemy in enemyIcons)
+        {
+            if (enemy.state == TimelineIconController.TimelineState.Acting_up)
+                enemy.state = TimelineIconController.TimelineState.Interrupted;
+            else
+                enemy.state = TimelineIconController.TimelineState.WaitingForCommand;
+        }
+
+        // 履歴をクリア
+        menuHistory.Clear();
+
+        //クイック行動をする味方を選択
+        GenerateAreaOfEffectTargets(character);
+
+        // 選択対象を Area_of_Effect に切り替え
+        uiElements = Area_of_Effect.ToArray();
+        currentIndex = 0;
+        SelectUI = uiElements[currentIndex];
+
+        // 入力イベントを登録
+        RegisterInputEvents();
+    }
+
+    /// <summary>
+    /// クイック行動対象決定
+    /// </summary>
+    private void QuickActionDecision(TimelineIconController statuscheck)
+    {
+        // 現在の状態を履歴に保存
+        SaveCurrentStateToHistory();
+
+        //対象が行動ゾーン内にいたらクイック行動はできない
+        if (statuscheck.state == TimelineIconController.TimelineState.Interrupted)
+        {
+            return;
+        }
+
+        // 現在選択中のキャラクターデータを保存
+        currentCharacterData = statuscheck.characterData;
+
+        // ActionFieldを表示
+        if (actionField != null)
+        {
+            actionField.SetActive(true);
+        }
+
+        // 選択対象を ActionSelection に切り替え
+        uiElements = ActionSelection.ToArray();
+        currentIndex = 0;
+        SelectUI = uiElements[currentIndex];
+
+    }
+
+
 
     // --- UI生成メソッド ---
 
@@ -1981,7 +2151,16 @@ public class BattleManager : MonoBehaviour
             {
                 selectionSettings = characterObj.AddComponent<B_SelectionSettings>();
             }
-            selectionSettings.choose = B_SelectionSettings.Choose.AreaofEffect;
+
+            //クイック行動中ならそのキャラクターの行動選択に移行できるようにする
+            if (!QuickAction)
+            {
+                selectionSettings.choose = B_SelectionSettings.Choose.AreaofEffect;
+            }
+            else
+            {
+                selectionSettings.choose = B_SelectionSettings.Choose.Quick_Action;
+            }
 
             // Area_of_Effect リストに追加
             Area_of_Effect.Add(characterObj);
