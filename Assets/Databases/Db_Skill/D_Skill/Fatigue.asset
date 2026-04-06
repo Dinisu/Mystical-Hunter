@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 111c5ab749b19024599fbcd5b04c983c, type: 3}
+  m_Name: Fatigue
+  m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_Sk_StatusData
+  name: "\u75B2\u52B4"
+  id: 0
+  ItemDescription: 
+  ID: 
+  EfficacyItemDescription: "\u30AF\u30A4\u30C3\u30AF\u30B9\u30AD\u30EB\u304C\u767A\u52D5\u3067\u304D\u306A\u304F\u306A\u308B\u3002\n3\u30BF\u30FC\u30F3"
+  attribute: 0
+  skillRange: 0
+  attack_or_Magic: 0
+  kind: 7
+  buff_DeBuff_kind: 0
+  efficacy1: 0
+  efficacy2: 0
+  criticalRate: 0
+  duration: 4
+  mpConsumption: 0
+  needSp: 0
+  Unlock: 0
+  Icon: {fileID: 0}
+  B_Icon: {fileID: 0}
+  Effect: {fileID: 0}
+  SoundEffects: {fileID: 0}

@@ -134,8 +134,6 @@ public class EncounterManager : MonoBehaviour
         // ▼ プレイヤー位置保存
         GameManager.Instance.SavePlayerPosition(SceneName, playerTransform);
 
-        GameManager.Instance.ClearEncounteredEnemies();
-
         // ▼ 敵をランダムで 1～3 体（重複なし）
         GameManager.Instance.EncounteredEnemys = new List<D_Ch_StatusData>();
 

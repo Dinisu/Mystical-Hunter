@@ -398,7 +398,7 @@ MonoBehaviour:
   EncounterEnemys: {fileID: 11400000, guid: 1a481896a1a351141a6ed056c03ec103, type: 2}
   EncounterArea:
   - {fileID: 1426484877}
-  encounterRatePerSecond: 50
+  encounterRatePerSecond: 5.5
   SceneName: 1
   battleStage: 0
 --- !u!54 &987690536

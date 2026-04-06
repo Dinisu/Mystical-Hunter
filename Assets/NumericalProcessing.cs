@@ -650,7 +650,7 @@ public class NumericalProcessing : MonoBehaviour
     /// <summary>
     /// ダメージを受けたキャラクターオブジェクトを点滅させる（DOTween）。
     /// エフェクトと同期する場合は <paramref name="durationSeconds"/> に再生時間を渡す。
-    /// 3/26後にエフェクト再生終了時に点滅するようにする
+    /// 3/26 後にエフェクト再生終了時に点滅するようにする
     /// </summary>
     private Sequence BlinkHitObject(D_Ch_StatusData targetCheck, float durationSeconds = 1f)
     {
