@@ -132,6 +132,8 @@ public class Result : MonoBehaviour
         GaugeUI.SetActive(false);
         Statusarea.SetActive(false);
 
+        BattleManager.Instance.ActionName.text = ("");//行動名リセット
+
         // VictoryDeclarationの表示
         VictoryDeclaration.DOFade(1f, 1f).SetUpdate(true);
         yield return new WaitForSecondsRealtime(1f);
@@ -160,6 +162,8 @@ public class Result : MonoBehaviour
         DefeatResult.SetActive(true);
         GaugeUI.SetActive(false);
         Statusarea.SetActive(false);
+
+        BattleManager.Instance.ActionName.text = ("");//行動名リセット
 
         // MissionFailureのテキスト表示
         MissionFailure.DOFade(1f, 2f).SetUpdate(true);

@@ -338,6 +338,11 @@ public class NumericalProcessing : MonoBehaviour
                 }
                 // ▼ UI更新（ステータスアイコンをすべて更新）
                 UpdateAllStatusIcons();
+
+                //エフェクトを再生する
+
+                BattleManager.Instance.ActionName.text = ("");//行動名リセット エフェクト再生時間に合わせるようにする
+
                 return;
 
             case D_Sk_StatusData.Kinds.Recovery:
@@ -643,7 +648,7 @@ public class NumericalProcessing : MonoBehaviour
            .AppendInterval(0.65f)                                                   // 合計約1秒
            .OnComplete(() =>
            {
-               damageDisplay.gameObject.SetActive(false);
+               damageDisplay.gameObject.SetActive(false); 
            });
     }
 
@@ -698,8 +703,16 @@ public class NumericalProcessing : MonoBehaviour
 
         seq.OnComplete(() => material.SetColor(colorPropertyName, defaultColor));
 
+        BattleManager.Instance.ActionName.text = ("");//行動名リセット エフェクト再生時間に合わせるようにする
+
         return seq;
     }
+
+    /// <summary>
+    /// エフェクトを1ループ再生する
+    /// 再生が終わるまでまつ
+    /// </summary>
+    
 
     /// <summary>エフェクト再生時間に合わせて点滅時間だけ変えたいときに呼ぶ。</summary>
     public void BlinkHitObjectForDuration(D_Ch_StatusData targetCheck, float durationSeconds)
@@ -707,9 +720,7 @@ public class NumericalProcessing : MonoBehaviour
         BlinkHitObject(targetCheck, durationSeconds);
     }
 
-    /// <summary>
-    /// ダメージを受けたキャラクターのTimelineIconControllerのcurrentProgressを下げる
-    /// </summary>
+    /// <summary>ダメージを受けたキャラクターのTimelineIconControllerのcurrentProgressを下げる </summary>
     private void ReduceTimelineProgress(D_Ch_StatusData targetCharacter)
     {
         if (targetCharacter == null) return;

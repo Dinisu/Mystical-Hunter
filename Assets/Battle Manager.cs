@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Linq;
+using TMPro;
 
 public class BattleManager : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField, Header("行動UI")] private GameObject ActionSelectionUI;
     private ObjectMarker marker;
+
+    [SerializeField, Header("行動する物の名前表示")]
+    public TextMeshProUGUI ActionName;
 
     //データストア
     private Dss_Ch_StatusDataStores dss_Ch_StatusDataStores;
@@ -710,6 +714,7 @@ public class BattleManager : MonoBehaviour
             numericalProcessing.Use_ChData = icon.characterData;//発動するキャラクター
             numericalProcessing.Use_subject_ChData = icon.Target_of_Action;//発動される対象
             numericalProcessing.Use_characterObject = icon.characterObject;//発動される対象オブジェクト
+            ActionName.text = ($"{icon.ActivatedSkills.Name}");//発動スキル名表示
             numericalProcessing.DamageCalculation();
         }
         else
@@ -718,6 +723,7 @@ public class BattleManager : MonoBehaviour
             numericalProcessing.Use_ChData = icon.characterData;//発動するキャラクター
             numericalProcessing.Use_subject_ChData = icon.Target_of_Action;//発動される対象
             numericalProcessing.Use_characterObject = icon.characterObject;//発動される対象オブジェクト
+            ActionName.text = ($"{icon.ActivatedItem.Name}");//発動アイテム名表示
             numericalProcessing.Itemtypedetermination();
         }
 
