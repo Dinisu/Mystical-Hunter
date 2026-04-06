@@ -462,21 +462,7 @@ public class BattleManager : MonoBehaviour
         currentCharacterData = icon.characterData;
 
         // --- タイムライン上の全アイコンを停止 ---
-        foreach (var ally in allyIcons)
-        {
-            if (ally.state == TimelineIconController.TimelineState.Acting_up)
-                ally.state = TimelineIconController.TimelineState.Interrupted;
-            else
-                ally.state = TimelineIconController.TimelineState.WaitingForCommand;
-        }
-
-        foreach (var enemy in enemyIcons)
-        {
-            if (enemy.state == TimelineIconController.TimelineState.Acting_up)
-                enemy.state = TimelineIconController.TimelineState.Interrupted;
-            else
-                enemy.state = TimelineIconController.TimelineState.WaitingForCommand;
-        }
+        Stopallicons();
 
         //前の行動選択データをリセット
         numericalProcessing.Use_ChData = null;
@@ -1058,21 +1044,7 @@ public class BattleManager : MonoBehaviour
         if (currentType == "Area_of_Effect" && QuickAction)
         {
             // --- タイムライン上の全アイコンを動かす ---
-            foreach (var ally in allyIcons)
-            {
-                if (ally.state == TimelineIconController.TimelineState.Interrupted)
-                    ally.state = TimelineIconController.TimelineState.Acting_up;
-                else
-                    ally.state = TimelineIconController.TimelineState.Moving;
-            }
-
-            foreach (var enemy in enemyIcons)
-            {
-                if (enemy.state == TimelineIconController.TimelineState.Interrupted)
-                    enemy.state = TimelineIconController.TimelineState.Acting_up;
-                else
-                    enemy.state = TimelineIconController.TimelineState.Moving;
-            }
+            Moveallicons();
             Area_of_Effect.Clear();
 
             marker.Hide();//行動UIを閉じる
@@ -1713,21 +1685,7 @@ public class BattleManager : MonoBehaviour
         }
 
         // --- タイムライン上の全アイコンを動かす ---
-        foreach (var ally in allyIcons)
-        {
-            if (ally.state == TimelineIconController.TimelineState.Interrupted)
-                ally.state = TimelineIconController.TimelineState.Acting_up;
-            else
-                ally.state = TimelineIconController.TimelineState.Moving;
-        }
-
-        foreach (var enemy in enemyIcons)
-        {
-            if (enemy.state == TimelineIconController.TimelineState.Interrupted)
-                enemy.state = TimelineIconController.TimelineState.Acting_up;
-            else
-                enemy.state = TimelineIconController.TimelineState.Moving;
-        }
+        Moveallicons();
 
         currentIcon.state = TimelineIconController.TimelineState.Acting_up;//行動ゾーンにいる
 
@@ -1761,21 +1719,7 @@ public class BattleManager : MonoBehaviour
         SetInputEnabled(true);
 
         // --- タイムライン上の全アイコンを停止 ---
-        foreach (var ally in allyIcons)
-        {
-            if (ally.state == TimelineIconController.TimelineState.Acting_up)
-                ally.state = TimelineIconController.TimelineState.Interrupted;
-            else
-                ally.state = TimelineIconController.TimelineState.WaitingForCommand;
-        }
-
-        foreach (var enemy in enemyIcons)
-        {
-            if (enemy.state == TimelineIconController.TimelineState.Acting_up)
-                enemy.state = TimelineIconController.TimelineState.Interrupted;
-            else
-                enemy.state = TimelineIconController.TimelineState.WaitingForCommand;
-        }
+        Stopallicons();
 
         // 履歴をクリア
         menuHistory.Clear();
@@ -1820,6 +1764,50 @@ public class BattleManager : MonoBehaviour
         currentIndex = 0;
         SelectUI = uiElements[currentIndex];
 
+    }
+
+    ///<summary>
+    ///タイムライン上の全アイコンを停止
+    ///</summary>
+    public void Stopallicons()
+    {
+        foreach (var ally in allyIcons)
+        {
+            if (ally.state == TimelineIconController.TimelineState.Acting_up)
+                ally.state = TimelineIconController.TimelineState.Interrupted;
+            else
+                ally.state = TimelineIconController.TimelineState.WaitingForCommand;
+        }
+
+        foreach (var enemy in enemyIcons)
+        {
+            if (enemy.state == TimelineIconController.TimelineState.Acting_up)
+                enemy.state = TimelineIconController.TimelineState.Interrupted;
+            else
+                enemy.state = TimelineIconController.TimelineState.WaitingForCommand;
+        }
+    }
+
+    ///<summary>
+    ///タイムライン上の全アイコンを動かす
+    ///</summary>
+    public void Moveallicons()
+    {
+        foreach (var ally in allyIcons)
+        {
+            if (ally.state == TimelineIconController.TimelineState.Interrupted)
+                ally.state = TimelineIconController.TimelineState.Acting_up;
+            else
+                ally.state = TimelineIconController.TimelineState.Moving;
+        }
+
+        foreach (var enemy in enemyIcons)
+        {
+            if (enemy.state == TimelineIconController.TimelineState.Interrupted)
+                enemy.state = TimelineIconController.TimelineState.Acting_up;
+            else
+                enemy.state = TimelineIconController.TimelineState.Moving;
+        }
     }
 
 

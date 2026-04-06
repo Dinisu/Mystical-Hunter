@@ -710,9 +710,10 @@ public class NumericalProcessing : MonoBehaviour
 
     /// <summary>
     /// エフェクトを1ループ再生する
+    /// エフェクトを再生中タイムライン上の全アイコンを停止
     /// 再生が終わるまでまつ
     /// </summary>
-    
+
 
     /// <summary>エフェクト再生時間に合わせて点滅時間だけ変えたいときに呼ぶ。</summary>
     public void BlinkHitObjectForDuration(D_Ch_StatusData targetCheck, float durationSeconds)
