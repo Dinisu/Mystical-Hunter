@@ -17,7 +17,7 @@ MonoBehaviour:
   ItemDescription: 
   ID: 
   level: 1
-  exp: 0
+  exp: 21
   LevelExp:
   - Levelup: 2
     NeedExp: 100
@@ -114,7 +114,7 @@ MonoBehaviour:
   maxhp: 60
   hp: 44
   maxmp: 10
-  mp: 0
+  mp: 7
   attack: 15
   magic: 3
   defense: 2
@@ -127,9 +127,7 @@ MonoBehaviour:
   Accessories1: {fileID: 11400000, guid: c0f14ef513f4ac84aaa6d500650afaa9, type: 2}
   Accessories2: {fileID: 0}
   SkillList: {fileID: 11400000, guid: cfa638e9bb24b2e4aa45e27cae17e469, type: 2}
-  ActiveBuffs:
-  - baseData: {fileID: 11400000, guid: dcea28cb8068e4a4b8f13a9e368ae2fc, type: 2}
-    remainingTurns: 1
+  ActiveBuffs: []
   ActiveBuffs_It: []
   abnormalstatus: 0
   Character: {fileID: 8923146222536966875, guid: aa2b918b94ffa844897df2ad6e71aaec, type: 3}

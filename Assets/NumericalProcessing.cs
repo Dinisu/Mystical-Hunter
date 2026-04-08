@@ -7,6 +7,7 @@ using DG.Tweening;
 using TMPro;
 using static UnityEngine.GraphicsBuffer;
 using System.Linq;
+using System.Collections;
 
 public class NumericalProcessing : MonoBehaviour
 {
@@ -236,7 +237,7 @@ public class NumericalProcessing : MonoBehaviour
             var buff = activeBuff.baseData;
 
             if ((buff.SeeKinds == D_Sk_StatusData.Kinds.Buff || buff.SeeKinds == D_Sk_StatusData.Kinds.DeBuff)
-           　　　&& buff.SeeBuff_DeBuff_Kinds == D_Sk_StatusData.Buff_DeBuff_Kinds.Speed)
+           && buff.SeeBuff_DeBuff_Kinds == D_Sk_StatusData.Buff_DeBuff_Kinds.Speed)
             {
                 // 例：buff.Efficacy1 が 20 なら 20%アップとみなす
                 float value = buff.Efficacy1 * 0.01f;
@@ -336,6 +337,10 @@ public class NumericalProcessing : MonoBehaviour
                     RestoreOriginalStats(atkBuffData);
                     RestoreOriginalStats(defBuffData);
                 }
+
+                // ▼ エフェクトを再生
+                StartCoroutine(PlayTheEffect(defender, skill));
+
                 // ▼ UI更新（ステータスアイコンをすべて更新）
                 UpdateAllStatusIcons();
 
@@ -346,12 +351,12 @@ public class NumericalProcessing : MonoBehaviour
                 return;
 
             case D_Sk_StatusData.Kinds.Recovery:
-                //回復の処理を作る
-            case D_Sk_StatusData.Kinds.Attack:  
+            //回復の処理を作る
+            case D_Sk_StatusData.Kinds.Attack:
             case D_Sk_StatusData.Kinds.Fast:
             case D_Sk_StatusData.Kinds.slow:
             case D_Sk_StatusData.Kinds.Quick:
-                //のデバフをattackerに付与してダメージ計算へ
+            //のデバフをattackerに付与してダメージ計算へ
             case D_Sk_StatusData.Kinds.Abilities:
                 // ↓↓↓ このままダメージ計算へ ↓↓↓
                 break;
@@ -412,6 +417,9 @@ public class NumericalProcessing : MonoBehaviour
             finalDamage /= 2;
             Debug.Log("Defenseバフによりダメージ半減");
         }
+
+        // ▼ エフェクトを再生
+        StartCoroutine(PlayTheEffect(defender, skill));
 
         // ▼ ダメージ適用
         ApplyDamage(defender, finalDamage);
@@ -648,7 +656,7 @@ public class NumericalProcessing : MonoBehaviour
            .AppendInterval(0.65f)                                                   // 合計約1秒
            .OnComplete(() =>
            {
-               damageDisplay.gameObject.SetActive(false); 
+               damageDisplay.gameObject.SetActive(false);
            });
     }
 
@@ -703,8 +711,6 @@ public class NumericalProcessing : MonoBehaviour
 
         seq.OnComplete(() => material.SetColor(colorPropertyName, defaultColor));
 
-        BattleManager.Instance.ActionName.text = ("");//行動名リセット エフェクト再生時間に合わせるようにする
-
         return seq;
     }
 
@@ -713,6 +719,53 @@ public class NumericalProcessing : MonoBehaviour
     /// エフェクトを再生中タイムライン上の全アイコンを停止
     /// 再生が終わるまでまつ
     /// </summary>
+    private IEnumerator PlayTheEffect(D_Ch_StatusData targetCheck, D_Sk_StatusData targetSkills)
+    {
+        if (targetCheck == null) yield break;
+        if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) yield break;
+
+        Debug.Log($"エフェクトを再生します。");
+
+        float waitTime = 1f; // デフォルト待機時間（エフェクトがない場合）
+
+        // ▼ アイコン停止
+        //BattleManager.Instance.Stopallicons();
+
+        GameObject effectInstance = null;
+
+        // ▼ エフェクトが設定されている場合
+        if (targetSkills != null && targetSkills.Effect != null)
+        {
+            effectInstance = Instantiate(targetSkills.Effect, root.transform);
+            effectInstance.transform.localPosition = Vector3.zero;
+
+            // ▼ ParticleSystemがある場合は再生時間取得
+            ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Play();
+                waitTime = ps.main.duration;
+            }
+        }
+
+        Debug.Log($"{waitTime}秒程エフェクトを再生します。");
+
+        // ▼ 再生終了まで待つ
+        yield return new WaitForSeconds(waitTime);
+
+        // ▼ エフェクト削除
+        if (effectInstance != null)
+        {
+            Destroy(effectInstance);
+        }
+
+        // ▼ アイコン再開
+        //BattleManager.Instance.Moveallicons();
+
+        // ▼ 行動名リセット
+        BattleManager.Instance.ActionName.text = "";
+    }
+
 
 
     /// <summary>エフェクト再生時間に合わせて点滅時間だけ変えたいときに呼ぶ。</summary>
