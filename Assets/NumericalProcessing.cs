@@ -303,6 +303,7 @@ public class NumericalProcessing : MonoBehaviour
             case D_Sk_StatusData.Kinds.Buff:
             case D_Sk_StatusData.Kinds.DeBuff:
             case D_Sk_StatusData.Kinds.Defense:
+            case D_Sk_StatusData.Kinds.Abilities:
                 // ActiveBuff を作成して付与 → その前に同一バフがあるか確認
                 var existingBuff = defender.ActiveBuffs.Find(b => b.baseData == skill);
 
@@ -357,7 +358,6 @@ public class NumericalProcessing : MonoBehaviour
             case D_Sk_StatusData.Kinds.slow:
             case D_Sk_StatusData.Kinds.Quick:
             //のデバフをattackerに付与してダメージ計算へ
-            case D_Sk_StatusData.Kinds.Abilities:
                 // ↓↓↓ このままダメージ計算へ ↓↓↓
                 break;
 

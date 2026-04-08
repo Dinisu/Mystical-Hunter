@@ -162,17 +162,48 @@ public class BattleManager : MonoBehaviour
         {
             icon.OnEnterActionZone += HandleActionSelection;
             icon.OnActionExecute += HandleActionExecution;
+
+            AbilityGrant(icon);
         }
 
         foreach (var icon in enemyIcons)
         {
             icon.OnEnterActionZone += HandleEnemyAction;
             icon.OnActionExecute += HandleActionExecution;
+
+            AbilityGrant(icon);
         }
 
         // UI操作の初期化
         InitializeUI();
     }
+
+    /// <summary>
+    /// アビリティの付与
+    /// 複数のキャラクター付与対策をする
+    /// </summary>
+    private IEnumerator AbilityGrant(TimelineIconController icon)
+    {
+        if (icon == null) yield break;
+        var skillDB = icon.characterData.SkillList.ItemList;
+
+        foreach (var skill in skillDB)
+        {
+            switch (skill.SeeKinds)
+            {
+                case D_Sk_StatusData.Kinds.Abilities:
+                    numericalProcessing.SkillUse_SkData = skill;//発動するスキル
+                    numericalProcessing.Use_ChData = icon.characterData;//発動するキャラクター
+                    numericalProcessing.Use_subject_ChData = icon.characterData;//発動される対象
+                    numericalProcessing.Use_characterObject = icon.characterObject;//発動される対象オブジェクト
+                    ActionName.text = ($"{skill.Name}");//発動スキル名表示
+                    numericalProcessing.DamageCalculation();
+
+                    break;
+            }
+        }
+    }
+
     private void SetupBattleParticipants()//参戦キャラ設定
     {
         AllyParticipationList.Clear();
