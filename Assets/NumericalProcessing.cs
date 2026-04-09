@@ -345,14 +345,19 @@ public class NumericalProcessing : MonoBehaviour
                 // ▼ UI更新（ステータスアイコンをすべて更新）
                 UpdateAllStatusIcons();
 
-                //エフェクトを再生する
-
-                BattleManager.Instance.ActionName.text = ("");//行動名リセット エフェクト再生時間に合わせるようにする
 
                 return;
 
             case D_Sk_StatusData.Kinds.Recovery:
-            //回復の処理を作る
+                //回復
+                var RecoveryAmount = Mathf.RoundToInt(skill.Efficacy1 * attacker.Magic);
+                defender.Hp += RecoveryAmount;
+
+                // ▼ エフェクトを再生
+                StartCoroutine(PlayTheEffect(defender, skill));
+
+                DamageText(defender, Mathf.RoundToInt(RecoveryAmount), false);
+                return;
             case D_Sk_StatusData.Kinds.Attack:
             case D_Sk_StatusData.Kinds.Fast:
             case D_Sk_StatusData.Kinds.slow:
