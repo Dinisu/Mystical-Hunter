@@ -138,6 +138,9 @@ public class InventManager : MonoBehaviour
             }
         }
 
+        //所持金表示
+        MoneyText.GetComponent<CharacterIconStatus>()?.DisplayOfMoneyHeld();
+
         // 最初のUIを選択状態に設定
         if (uiElements.Length > 0)
         {
