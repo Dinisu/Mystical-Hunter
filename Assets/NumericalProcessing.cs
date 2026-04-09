@@ -23,6 +23,8 @@ public class NumericalProcessing : MonoBehaviour
     //キャラクターデータストア
     private Dss_Ch_StatusDataStores dss_Ch_StatusDataStores;
     private Dss_It_StatusDataStores dss_It_StatusDataStores;
+    private Ds_Sk_StatusDataStore ds_Sk_StatusDataStore;
+    //private D_Sk_StatusData ReferenceSkills;
 
     private Db_It_StatusDataBase db_PlayerItem;//プレイヤーの所持アイテムデータ
 
@@ -36,6 +38,8 @@ public class NumericalProcessing : MonoBehaviour
     {
         dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
         dss_It_StatusDataStores = FindObjectOfType<Dss_It_StatusDataStores>();
+        ds_Sk_StatusDataStore = FindObjectOfType<Ds_Sk_StatusDataStore>();
+
 
         // Dictionaryを生成
         // 「キー：アイテム種類」「値：実行するメソッド」
@@ -358,11 +362,30 @@ public class NumericalProcessing : MonoBehaviour
 
                 DamageText(defender, Mathf.RoundToInt(RecoveryAmount), false);
                 return;
+            case D_Sk_StatusData.Kinds.Quick:
+                //疲労のデバフをattackerに付与してダメージ計算へ
+                var FatigueDebuff = attacker.ActiveBuffs.Find(buff => buff.baseData != null && buff.baseData.name == "Fatigue");
+
+                var FatigueData = ds_Sk_StatusDataStore.FindWithName("Fatigue");
+
+                //疲労デバフがあればターン更新なければ付与
+                if (FatigueDebuff != null)
+                {
+                    // 既に同じバフがある → ターンだけ更新
+                    FatigueDebuff.remainingTurns = FatigueData.Duration;
+                    Debug.LogWarning("疲労デバフを更新");
+                }
+                else
+                {
+                    // 新しく追加
+                    var newBuff = new ActiveBuff(FatigueData);
+                    attacker.ActiveBuffs.Add(newBuff);
+                    Debug.LogWarning("疲労デバフを付与");
+                }
+                break;
             case D_Sk_StatusData.Kinds.Attack:
             case D_Sk_StatusData.Kinds.Fast:
             case D_Sk_StatusData.Kinds.slow:
-            case D_Sk_StatusData.Kinds.Quick:
-            //のデバフをattackerに付与してダメージ計算へ
                 // ↓↓↓ このままダメージ計算へ ↓↓↓
                 break;
 

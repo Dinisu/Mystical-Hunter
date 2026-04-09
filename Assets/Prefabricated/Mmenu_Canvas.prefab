@@ -762,6 +762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numericalProcessing: {fileID: 0}
   statusMenu: {fileID: 1274529892638044999}
+  MoneyText: {fileID: 1587140260416329633}
   MenuField:
   - {fileID: 3270392268768340034}
   - {fileID: 6329360720850873266}

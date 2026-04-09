@@ -1409,7 +1409,7 @@ public class BattleManager : MonoBehaviour
         //スキルを発動するキャラクターに疲労があればクイックスキルを発動できなくする。
         bool hasfatigue = currentCharacterData.ActiveBuffs.Any(buff => buff.baseData != null && buff.baseData.name == "Fatigue");
 
-        if (hasfatigue)
+        if (hasfatigue && targetSkill.SeeKinds == D_Sk_StatusData.Kinds.Quick)
         {
             Debug.Log("疲労のデバフによりクイックスキルを発動できません。");
             return;

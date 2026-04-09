@@ -1712,8 +1712,6 @@ public class InventManager : MonoBehaviour
                     Status.GetComponent<CharacterIconStatus>()?.StatusUpdates();
                 }
 
-                MoneyText.GetComponent<CharacterIconStatus>()?.DisplayOfMoneyHeld();
-
                 //アイテムを使用しようとしているキャラクターをクリア
                 foreach (var obj in Charactersuseitems)
                 {
@@ -1726,6 +1724,8 @@ public class InventManager : MonoBehaviour
                 //アイテム説明を表示する
                 itemDescription.SetActive(true);
             }
+
+            MoneyText.GetComponent<CharacterIconStatus>()?.DisplayOfMoneyHeld();
 
             menuHistory.Clear();
             uiElements = MenuField.ToArray();
