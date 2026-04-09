@@ -41,6 +41,14 @@ public class CharacterIconStatus : MonoBehaviour
         StartCoroutine(AnimateExpGain(acquisitionEXP));
     }
 
+    public void DisplayOfMoneyHeld()//所持金表示
+    {
+        StatusText1.text = ($"所持金:{GameManager.Instance.PlayerMoney}$");
+    }
+
+    /// <summary>
+    /// 獲得EXPを1ずつ足して表示、を繰り返して視覚的にEXPが溜まっているのを表現
+    /// </summary>
     private IEnumerator AnimateExpGain(int acquisitionEXP)
     {
         if (status == null || StatusText1 == null) yield break;

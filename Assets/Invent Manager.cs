@@ -13,8 +13,11 @@ public class InventManager : MonoBehaviour
     // --- 外部参照（ステータス数値処理） ---
     public NumericalProcessing numericalProcessing;
 
-    // --- UIオブジェクト（戦闘UIパネル） ---
-    public GameObject statusMenu;//自身
+    [SerializeField]// --- UIオブジェクト（戦闘UIパネル） ---
+    private GameObject statusMenu;//自身
+    [SerializeField]
+    private TextMeshProUGUI MoneyText;
+
 
     [SerializeField, Header("メニュー選択")]
     public List<GameObject> MenuField = new List<GameObject>();
@@ -1708,6 +1711,8 @@ public class InventManager : MonoBehaviour
                 {
                     Status.GetComponent<CharacterIconStatus>()?.StatusUpdates();
                 }
+
+                MoneyText.GetComponent<CharacterIconStatus>()?.DisplayOfMoneyHeld();
 
                 //アイテムを使用しようとしているキャラクターをクリア
                 foreach (var obj in Charactersuseitems)
