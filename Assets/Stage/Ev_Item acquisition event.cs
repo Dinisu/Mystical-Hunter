@@ -10,6 +10,8 @@ public class Ev_Itemacquisitionevent : MonoBehaviour
 
     [SerializeField, Header("入手するアイテムデータ")]
     private D_It_StatusData It_StatusData;
+    [SerializeField, Header("入手音")]
+    private AudioClip payment;
 
 
     private Dss_It_StatusDataStores dss_It_StatusDataStores;//データストア
@@ -64,6 +66,11 @@ public class Ev_Itemacquisitionevent : MonoBehaviour
         }
 
         Debug.Log($"{It_StatusData}を手に入れた");
+
+        if (GameManager.Instance.audioSource != null && payment != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(payment); // 決定音
+        }
 
         //イベント1をtrueにしてアイテムを入手済みにする
         Ev_StatusData.Event1 = true;

@@ -95,12 +95,6 @@ public class BattleManager : MonoBehaviour
     private Tween blinkTween;
     private CanvasGroup frameCg;
 
-    [SerializeField, Header("選択、決定音")]
-    public AudioClip choice;
-    public AudioClip decision;
-    [SerializeField]
-    public AudioSource audioSource;
-
     private PlayerInput playerInput;
     private bool NormalinputEnabled = false; // 入力処理の有効/無効フラグ
 
@@ -283,16 +277,6 @@ public class BattleManager : MonoBehaviour
 
         // UI要素リスト設定（ActionSelectionから始まる）
         uiElements = ActionSelection.ToArray();
-
-        // AudioSource の用意（Inspector未設定なら取得/追加）
-        if (audioSource == null)
-        {
-            audioSource = GetComponent<AudioSource>();
-            if (audioSource == null)
-            {
-                audioSource = gameObject.AddComponent<AudioSource>();
-            }
-        }
 
         // PlayerInput を探す
         if (playerInput == null)
@@ -858,6 +842,11 @@ public class BattleManager : MonoBehaviour
 
         Vector2 input = context.ReadValue<Vector2>();
 
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.choice != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.choice); // 選択音
+        }
+
         if (input.y > 0.5f) // 上入力
         {
             ChangeSelectionVertical(-1);
@@ -887,9 +876,9 @@ public class BattleManager : MonoBehaviour
         {
             Debug.Log("Attack pressed → " + SelectUI.name);
 
-            if (audioSource != null && decision != null)
+            if (GameManager.Instance.audioSource != null && GameManager.Instance.decision != null)
             {
-                audioSource.PlayOneShot(decision); // 決定音
+                GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.decision); // 決定音
             }
 
             // 選択中UIにアタッチされた B_SelectionSettings を取得
@@ -972,6 +961,11 @@ public class BattleManager : MonoBehaviour
         if (!context.performed) return;
 
         string currentType = GetCurrentMenuType();
+
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.cancel != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.cancel); // キャンセル音
+        }
 
         Debug.Log("Cancel pressed");
         PreviousList();
@@ -1117,9 +1111,9 @@ public class BattleManager : MonoBehaviour
 
         Debug.Log($"履歴から復元: {lastHistory.menuType} (index: {lastHistory.index})");
 
-        if (audioSource != null && decision != null)
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.decision != null)
         {
-            audioSource.PlayOneShot(decision); // キャンセル音
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.decision); // キャンセル音
         }
     }
 
@@ -1252,9 +1246,9 @@ public class BattleManager : MonoBehaviour
     {
         if (frameCg == null) return;
 
-        if (audioSource != null && choice != null)
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.choice != null)
         {
-            audioSource.PlayOneShot(choice); // 移動音
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.choice); // 移動音
         }
 
         frameCg.alpha = 0.5f;

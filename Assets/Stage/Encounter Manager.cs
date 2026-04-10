@@ -24,16 +24,6 @@ public class EncounterManager : MonoBehaviour
        長時間歩く → ほぼ確定レベル
      */
 
-    /*
-     | Rate | 体感      |
-     | ---- | ------- |
-     | 2    | 広いフィールド |
-     | 3    | 通常      |
-     | 5    | 洞窟      |
-     | 8    | 高危険地帯   |
-     */
-
-
     private enum BattleStage
     {
         BattleScene_Forest

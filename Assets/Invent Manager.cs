@@ -90,12 +90,6 @@ public class InventManager : MonoBehaviour
     private Tween blinkTween;
     private CanvasGroup frameCg;
 
-    [SerializeField, Header("選択、決定音")]
-    public AudioClip choice;
-    public AudioClip decision;
-    [SerializeField]
-    public AudioSource audioSource;
-
     private PlayerInput playerInput;
     private bool inputEnabled = true; // 入力処理の有効/無効フラグ
 
@@ -127,16 +121,6 @@ public class InventManager : MonoBehaviour
         // UI要素リスト設定
         // SelectionField の中身を配列にコピー
         uiElements = MenuField.ToArray();
-
-        // AudioSource の用意（Inspector未設定なら取得/追加）
-        if (audioSource == null)
-        {
-            audioSource = GetComponent<AudioSource>();
-            if (audioSource == null)
-            {
-                audioSource = gameObject.AddComponent<AudioSource>();
-            }
-        }
 
         //所持金表示
         MoneyText.GetComponent<CharacterIconStatus>()?.DisplayOfMoneyHeld();
@@ -237,6 +221,11 @@ public class InventManager : MonoBehaviour
 
         Vector2 input = context.ReadValue<Vector2>();
         string currentMenuType = GetCurrentMenuType();
+
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.choice != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.choice); // 選択音
+        }
 
         // 二列対応の移動をするか
         if (currentMenuType == "StatusMenu" || currentMenuType == "ItemChoice")
@@ -362,9 +351,9 @@ public class InventManager : MonoBehaviour
         {
             Debug.Log("Attack pressed → " + SelectUI.name);
 
-            if (audioSource != null && decision != null)
+            if (GameManager.Instance.audioSource != null && GameManager.Instance.decision != null)
             {
-                audioSource.PlayOneShot(decision); // 決定音
+                GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.decision); // 決定音
             }
 
             // 選択中UIにアタッチされた SelectionSettings を取得
@@ -436,6 +425,11 @@ public class InventManager : MonoBehaviour
         if (!context.performed) return;
 
         Debug.Log("Cancel pressed");
+
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.cancel != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.cancel); // キャンセル音
+        }
 
         PreviousList();
     }
@@ -670,9 +664,9 @@ public class InventManager : MonoBehaviour
 
         Debug.Log($"履歴から復元: {lastHistory.menuType} (index: {lastHistory.index})");
 
-        if (audioSource != null && decision != null)
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.decision != null)
         {
-            audioSource.PlayOneShot(decision); // キャンセル音（仮）
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.decision); // キャンセル音（仮）
         }
     }
 
@@ -853,9 +847,9 @@ public class InventManager : MonoBehaviour
     {
         if (frameCg == null) return;
 
-        if (audioSource != null && choice != null)
+        if (GameManager.Instance.audioSource != null && GameManager.Instance.choice != null)
         {
-            audioSource.PlayOneShot(choice); // 移動音
+            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.choice); // 移動音
         }
 
         frameCg.alpha = 0.5f;

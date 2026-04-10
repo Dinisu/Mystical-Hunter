@@ -30,6 +30,6 @@ MonoBehaviour:
   needSp: 0
   Unlock: 1
   Icon: {fileID: 0}
-  B_Icon: {fileID: 0}
+  B_Icon: {fileID: 2077527046347190955, guid: 1e7d7c1efabf35a44be260ad7c50bfc2, type: 3}
   Effect: {fileID: 0}
   SoundEffects: {fileID: 0}

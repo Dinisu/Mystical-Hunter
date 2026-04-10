@@ -15,11 +15,17 @@ public class GameManager : MonoBehaviour
     public Vector3 PlayerPosition = Vector3.zero;
     public bool ShouldRestorePlayerPosition = false;
 
-    [SerializeField, Header("所持金")]
+    [Header("所持金")]
     public int PlayerMoney;
 
     // エンカウントした敵の情報を保存
     public List<D_Ch_StatusData> EncounteredEnemys = new List<D_Ch_StatusData>();
+
+    [Header("選択、決定音、キャンセル")]
+    public AudioClip choice;
+    public AudioClip decision;
+    public AudioClip cancel;
+    public AudioSource audioSource;
 
     //初期化処理
     private void Awake()
@@ -33,6 +39,16 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);//nullでなければ削除
+        }
+
+        // AudioSource の用意（Inspector未設定なら取得/追加）
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
         }
     }
 
