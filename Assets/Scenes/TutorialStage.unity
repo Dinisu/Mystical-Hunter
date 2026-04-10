@@ -398,7 +398,7 @@ MonoBehaviour:
   EncounterEnemys: {fileID: 11400000, guid: 1a481896a1a351141a6ed056c03ec103, type: 2}
   EncounterArea:
   - {fileID: 1426484877}
-  encounterRatePerSecond: 5.5
+  encounterRatePerSecond: 0.5
   SceneName: 1
   battleStage: 0
 --- !u!54 &987690536
@@ -733,6 +733,7 @@ MonoBehaviour:
   Ev_StatusData: {fileID: 11400000, guid: 8356125aa0ef5eb47be1643a0fe2b5ae, type: 2}
   Treasurechest: 0
   It_StatusData: {fileID: 11400000, guid: 8a82fc880a05f864ba9e7a07e3976696, type: 2}
+  payment: {fileID: 0}
 --- !u!1 &1422640671
 GameObject:
   m_ObjectHideFlags: 0

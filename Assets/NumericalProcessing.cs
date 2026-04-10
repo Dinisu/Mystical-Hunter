@@ -8,6 +8,7 @@ using TMPro;
 using static UnityEngine.GraphicsBuffer;
 using System.Linq;
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 
 public class NumericalProcessing : MonoBehaviour
 {
@@ -345,6 +346,11 @@ public class NumericalProcessing : MonoBehaviour
 
                 // ▼ エフェクトを再生
                 StartCoroutine(PlayTheEffect(defender, skill));
+                // ▼ 効果音を再生
+                if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); // 決定音
+                }
 
                 // ▼ UI更新（ステータスアイコンをすべて更新）
                 UpdateAllStatusIcons();
@@ -359,6 +365,11 @@ public class NumericalProcessing : MonoBehaviour
 
                 // ▼ エフェクトを再生
                 StartCoroutine(PlayTheEffect(defender, skill));
+                // ▼ 効果音を再生
+                if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); // 決定音
+                }
 
                 DamageText(defender, Mathf.RoundToInt(RecoveryAmount), false);
                 return;
@@ -448,6 +459,12 @@ public class NumericalProcessing : MonoBehaviour
 
         // ▼ エフェクトを再生
         StartCoroutine(PlayTheEffect(defender, skill));
+
+        // ▼ 効果音を再生
+        if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); // 決定音
+        }
 
         // ▼ ダメージ適用
         ApplyDamage(defender, finalDamage);
@@ -1278,20 +1295,48 @@ public class NumericalProcessing : MonoBehaviour
     }
     private void It_Buff()
     {
-        // ActiveBuff を作成して付与
-        var newBuff_It = new ActiveBuff_It(ItemUse_ItData);
+        var existingBuff = Use_subject_ChData.ActiveBuffs.Find(b => b.baseData == ItemUse_ItData);
 
-        Use_subject_ChData.ActiveBuffs_It.Add(newBuff_It);
+        if (existingBuff != null)
+        {
+            // 既に同じバフがある → ターンだけ更新
+            existingBuff.remainingTurns = ItemUse_ItData.Duration;
+
+            Debug.Log($"【Buff更新】{Use_subject_ChData.name} の {ItemUse_ItData.name} のターンを再設定 → {existingBuff.remainingTurns}ターン");
+        }
+        else
+        {
+            // 新しく追加
+            var newBuff_It = new ActiveBuff_It(ItemUse_ItData);
+            Use_subject_ChData.ActiveBuffs_It.Add(newBuff_It);
+
+            Debug.Log($"【Buff追加】 {Use_ChData.name} → {Use_subject_ChData.name} / {ItemUse_ItData.SeeBuff_DeBuff_Kinds}");
+            Debug.Log($"→ ActiveBuffs に {ItemUse_ItData.name} を追加（残り {newBuff_It.remainingTurns} ターン）");
+        }
 
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
         UpdateAllStatusIcons();
     }   
     private void It_DeBuff()
     {
-        // ActiveBuff を作成して付与
-        var newBuff_It = new ActiveBuff_It(ItemUse_ItData);
+        var existingBuff = Use_subject_ChData.ActiveBuffs.Find(b => b.baseData == ItemUse_ItData);
 
-        Use_subject_ChData.ActiveBuffs_It.Add(newBuff_It);
+        if (existingBuff != null)
+        {
+            // 既に同じバフがある → ターンだけ更新
+            existingBuff.remainingTurns = ItemUse_ItData.Duration;
+
+            Debug.Log($"【Buff更新】{Use_subject_ChData.name} の {ItemUse_ItData.name} のターンを再設定 → {existingBuff.remainingTurns}ターン");
+        }
+        else
+        {
+            // 新しく追加
+            var newBuff_It = new ActiveBuff_It(ItemUse_ItData);
+            Use_subject_ChData.ActiveBuffs_It.Add(newBuff_It);
+
+            Debug.Log($"【Buff追加】 {Use_ChData.name} → {Use_subject_ChData.name} / {ItemUse_ItData.SeeBuff_DeBuff_Kinds}");
+            Debug.Log($"→ ActiveBuffs に {ItemUse_ItData.name} を追加（残り {newBuff_It.remainingTurns} ターン）");
+        }
 
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
         UpdateAllStatusIcons();
