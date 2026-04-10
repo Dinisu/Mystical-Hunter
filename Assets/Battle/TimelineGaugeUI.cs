@@ -7,7 +7,7 @@ public class TimelineGaugeUI : MonoBehaviour
     [SerializeField, Header("速度関係")] private TimelineIconController iconController;//動かしたいキャラクターの速度関係
     [SerializeField, Header("ゲージ")] private RectTransform gaugeBar;  // ゲージ全体のRectTransform（長さ1200）
     [SerializeField, Header("キャラアイコン")] private RectTransform iconTransform; // キャラアイコンのUI位置
-    //[SerializeField, Header("威力、効力1")] private Image gaugeFillImage; // ゲージバーにfillAmountを使う場合（任意）
+    //[SerializeField, Header("威力、効力1")] private Image gaugeFillImage; // ゲージバーにfillAmountを使う場合
 
     private float gaugeLength;
 

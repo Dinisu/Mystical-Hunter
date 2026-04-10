@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f649b18aab3e44aa8e633b768b9696, type: 3}
+  m_Name: Mana Grass
+  m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_It_StatusData
+  name: "\u30DE\u30CA\u8349"
+  id: 104
+  ItemDescription: "\u9B54\u529B\u306E\u56DE\u5FA9\u52B9\u679C\u306E\u3042\u308B\u85AC\u8349"
+  ID: 
+  EfficacyItemDescription: "MP\uFF1A10\u56DE\u5FA9"
+  attribute: 0
+  itemRange: 0
+  kinds: 8
+  buff_DeBuff_kind: 0
+  abnormalstatus: 0
+  Equipment:
+    MaxHpup: 0
+    MaxMpup: 0
+    Attackup: 0
+    Magicup: 0
+    Defenceup: 0
+    MagicDefenseup: 0
+    Speedup: 0
+    Criticalup: 0
+  efficacy1: 10
+  efficacy2: 0
+  criticalRate: 0
+  duration: 0
+  number: 2
+  price: 7
+  Icon: {fileID: 2077527046347190955, guid: 6075eaf57ae957444bb2562c7a4416ac, type: 3}
+  B_Icon: {fileID: 0}
+  Effect: {fileID: 0}
+  SoundEffects: {fileID: 0}
+  Event: {fileID: 11400000, guid: a0f41a1ddf445e948af3116d9f94db85, type: 2}

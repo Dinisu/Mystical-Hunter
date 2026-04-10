@@ -17,7 +17,7 @@ MonoBehaviour:
   ItemDescription: 
   ID: 
   level: 1
-  exp: 50
+  exp: 0
   LevelExp:
   - Levelup: 2
     NeedExp: 100
