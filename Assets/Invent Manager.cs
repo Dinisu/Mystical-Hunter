@@ -237,63 +237,32 @@ public class InventManager : MonoBehaviour
             GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.choice); // 選択音
         }
 
-        // 二列対応の移動をするか
-        if (currentMenuType == "StatusMenu" || currentMenuType == "ItemChoice")
-        {
-            // 縦方向の移動（二列対応）
-            if (input.y > 0.5f) // 上入力
-            {
-                MoveSelectionVerticalTwoColumn(-1);
-            }
-            else if (input.y < -0.5f) // 下入力
-            {
-                MoveSelectionVerticalTwoColumn(1);
-            }
 
-            // 横方向の移動
-            if (input.x > 0.5f) // 右入力
-            {
-                MoveSelectionHorizontalTwoColumn(1);
-            }
-            else if (input.x < -0.5f) // 左入力
-            {
-                MoveSelectionHorizontalTwoColumn(-1);
-            }
-        }
-        else if (currentMenuType == "StatusMenu") 
-        {
-            // スキルメニューは五列移動
-            // 縦方向の移動（五列対応）
-            if (input.y > 0.5f) // 上入力
-            {
-                MoveSelectionVerticalFiveColumn(-1);
-            }
-            else if (input.y < -0.5f) // 下入力
-            {
-                MoveSelectionVerticalFiveColumn(1);
-            }
+        int columnCount = GetColumnCount(currentMenuType);
 
-            // 横方向の移動
-            if (input.x > 0.5f) // 右入力
-            {
-                MoveSelectionHorizontalFiveColumn(-1);
-            }
-            else if (input.x < -0.5f) // 左入力
-            {
-                MoveSelectionHorizontalFiveColumn(1);
-            }
-        }
-        else 
+        //上下移動
+        if (input.y > 0.5f)
         {
-            // その他のメニューは従来の一列移動
-            if (input.y > 0.5f) // 上入力
-            {
+            if (columnCount == 1)
                 ChangeSelectionVertical(-1);
-            }
-            else if (input.y < -0.5f) // 下入力
-            {
+            else
+                MoveSelectionVerticalGrid(-1, columnCount);
+        }
+        else if (input.y < -0.5f)
+        {
+            if (columnCount == 1)
                 ChangeSelectionVertical(1);
-            }
+            else
+                MoveSelectionVerticalGrid(1, columnCount);
+        }
+
+        //左右移動
+        if (columnCount > 1)
+        {
+            if (input.x > 0.5f)
+                MoveSelectionHorizontalGrid(1, columnCount);
+            else if (input.x < -0.5f)
+                MoveSelectionHorizontalGrid(-1, columnCount);
         }
 
         //アイテム生成
@@ -319,6 +288,26 @@ public class InventManager : MonoBehaviour
         else
         {
             descriptionText.text = ("");
+        }
+    }
+
+    /// <summary>
+    /// メニューのUI操作する為のメソッド
+    /// 列数を決める
+    /// </summary>
+    private int GetColumnCount(string currentMenuType)
+    {
+        switch (currentMenuType)
+        {
+            case "StatusMenu":
+            case "ItemChoice":
+                return 2;
+
+            case "SkillMenu":
+                return 5;
+
+            default:
+                return 1;
         }
     }
 
@@ -728,134 +717,88 @@ public class InventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 選択中のUIを縦方向に切り替える（二列レイアウト対応）
-    /// direction = -1（上へ移動）、+1（下へ移動）
-    /// 二列の場合：1→3, 2→4 のように2つ飛ばしで移動
+    /// 選択中のUIの縦移動
+    /// direction = -1（上）, 1（下）
+    /// columnCount = 列数
     /// </summary>
-    private void MoveSelectionVerticalTwoColumn(int direction)
+    private void MoveSelectionVerticalGrid(int direction, int columnCount)
     {
         if (uiElements.Length == 0) return;
 
-        StopBlink(); // 古い選択の点滅を止める
-
-        // 二列レイアウトの場合の縦移動ロジック
-        // 例：0,1,2,3 の要素がある場合 
-        // 上移動: 2→0, 3→1 (2つ前へ)
-        // 下移動: 0→2, 1→3 (2つ後へ)
+        StopBlink();
 
         int newIndex = currentIndex;
-        
-        if (direction > 0) // 下へ移動
+
+        if (direction > 0) // 下
         {
-            // 2つ後へ移動（範囲外ならループ）
-            newIndex = currentIndex + 2;
+            newIndex += columnCount;
+
             if (newIndex >= uiElements.Length)
             {
-                // 範囲外の場合、適切な位置に調整
-                if (uiElements.Length % 2 == 0)
-                {
-                    // 偶数個の場合：0→2, 1→3, 2→0, 3→1
-                    newIndex = (currentIndex + 2) % uiElements.Length;
-                }
-                else
-                {
-                    // 奇数個の場合：最後の要素に移動
-                    newIndex = uiElements.Length - 1;
-                }
+                // 同列の先頭へ戻る
+                newIndex = currentIndex % columnCount;
             }
         }
-        else // 上へ移動
+        else // 上
         {
-            // 2つ前へ移動（範囲外ならループ）
-            newIndex = currentIndex - 2;
+            newIndex -= columnCount;
+
             if (newIndex < 0)
             {
-                // 範囲外の場合、適切な位置に調整
-                if (uiElements.Length % 2 == 0)
+                int column = currentIndex % columnCount;
+
+                newIndex = column;
+
+                while (newIndex + columnCount < uiElements.Length)
                 {
-                    // 偶数個の場合：0→2, 1→3, 2→0, 3→1
-                    newIndex = (currentIndex - 2 + uiElements.Length) % uiElements.Length;
-                }
-                else
-                {
-                    // 奇数個の場合：最初の要素に移動
-                    newIndex = 0;
+                    newIndex += columnCount;
                 }
             }
         }
-
         // インデックスを更新
         currentIndex = newIndex;
         SelectUI = uiElements[currentIndex];
-
         // 枠を移動して点滅開始
         MoveFrameTo(SelectUI);
         StartBlink();
     }
 
     /// <summary>
-    /// 選択中のUIを横方向に切り替える（二列レイアウト対応）
-    /// direction = -1（左へ移動）、+1（右へ移動）
+    /// 選択中のUIの横移動
+    /// direction = -1（左）, 1（右）
+    /// columnCount = 列数
     /// </summary>
-    private void MoveSelectionHorizontalTwoColumn(int direction)
+    private void MoveSelectionHorizontalGrid(int direction, int columnCount)
     {
         if (uiElements.Length == 0) return;
 
-        StopBlink(); // 古い選択の点滅を止める
+        StopBlink();
 
-        // 二列レイアウトの場合の横移動ロジック
-        // 例：0,1,2,3 の要素がある場合
-        // 列1: 0, 2 (偶数インデックス)
-        // 列2: 1, 3 (奇数インデックス)
-        
         int newIndex = currentIndex;
-        
-        if (direction > 0) // 右へ移動
+
+        int currentColumn = currentIndex % columnCount;
+
+        if (direction > 0) // 右
         {
-            // 現在が左列（偶数）なら右列（奇数）の同じ行へ
-            if (currentIndex % 2 == 0 && currentIndex + 1 < uiElements.Length)
+            if (currentColumn < columnCount - 1 &&
+                currentIndex + 1 < uiElements.Length)
             {
-                newIndex = currentIndex + 1;
+                newIndex++;
             }
         }
-        else // 左へ移動
+        else // 左
         {
-            // 現在が右列（奇数）なら左列（偶数）の同じ行へ
-            if (currentIndex % 2 == 1 && currentIndex - 1 >= 0)
+            if (currentColumn > 0)
             {
-                newIndex = currentIndex - 1;
+                newIndex--;
             }
         }
 
-        // インデックスを更新
         currentIndex = newIndex;
         SelectUI = uiElements[currentIndex];
 
-        // 枠を移動して点滅開始
         MoveFrameTo(SelectUI);
         StartBlink();
-    }
-
-    /// <summary>
-    /// 選択中のUIを縦方向に切り替える（五列レイアウト対応）
-    /// direction = -1（上へ移動）、+1（下へ移動）
-    /// 五列の場合：1→6, 2→7 のように5つ飛ばしで移動
-    /// </summary>
-    private void MoveSelectionVerticalFiveColumn(int direction)
-    {
-
-    }
-
-    /// <summary>
-    /// 選択中のUIを横方向に切り替える（五列レイアウト対応）
-    /// direction = -1（左へ移動）、+1（右へ移動）
-    /// </summary>
-    private void MoveSelectionHorizontalFiveColumn(int direction)
-    {
-        // 五列レイアウトの場合の横移動ロジック
-        // 例：0,~14 の要素がある場合
-        // 列1: 0, 5, 10
-        // 列2: 1, 6, 11 
     }
 
     /// <summary>

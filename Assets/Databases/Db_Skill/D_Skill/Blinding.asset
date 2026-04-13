@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blinding
   m_EditorClassIdentifier: 
   name: "\u76EE\u6F70\u3057"
-  id: 301
+  id: 901
   ItemDescription: 
   ID: 
   EfficacyItemDescription: "2\u30BF\u30FC\u30F3\n\u7D20\u65E9\u3055\u3092\u5C0FDOWN"

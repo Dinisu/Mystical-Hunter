@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spirit
   m_EditorClassIdentifier: 
   name: "\u6C17\u5408\u3044"
-  id: 200
+  id: 800
   ItemDescription: "\u6C17\u5408\u3044\u3092\u5165\u308C\u3066\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B"
   ID: 
   EfficacyItemDescription: "\uFF13\u30BF\u30FC\u30F3\n\u653B\u6483\u529B\u304C\u5C0FUP"
