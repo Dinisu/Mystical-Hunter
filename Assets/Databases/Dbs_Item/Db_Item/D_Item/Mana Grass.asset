@@ -41,4 +41,4 @@ MonoBehaviour:
   B_Icon: {fileID: 0}
   Effect: {fileID: 0}
   SoundEffects: {fileID: 0}
-  Event: {fileID: 11400000, guid: a0f41a1ddf445e948af3116d9f94db85, type: 2}
+  Event: {fileID: 0}

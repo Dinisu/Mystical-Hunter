@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using System.Linq;
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using TMPro;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class InventManager : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class InventManager : MonoBehaviour
     public List<GameObject> StatusMenu = new List<GameObject>();
     [SerializeField, Header("アイテムメニュー")]
     public List<GameObject> ItemMenu = new List<GameObject>();
+    [SerializeField, Header("スキルメニュー")]
+    public List<GameObject> SkillMenu = new List<GameObject>();
     [SerializeField, Header("アイテム選択")]
     public List<GameObject> ItemChoice = new List<GameObject>();
     [SerializeField, Header("キャラクター使用アイテム")]
@@ -42,6 +45,7 @@ public class InventManager : MonoBehaviour
     private GameObject statusField;
     private GameObject selectionField;
     private GameObject itemField;
+    private GameObject skillField;
     private GameObject itemChoiceField;
     private GameObject itemDescription;
     private GameObject EquipmentChoiceField;
@@ -145,48 +149,30 @@ public class InventManager : MonoBehaviour
         }
 
         // 子オブジェクトの中から "Status Field" を探す
-        statusField = transform.Find("Status Field")?.gameObject;
-        if (statusField == null)
-        {
-            Debug.LogError("Status Field が見つかりません！");
-            return;
-        }
-        selectionField = transform.Find("Selection Field")?.gameObject;
-        if (selectionField == null)
-        {
-            Debug.LogError("Selection Field が見つかりません！");
-            return;
-        }
-        itemField = transform.Find("Item Field")?.gameObject;
-        if (itemField == null)
-        {
-            Debug.LogError("Item Field が見つかりません！");
-            return;
-        }
-        itemChoiceField = itemField.transform.Find("ItemChoiceField")?.gameObject;
-        if (itemChoiceField == null)
-        {
-            Debug.LogError("Item ChoiceField が見つかりません！");
-            return;
-        }
-        itemDescription = itemField.transform.Find("ItemDescription")?.gameObject;
-        if (itemDescription == null)
-        {
-            Debug.LogError("ItemDescription が見つかりません！");
-            return;
-        }
-        EquipmentChoiceField = statusField.transform.Find("EquipmentChoiceField")?.gameObject;
-        if (EquipmentChoiceField == null)
-        {
-            Debug.LogError("EquipmentChoiceField が見つかりません！");
-            return;
-        }
-        descriptionText = itemDescription.transform.Find("DescriptionText")?.GetComponent< TextMeshProUGUI >();
-        if(descriptionText == null)
-        {
-            Debug.LogError("DescriptionText が見つかりません！");
-            return;
-        }
+        statusField = FindObjectOrError(transform, "Status Field");
+        if (statusField == null) return;
+
+        selectionField = FindObjectOrError(transform, "Selection Field");
+        if (selectionField == null) return;
+
+        itemField = FindObjectOrError(transform, "Item Field");
+        if (itemField == null) return;
+
+        skillField = FindObjectOrError(transform, "Skill Field");
+        if (skillField == null) return;
+
+        itemChoiceField = FindObjectOrError(itemField.transform, "ItemChoiceField");
+        if (itemChoiceField == null) return;
+
+        itemDescription = FindObjectOrError(itemField.transform, "ItemDescription");
+        if (itemDescription == null) return;
+
+        EquipmentChoiceField = FindObjectOrError(statusField.transform, "EquipmentChoiceField");
+        if (EquipmentChoiceField == null) return;
+
+        descriptionText = FindComponentOrError<TextMeshProUGUI>(itemDescription.transform,"DescriptionText");
+        if (descriptionText == null) return;
+
         // 最初は非表示にしておく
         statusField.SetActive(false);
         itemField.SetActive(false);
@@ -204,6 +190,30 @@ public class InventManager : MonoBehaviour
 
         var cancel = playerInput.actions["Cancel"];
         cancel.performed += OnCancel;
+    }
+
+    private GameObject FindObjectOrError(Transform parent, string objectName)
+    {
+        GameObject obj = parent.Find(objectName)?.gameObject;
+
+        if (obj == null)
+        {
+            Debug.LogError($"{objectName} が見つかりません！");
+        }
+
+        return obj;
+    }
+
+    private T FindComponentOrError<T>(Transform parent, string objectName) where T : Component
+    {
+        T comp = parent.Find(objectName)?.GetComponent<T>();
+
+        if (comp == null)
+        {
+            Debug.LogError($"{objectName} が見つかりません！");
+        }
+
+        return comp;
     }
 
     // --- 入力処理 (Input System) ---
@@ -233,24 +243,47 @@ public class InventManager : MonoBehaviour
             // 縦方向の移動（二列対応）
             if (input.y > 0.5f) // 上入力
             {
-                ChangeSelectionVerticalTwoColumn(-1);
+                MoveSelectionVerticalTwoColumn(-1);
             }
             else if (input.y < -0.5f) // 下入力
             {
-                ChangeSelectionVerticalTwoColumn(1);
+                MoveSelectionVerticalTwoColumn(1);
             }
 
             // 横方向の移動
             if (input.x > 0.5f) // 右入力
             {
-                ChangeSelectionHorizontal(1);
+                MoveSelectionHorizontalTwoColumn(1);
             }
             else if (input.x < -0.5f) // 左入力
             {
-                ChangeSelectionHorizontal(-1);
+                MoveSelectionHorizontalTwoColumn(-1);
             }
         }
-        else
+        else if (currentMenuType == "StatusMenu") 
+        {
+            // スキルメニューは五列移動
+            // 縦方向の移動（五列対応）
+            if (input.y > 0.5f) // 上入力
+            {
+                MoveSelectionVerticalFiveColumn(-1);
+            }
+            else if (input.y < -0.5f) // 下入力
+            {
+                MoveSelectionVerticalFiveColumn(1);
+            }
+
+            // 横方向の移動
+            if (input.x > 0.5f) // 右入力
+            {
+                MoveSelectionHorizontalFiveColumn(-1);
+            }
+            else if (input.x < -0.5f) // 左入力
+            {
+                MoveSelectionHorizontalFiveColumn(1);
+            }
+        }
+        else 
         {
             // その他のメニューは従来の一列移動
             if (input.y > 0.5f) // 上入力
@@ -372,6 +405,9 @@ public class InventManager : MonoBehaviour
                     case SelectionSettings.Choose.ItemMenu://アイテムメニュー表示
                         ItemMenuprocess();
                         break;
+                    case SelectionSettings.Choose.SkillMenu://スキルメニュー表示
+                        SkillMenuprocess();
+                        break;
                     case SelectionSettings.Choose.Consumables://消耗品選択
                         Consumablesprocess();
                         break;
@@ -457,6 +493,8 @@ public class InventManager : MonoBehaviour
             return "StatusMenu";
         else if (uiElements.Length > 0 && ItemMenu.Count > 0 && uiElements[0] == ItemMenu[0])
             return "ItemMenu";
+        else if (uiElements.Length > 0 && SkillMenu.Count > 0 && uiElements[0] == SkillMenu[0])
+            return "SkillMenu";
         else if (uiElements.Length > 0 && ItemChoice.Count > 0 && uiElements[0] == ItemChoice[0])
             return "ItemChoice";
         else if (uiElements.Length > 0 && Charactersuseitems.Count > 0 && uiElements[0] == Charactersuseitems[0])
@@ -517,6 +555,13 @@ public class InventManager : MonoBehaviour
                     }
                 }
             }
+        }
+
+        //スキルメニューから戻った際
+        if (currentType == "SkillMenu")
+        {
+            skillField.SetActive(false);
+            statusField.SetActive(true);
         }
 
         //アイテム選択から戻った際、アイテム説明リセット
@@ -651,17 +696,6 @@ public class InventManager : MonoBehaviour
             EquipmentChoiceField.SetActive(false);
         }
 
-            // ItemChoiceから戻った際にItemChoiceFieldを非表示にしてitemFieldを表示
-            /*/*if (currentType == "ItemChoice")
-            {
-                // ItemChoiceFieldを非表示,itemFieldを表示
-                if (itemChoiceField != null && itemField != null)
-                {
-                    itemChoiceField.SetActive(false);
-                    itemField.SetActive(true);
-                }
-            }*/
-
         Debug.Log($"履歴から復元: {lastHistory.menuType} (index: {lastHistory.index})");
 
         if (GameManager.Instance.audioSource != null && GameManager.Instance.decision != null)
@@ -698,17 +732,17 @@ public class InventManager : MonoBehaviour
     /// direction = -1（上へ移動）、+1（下へ移動）
     /// 二列の場合：1→3, 2→4 のように2つ飛ばしで移動
     /// </summary>
-    private void ChangeSelectionVerticalTwoColumn(int direction)
+    private void MoveSelectionVerticalTwoColumn(int direction)
     {
         if (uiElements.Length == 0) return;
 
         StopBlink(); // 古い選択の点滅を止める
 
         // 二列レイアウトの場合の縦移動ロジック
-        // 例：0,1,2,3 の要素がある場合
+        // 例：0,1,2,3 の要素がある場合 
         // 上移動: 2→0, 3→1 (2つ前へ)
         // 下移動: 0→2, 1→3 (2つ後へ)
-        
+
         int newIndex = currentIndex;
         
         if (direction > 0) // 下へ移動
@@ -763,7 +797,7 @@ public class InventManager : MonoBehaviour
     /// 選択中のUIを横方向に切り替える（二列レイアウト対応）
     /// direction = -1（左へ移動）、+1（右へ移動）
     /// </summary>
-    private void ChangeSelectionHorizontal(int direction)
+    private void MoveSelectionHorizontalTwoColumn(int direction)
     {
         if (uiElements.Length == 0) return;
 
@@ -803,12 +837,25 @@ public class InventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 選択中のUIを上下に切り替える（後方互換性のため残す）
+    /// 選択中のUIを縦方向に切り替える（五列レイアウト対応）
     /// direction = -1（上へ移動）、+1（下へ移動）
+    /// 五列の場合：1→6, 2→7 のように5つ飛ばしで移動
     /// </summary>
-    private void ChangeSelection(int direction)
+    private void MoveSelectionVerticalFiveColumn(int direction)
     {
-        ChangeSelectionVertical(direction);
+
+    }
+
+    /// <summary>
+    /// 選択中のUIを横方向に切り替える（五列レイアウト対応）
+    /// direction = -1（左へ移動）、+1（右へ移動）
+    /// </summary>
+    private void MoveSelectionHorizontalFiveColumn(int direction)
+    {
+        // 五列レイアウトの場合の横移動ロジック
+        // 例：0,~14 の要素がある場合
+        // 列1: 0, 5, 10
+        // 列2: 1, 6, 11 
     }
 
     /// <summary>
@@ -1303,6 +1350,29 @@ public class InventManager : MonoBehaviour
         SelectUI = uiElements[currentIndex];
         MoveFrameTo(SelectUI); // 枠を更新
         Debug.Log("UI 切替 → StatusMenu");
+    }
+
+    private void SkillMenuprocess()//アイテムメニュー表示
+    {
+        // 現在の状態を履歴に保存
+        SaveCurrentStateToHistory();
+
+        //習得可能スキル表示
+
+
+        // スキルメニュー表示
+        if (skillField != null)
+        {
+            skillField.SetActive(true);
+            statusField.SetActive(false);
+        }
+
+        // 選択対象を切り替え
+        uiElements = SkillMenu.ToArray();
+        currentIndex = 0; // 先頭に戻す
+        SelectUI = uiElements[currentIndex];
+        MoveFrameTo(SelectUI); // 枠を更新
+        Debug.Log("UI 切替 → SkillMenu");
     }
 
     private void ItemMenuprocess()//アイテムメニュー表示
