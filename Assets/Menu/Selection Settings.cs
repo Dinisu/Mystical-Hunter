@@ -18,7 +18,11 @@ public class SelectionSettings : MonoBehaviour
         ArmorChoice,
         Accessories1Choice,
         Accessories2Choice,
-        SkillMenu
+        SkillMenu,
+        SaveMenu,
+        LoadMenu,
+        Save,
+        Load
     }
     [SerializeField, Header("‘I‘ð‚µ")]
     public Choose choose;

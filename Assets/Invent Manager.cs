@@ -8,6 +8,7 @@ using System.Linq;
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using TMPro;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.UIElements;
 
 public class InventManager : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class InventManager : MonoBehaviour
     public List<GameObject> ItemMenu = new List<GameObject>();
     [SerializeField, Header("スキルメニュー")]
     public List<GameObject> SkillMenu = new List<GameObject>();
+    [SerializeField, Header("セーブメニュー")]
+    public List<GameObject> SaveMenu = new List<GameObject>();
+    [SerializeField, Header("ロードメニュー")]
+    public List<GameObject> LoadMenu = new List<GameObject>();
     [SerializeField, Header("アイテム選択")]
     public List<GameObject> ItemChoice = new List<GameObject>();
     [SerializeField, Header("キャラクター使用アイテム")]
@@ -46,6 +51,8 @@ public class InventManager : MonoBehaviour
     private GameObject selectionField;
     private GameObject itemField;
     private GameObject skillField;
+    private GameObject saveField;
+    private GameObject loadField;
     private GameObject itemChoiceField;
     private GameObject itemDescription;
     private GameObject EquipmentChoiceField;
@@ -160,6 +167,12 @@ public class InventManager : MonoBehaviour
 
         skillField = FindObjectOrError(transform, "Skill Field");
         if (skillField == null) return;
+
+        saveField = FindObjectOrError(transform, "Save Field");
+        if (saveField == null) return;
+
+        loadField = FindObjectOrError(transform, "Load Field");
+        if (loadField == null) return;
 
         itemChoiceField = FindObjectOrError(itemField.transform, "ItemChoiceField");
         if (itemChoiceField == null) return;
@@ -397,6 +410,18 @@ public class InventManager : MonoBehaviour
                     case SelectionSettings.Choose.SkillMenu://スキルメニュー表示
                         SkillMenuprocess();
                         break;
+                    case SelectionSettings.Choose.SaveMenu://セーブメニュー表示
+                        
+                        break;
+                    case SelectionSettings.Choose.LoadMenu://ロードメニュー表示
+
+                        break;
+                    case SelectionSettings.Choose.Save://セーブ実行
+
+                        break;
+                    case SelectionSettings.Choose.Load://ロード実行
+
+                        break;
                     case SelectionSettings.Choose.Consumables://消耗品選択
                         Consumablesprocess();
                         break;
@@ -484,6 +509,10 @@ public class InventManager : MonoBehaviour
             return "ItemMenu";
         else if (uiElements.Length > 0 && SkillMenu.Count > 0 && uiElements[0] == SkillMenu[0])
             return "SkillMenu";
+        else if (uiElements.Length > 0 && SaveMenu.Count > 0 && uiElements[0] == SaveMenu[0])
+            return "SaveMenu";
+        else if (uiElements.Length > 0 && LoadMenu.Count > 0 && uiElements[0] == LoadMenu[0])
+            return "LoadMenu";
         else if (uiElements.Length > 0 && ItemChoice.Count > 0 && uiElements[0] == ItemChoice[0])
             return "ItemChoice";
         else if (uiElements.Length > 0 && Charactersuseitems.Count > 0 && uiElements[0] == Charactersuseitems[0])
@@ -550,6 +579,20 @@ public class InventManager : MonoBehaviour
         if (currentType == "SkillMenu")
         {
             skillField.SetActive(false);
+            selectionField.SetActive(true);
+        }
+
+        //セーブメニューから戻った際
+        if (currentType == "SaveMenu")
+        {
+            saveField.SetActive(false);
+            statusField.SetActive(true);
+        }
+
+        //ロードメニューから戻った際
+        if (currentType == "SaveMenu")
+        {
+            loadField.SetActive(false);
             statusField.SetActive(true);
         }
 
