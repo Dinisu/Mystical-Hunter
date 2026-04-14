@@ -244,14 +244,14 @@ public class InventManager : MonoBehaviour
         if (input.y > 0.5f)
         {
             if (columnCount == 1)
-                ChangeSelectionVertical(-1);
+                MoveSelectionVertical(-1);
             else
                 MoveSelectionVerticalGrid(-1, columnCount);
         }
         else if (input.y < -0.5f)
         {
             if (columnCount == 1)
-                ChangeSelectionVertical(1);
+                MoveSelectionVertical(1);
             else
                 MoveSelectionVerticalGrid(1, columnCount);
         }
@@ -697,7 +697,7 @@ public class InventManager : MonoBehaviour
     /// 選択中のUIを縦方向に切り替える（従来の上下移動）
     /// direction = -1（上へ移動）、+1（下へ移動）
     /// </summary>
-    private void ChangeSelectionVertical(int direction)
+    private void MoveSelectionVertical(int direction)
     {
         if (uiElements.Length == 0) return;
 
@@ -1356,12 +1356,6 @@ public class InventManager : MonoBehaviour
         MoveFrameTo(SelectUI); // 枠を更新
 
         Itemiconexplanation();
-        // ItemChoiceFieldを表示
-        /*if (itemChoiceField != null)
-        {
-            itemChoiceField.SetActive(true);
-            itemField.SetActive(false);
-        }*/
 
         Debug.Log("UI 切替 → ItemChoice (Consumables)");
     }
@@ -1425,7 +1419,6 @@ public class InventManager : MonoBehaviour
 
         itemDescription.SetActive(false);
 
-        //ひとつ前がステータスメニューでなければに改造する11/3予定ならは装備
         //アイテムを使用するキャラアイコン2生成,選択する
 
         // FindDatabaseWithName を使用して Ally List データベースを取得
@@ -1556,9 +1549,6 @@ public class InventManager : MonoBehaviour
             {
                 ui?.GetComponent<ItemQuantity>()?.QuantityUpdate();
             }
-
-            //ひとつ前の要素で選択していたUIの更新処理を実行する
-            //menuHistory[^1].elements[menuHistory[^1].index].GetComponent<ItemQuantity>()?.QuantityUpdate();
 
             //使用するアイテムの個数が0ならそのアイコンを削除してItemChoiceを詰めて戻る
             if (numericalProcessing.ItemUse_ItData.Number == 0)
@@ -1693,17 +1683,6 @@ public class InventManager : MonoBehaviour
         Debug.Log($"入力処理を {(enabled ? "有効" : "無効")} にしました");
         statusMenu.SetActive(enabled);
         inputEnabled = enabled;
-
-        // CharacterStatus内のオブジェクトをすべて削除
-        /* foreach (var obj in CharacterStatus)
-         {
-             if (obj != null)
-             {
-                 Destroy(obj);
-             }
-         }
-         // リストを空にする
-         CharacterStatus.Clear();*/
 
         if (uiElements != null)
         {

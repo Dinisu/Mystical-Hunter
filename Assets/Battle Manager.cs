@@ -103,6 +103,10 @@ public class BattleManager : MonoBehaviour
     private Db_It_StatusDataBase db_PlayerItem;
     private Db_Ch_StatusDataBase db_allyDataBase;
 
+    [SerializeField, Header("説明テキスト")]
+    private TextMeshProUGUI skillDescriptionText;
+    [SerializeField] private TextMeshProUGUI itemDescriptionText;
+
     private void Awake()
     {
         dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
@@ -841,6 +845,7 @@ public class BattleManager : MonoBehaviour
         if (!context.performed) return;
 
         Vector2 input = context.ReadValue<Vector2>();
+        string currentMenuType = GetCurrentMenuType();
 
         if (GameManager.Instance.audioSource != null && GameManager.Instance.choice != null)
         {
@@ -849,11 +854,26 @@ public class BattleManager : MonoBehaviour
 
         if (input.y > 0.5f) // 上入力
         {
-            ChangeSelectionVertical(-1);
+            MoveSelectionVertical(-1);
         }
         else if (input.y < -0.5f) // 下入力
         {
-            ChangeSelectionVertical(1);
+            MoveSelectionVertical(1);
+        }
+
+        //効果説明
+        if (currentMenuType == "ItemSelection")
+        {
+            Itemiconexplanation();
+        }
+        else if (currentMenuType == "SkillSelection")
+        {
+            Skilliconexplanation();
+        }
+        else
+        {
+            skillDescriptionText.text = ("");
+            itemDescriptionText.text = ("");
         }
     }
 
@@ -1022,6 +1042,8 @@ public class BattleManager : MonoBehaviour
         {
             skillField.SetActive(false);
             actionField.SetActive(true);
+
+            skillDescriptionText.text = ("");
         }
 
         // ItemSelectionから戻る時に itemFieldを非表示
@@ -1029,6 +1051,8 @@ public class BattleManager : MonoBehaviour
         {
             itemField.SetActive(false);
             actionField.SetActive(true);
+
+            itemDescriptionText.text = ("");
         }
 
         // Switching_sidesから戻る時にAllyFieldを非表示
@@ -1120,7 +1144,7 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// 選択中のUIを縦方向に切り替える
     /// </summary>
-    private void ChangeSelectionVertical(int direction)
+    private void MoveSelectionVertical(int direction)
     {
         if (uiElements.Length == 0) return;
 
@@ -1292,6 +1316,33 @@ public class BattleManager : MonoBehaviour
         Debug.Log($"入力処理を {(enabled ? "有効" : "無効")} にしました");
     }
 
+    /// <summary>
+    /// 選択中のスキル説明表示
+    /// </summary>
+    private void Skilliconexplanation()
+    {
+        //選択中のスキル説明
+        var skillQuantity = SelectUI.GetComponent<SkillQuantity>();
+        if (skillQuantity != null)
+        {
+            skillDescriptionText.text = ($"{skillQuantity.D_Sk_StatusData.ItemDescription}\n\n" +
+                $"{skillQuantity.D_Sk_StatusData.EfficacyItemDescription}");
+        }
+    }
+    /// <summary>
+    /// 選択中のアイテム説明表示
+    /// </summary>
+    private void Itemiconexplanation()
+    {
+        //選択中のアイテム説明
+        var itemQuantity = SelectUI.GetComponent<ItemQuantity>();
+        if (itemQuantity != null)
+        {
+            itemDescriptionText.text = ($"{itemQuantity.D_It_StatusData.ItemDescription}\n\n" +
+                $"{itemQuantity.D_It_StatusData.EfficacyItemDescription}");
+        }
+    }
+
     // --- メニュー処理メソッド ---
 
     /// <summary>
@@ -1317,6 +1368,8 @@ public class BattleManager : MonoBehaviour
             SelectUI = uiElements[currentIndex];
             MoveFrameTo(SelectUI);
         }
+
+        Skilliconexplanation();
         Debug.Log("UI 切替 → SkillSelection");
     }
 
@@ -1351,6 +1404,8 @@ public class BattleManager : MonoBehaviour
             SelectUI = uiElements[currentIndex];
             MoveFrameTo(SelectUI);
         }
+
+        Itemiconexplanation();
         Debug.Log("UI 切替 → ItemSelection");
     }
 
@@ -1868,7 +1923,9 @@ public class BattleManager : MonoBehaviour
         // 既存のスキルオブジェクトを削除
         foreach (Transform child in skillField.transform)
         {
-            DestroyImmediate(child.gameObject);
+            if (child.name == "SkillDescription")
+                continue;
+            Destroy(child.gameObject);
         }
 
         // SkillListはスキルデータベース（Db_Sk_StatusDataBase）なので、そのItemListからUnlockが trueのスキルを取得
@@ -1955,10 +2012,9 @@ public class BattleManager : MonoBehaviour
         // 既存のアイテムオブジェクトを削除
         foreach (Transform child in itemField.transform)
         {
-            if (child.name != "AllyField") // AllyFieldは残す
-            {
-                DestroyImmediate(child.gameObject);
-            }
+            if (child.name == "ItemDescription")
+                continue;
+            Destroy(child.gameObject);
         }
 
         // 条件に合うアイテムをID順で取得（最大20個）
@@ -2079,7 +2135,7 @@ public class BattleManager : MonoBehaviour
         // 既存のキャラクターオブジェクトを削除
         foreach (Transform child in allyField.transform)
         {
-            DestroyImmediate(child.gameObject);
+            Destroy(child.gameObject);
         }
 
         // 位置設定（4個まで）

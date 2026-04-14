@@ -189,8 +189,6 @@ public class Result : MonoBehaviour
 
         //表示中のB_Ch_EXPIconのCharacterIconStatus.StatusUpdateEXP(acquisitionEXP)を実行していく、複数でも同時に
         //acquisitionEXPはGameManager.Instance.EncounteredEnemysにあるD_Ch_StatusData.Expの合計
-
-        //3/24　未テスト
         List<D_Ch_StatusData> allyList = BattleManager.Instance != null
             ? BattleManager.Instance.AllyParticipationList
             : null;

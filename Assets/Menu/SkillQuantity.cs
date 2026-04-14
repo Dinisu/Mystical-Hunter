@@ -16,6 +16,11 @@ public class SkillQuantity : MonoBehaviour
     {
         ds_Sk_StatusDataStore = FindObjectOfType<Ds_Sk_StatusDataStore>();
 
+        // "(Clone)" を除いて名前を取得
+        string originalName = gameObject.name.Replace("(Clone)", "").Trim();
+        // オブジェクト名でFindWithNameを使ってデータを取得
+        D_Sk_StatusData = ds_Sk_StatusDataStore.FindWithName(originalName);
+
         skillText = GetComponent<TextMeshProUGUI>();
         // 子オブジェクトのQuantityTextをitemQuantityTextに設定
         Transform quantityTextChild = transform.Find("QuantityText");
@@ -31,11 +36,6 @@ public class SkillQuantity : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // "(Clone)" を除いて名前を取得
-        string originalName = gameObject.name.Replace("(Clone)", "").Trim();
-        // オブジェクト名でFindWithNameを使ってデータを取得
-        D_Sk_StatusData = ds_Sk_StatusDataStore.FindWithName(originalName);
-
         UpdateTexts();
     }
 
@@ -61,7 +61,6 @@ public class SkillQuantity : MonoBehaviour
         if (skillQuantityText != null)
         {
             skillQuantityText.text = $"MP {D_Sk_StatusData.MpConsumption}";
-        }//MPを効果説明に移してここは再発動のクールタイムにするかもその場合
-        //QuantityUpdateをクールタイム更新時の処理で呼び出す用に
+        }
     }
 }

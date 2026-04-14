@@ -182,16 +182,4 @@ public class TimelineIconController : MonoBehaviour
         ActivatedItem = null;
         Target_of_Action = null;
     }
-
-    /*public void ApplySpeedModifier(float multiplier, float duration)
-    {
-        StartCoroutine(TemporarySpeedChange(multiplier, duration));
-    }
-
-    private System.Collections.IEnumerator TemporarySpeedChange(float multiplier, float duration)//一時的に速度を変える（バフ・デバフ用)
-        {
-        speedModifier *= multiplier; // ここで倍率を掛ける
-        yield return new WaitForSeconds(duration);
-        speedModifier /= multiplier; // 元に戻す
-    }*/
 }

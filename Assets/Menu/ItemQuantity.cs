@@ -21,6 +21,11 @@ public class ItemQuantity : MonoBehaviour
         ds_It_StatusDataStore = FindObjectOfType<Ds_It_StatusDataStore>();
         dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
 
+        // "(Clone)" を除いて名前を取得
+        string originalName = gameObject.name.Replace("(Clone)", "").Trim();
+        // オブジェクト名でFindWithNameを使ってデータを取得
+        D_It_StatusData = ds_It_StatusDataStore.FindWithName(originalName);
+
         itemText = GetComponent<TextMeshProUGUI>();
         // 子オブジェクトのQuantityTextをitemQuantityTextに設定
         Transform quantityTextChild = transform.Find("QuantityText");
@@ -38,11 +43,6 @@ public class ItemQuantity : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // "(Clone)" を除いて名前を取得
-        string originalName = gameObject.name.Replace("(Clone)", "").Trim();
-        // オブジェクト名でFindWithNameを使ってデータを取得
-        D_It_StatusData = ds_It_StatusDataStore.FindWithName(originalName);
-
         // 装備中かどうか判定  db_Players.ItemList.Any(...)：誰か1人でも条件に当てはまるかどうか
         bool isEquipped = db_Players.ItemList.Any(player =>
             player.Weapon == D_It_StatusData ||
