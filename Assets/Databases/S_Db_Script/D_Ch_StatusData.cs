@@ -11,8 +11,6 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
     [CreateAssetMenu(menuName = "ScriptableObject/Data/CharacterStatus")]
     public class D_Ch_StatusData : BaseData
     {
-        [SerializeField, Header("セーブ用ID")]
-        public string ID;
         public int Level
         {
             get => level;
@@ -47,7 +45,7 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
             public int MagicDefenseup;
             public int Speedup;
         }
-            public int Sp
+        public int Sp
         {
             get => sp;
             set => sp = value;

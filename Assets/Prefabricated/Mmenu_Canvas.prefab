@@ -975,6 +975,8 @@ MonoBehaviour:
   - {fileID: 5493862978696724397}
   - {fileID: 786398575348051031}
   - {fileID: 2910394867511780368}
+  SaveMenu: []
+  LoadMenu: []
   ItemChoice: []
   Charactersuseitems: []
   StatusEquipment: []
@@ -4487,7 +4489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2869698554188818445
 RectTransform:
   m_ObjectHideFlags: 0
