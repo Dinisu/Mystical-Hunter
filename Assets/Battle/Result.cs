@@ -153,7 +153,7 @@ public class Result : MonoBehaviour
         yield return new WaitForSecondsRealtime(3f);
         // シーン遷移前に時間を戻す
         Time.timeScale = 1;
-        SceneManager.LoadScene($"{GameManager.Instance.SceneName}");
+        SceneManager.LoadScene(GameManager.Instance.PreviousSceneName.ToString());
     }
 
     private IEnumerator ShowDefeatResult()// 敗北リザルトの表示処理

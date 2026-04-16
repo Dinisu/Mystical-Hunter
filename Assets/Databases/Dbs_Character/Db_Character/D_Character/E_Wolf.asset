@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: E_Wolf
   m_EditorClassIdentifier: 
   name: "\u30AA\u30AA\u30AB\u30DF"
-  id: 0
+  id: 102
   ItemDescription: 
-  ID: 
   level: 1
   exp: 5
   LevelExp: []

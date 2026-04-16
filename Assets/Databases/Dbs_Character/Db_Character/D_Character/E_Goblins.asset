@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: E_Goblins
   m_EditorClassIdentifier: 
   name: "\u30B4\u30D6\u30EA\u30F3"
-  id: 0
+  id: 101
   ItemDescription: 
-  ID: 
   level: 1
   exp: 3
   LevelExp: []

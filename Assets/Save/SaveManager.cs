@@ -2,6 +2,7 @@ using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class SaveManager : MonoBehaviour
@@ -101,9 +102,14 @@ public class SaveManager : MonoBehaviour
             string data = reader.ReadToEnd();
             save = JsonUtility.FromJson<SaveData>(data);
         }
+
+        LoadDataProcessing();
         Debug.Log($"ロード完了: {path}");
     }
 
+    /// <summary>
+    /// セーブするデータの設定処理
+    /// </summary>
     private void SaveDataProcessing()
     {
         //リセット
@@ -112,19 +118,39 @@ public class SaveManager : MonoBehaviour
         save.ItemStatus.Clear();
         save.EventStatus.Clear();
 
+        //------------------------
+        // 基本データ
+        //------------------------
+
         // 所持金
         save.PlayerMoney = GameManager.Instance.PlayerMoney;
 
+        //プレイ時間
+        save.PlayTime = GameManager.Instance.PlayTime;
+
         // シーン名
-        save.CurrentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        save.CurrentScene = GameManager.Instance.CurrentSceneName;
 
         // プレイヤー位置
-        Vector3 pos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-        save.PlayerPosX = pos.x;
-        save.PlayerPosY = pos.y;
-        save.PlayerPosZ = pos.z;
+        if (player != null)
+        {
+            Vector3 pos = player.transform.position;
 
+            save.PlayerPosX = pos.x;
+            save.PlayerPosY = pos.y;
+            save.PlayerPosZ = pos.z;
+        }
+        else
+        {
+            Debug.LogWarning("Playerが見つかりませんでした");
+        }
+
+
+        //------------------------
+        // 味方データ
+        //------------------------
         // フラグ
         save.ShouldRestorePlayerPosition = GameManager.Instance.ShouldRestorePlayerPosition;
 
@@ -153,14 +179,18 @@ public class SaveManager : MonoBehaviour
             data.Speed = allyData.Speed;
             data.CriticalRate = allyData.CriticalRate;
 
-            data.Weapon = allyData.Weapon.Id;
-            data.Armor = allyData.Armor.Id;
-            data.Accessories1 = allyData.Accessories1.Id;
-            data.Accessories2 = allyData.Accessories2.Id;
+            data.Weapon = allyData.Weapon != null ? allyData.Weapon.Id : -1;
+            data.Armor = allyData.Armor != null ? allyData.Armor.Id : -1;
+            data.Accessories1 = allyData.Accessories1 != null ? allyData.Accessories1.Id : -1;
+            data.Accessories2 = allyData.Accessories2 != null ? allyData.Accessories2.Id : -1;
+            //-1 = 装備なし
 
             save.AlliesStatus.Add(data);
         }
 
+        //------------------------
+        // スキルデータ
+        //------------------------
         var db_SkillData = db_skillDataBase.ItemList;
         foreach (var skillData in db_SkillData)
         {
@@ -172,6 +202,9 @@ public class SaveManager : MonoBehaviour
             save.SkillStatus.Add(data);
         }
 
+        //------------------------
+        // アイテムデータ
+        //------------------------
         var db_ItemData = db_PlayerItem.ItemList;
         foreach (var itemData in db_ItemData)
         {
@@ -183,6 +216,9 @@ public class SaveManager : MonoBehaviour
             save.ItemStatus.Add(data);
         }
 
+        //------------------------
+        // イベントデータ
+        //------------------------
         var db_EventData = db_eventDataBase.ItemList;
         foreach (var eventData in db_EventData)
         {
@@ -197,6 +233,123 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ロードしたセーブデータをゲーム内へ反映する
+    /// </summary>
+    private void LoadDataProcessing()
+    {
+        //------------------------
+        // 基本データ
+        //------------------------
+
+        GameManager.Instance.PlayerMoney = save.PlayerMoney;
+        GameManager.Instance.PlayTime = save.PlayTime;
+
+        GameManager.Instance.PlayerPosition = new Vector3
+        (
+            save.PlayerPosX,
+            save.PlayerPosY,
+            save.PlayerPosZ
+        );
+
+        GameManager.Instance.ShouldRestorePlayerPosition = save.ShouldRestorePlayerPosition;
+
+        //------------------------
+        // 味方データ
+        //------------------------
+
+        foreach (var loadedAlly in save.AlliesStatus)
+        {
+            var allyData = db_allyDataBase.ItemList.Find(x => x.Id == loadedAlly.Id);
+
+            if (allyData == null)
+            {
+                Debug.LogWarning($"味方ID:{loadedAlly.Id} が見つかりません");
+                continue;
+            }
+
+            allyData.Level = loadedAlly.Level;
+            allyData.Exp = loadedAlly.Exp;
+            allyData.Sp = loadedAlly.Sp;
+
+            allyData.MaxHp = loadedAlly.MaxHp;
+            allyData.Hp = loadedAlly.Hp;
+
+            allyData.MaxMp = loadedAlly.MaxMp;
+            allyData.Mp = loadedAlly.Mp;
+
+            allyData.Attack = loadedAlly.Attack;
+            allyData.Magic = loadedAlly.Magic;
+
+            allyData.Defense = loadedAlly.Defense;
+            allyData.MagicDefense = loadedAlly.MagicDefense;
+
+            allyData.Speed = loadedAlly.Speed;
+            allyData.CriticalRate = loadedAlly.CriticalRate;
+
+            // 装備復元（ID→装備DB検索）
+            allyData.Weapon = db_PlayerItem.ItemList.Find(x => x.Id == loadedAlly.Weapon);
+
+            allyData.Armor = db_PlayerItem.ItemList.Find(x => x.Id == loadedAlly.Armor);
+
+            allyData.Accessories1 = db_PlayerItem.ItemList.Find(x => x.Id == loadedAlly.Accessories1);
+
+            allyData.Accessories2 = db_PlayerItem.ItemList.Find(x => x.Id == loadedAlly.Accessories2);
+        }
+
+
+        //------------------------
+        // スキルデータ
+        //------------------------
+
+        foreach (var loadedSkill in save.SkillStatus)
+        {
+            var skillData = db_skillDataBase.ItemList.Find(x => x.Id == loadedSkill.Id);
+
+            if (skillData != null)
+            {
+                skillData.Unlock = loadedSkill.UnlockSkills;
+            }
+        }
+
+
+        //------------------------
+        // アイテムデータ
+        //------------------------
+
+        foreach (var loadedItem in save.ItemStatus)
+        {
+            var itemData = db_PlayerItem.ItemList.Find(x => x.Id == loadedItem.Id);
+
+            if (itemData != null)
+            {
+                itemData.Number = loadedItem.Number;
+            }
+        }
+
+
+        //------------------------
+        // イベントデータ
+        //------------------------
+
+        foreach (var loadedEvent in save.EventStatus)
+        {
+            var eventData = db_eventDataBase.ItemList.Find(x => x.Id == loadedEvent.Id);
+
+            if (eventData != null)
+            {
+                eventData.Event1 = loadedEvent.EventFlag1;
+                eventData.Event2 = loadedEvent.EventFlag2;
+                eventData.Event3 = loadedEvent.EventFlag3;
+            }
+        }
+
+        //------------------------
+        // 最後にシーン移動
+        //------------------------
+        SceneManager.LoadScene(save.CurrentScene.ToString());
+
+    }
     public void InitSaveData()
     {
 

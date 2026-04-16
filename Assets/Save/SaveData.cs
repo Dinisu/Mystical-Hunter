@@ -2,13 +2,14 @@ using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using System;
 using static App.BaseSystem.DataStores.ScriptableObjects.Status.D_Ch_StatusData;
 using System.Collections.Generic;
+using GameConstants;
 
 [Serializable]
 public class SaveData
 {
     //TODO :ここに保存したいパラメータを追加する
 
-    public string CurrentSceneName;
+    public SceneName CurrentScene;
     //プレイヤーのいる位置
     public float PlayerPosX;
     public float PlayerPosY;
@@ -16,6 +17,8 @@ public class SaveData
     public bool ShouldRestorePlayerPosition;
 
     public int PlayerMoney;
+
+    public float PlayTime;
 
 
 

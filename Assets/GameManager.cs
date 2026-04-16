@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
     //シングルトンの宣言
     public static GameManager Instance = null;
 
-    //戦闘復帰用
-    public SceneName SceneName;//移動前のシーン名を格納
+    [Header("現在のシーン名")]
+    public SceneName CurrentSceneName;
+    [Header("前のシーン名")]
+    public SceneName PreviousSceneName;//移動前のシーン名を格納
+
     // プレイヤーの位置情報を保存
     public Vector3 PlayerPosition = Vector3.zero;
     public bool ShouldRestorePlayerPosition = false;
@@ -20,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     // エンカウントした敵の情報を保存
     public List<D_Ch_StatusData> EncounteredEnemys = new List<D_Ch_StatusData>();
+
+    [Header("プレイ時間")]
+    public float PlayTime = 0f;
 
     [Header("選択、決定音、キャンセル")]
     public AudioClip choice;
@@ -52,6 +58,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        PlayTime += Time.deltaTime;
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -64,6 +75,12 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //現在のシーン名取得
+        if (System.Enum.TryParse(scene.name, out SceneName sceneName))
+        {
+            CurrentSceneName = sceneName;
+        }
+
         RestorePlayerPosition();
     }
 
@@ -80,7 +97,7 @@ public class GameManager : MonoBehaviour
     // プレイヤーの位置情報を保存
     public void SavePlayerPosition(SceneName sceneName, Transform playerTransform)
     {
-        SceneName = sceneName;
+        PreviousSceneName = sceneName;
         PlayerPosition = playerTransform.position;
         ShouldRestorePlayerPosition = true;
     }
@@ -92,6 +109,9 @@ public class GameManager : MonoBehaviour
         ShouldRestorePlayerPosition = false;
     }
 
+    /// <summary>
+    /// プレイヤーの位置を復元
+    /// </summary>
     public void RestorePlayerPosition()
     {
         if (!ShouldRestorePlayerPosition)
@@ -106,6 +126,8 @@ public class GameManager : MonoBehaviour
         }
 
         player.transform.position = PlayerPosition;
+
+        Debug.Log($"位置復元: {PlayerPosition}");
 
         ShouldRestorePlayerPosition = false;
     }
