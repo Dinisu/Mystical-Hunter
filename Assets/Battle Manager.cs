@@ -388,8 +388,6 @@ public class BattleManager : MonoBehaviour
             {
                 Debug.Log($"StatusIcon 生成できませんでした。");
             }
-            // TimelineController へ登録
-            //timelineIconController?.BindIcon(iconController);
         }
     }
 

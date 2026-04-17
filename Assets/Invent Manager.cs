@@ -324,6 +324,9 @@ public class InventManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 選択中のアイテム説明表示
+    /// </summary>
     private void Itemiconexplanation()
     {
         //選択中のアイテム説明
@@ -417,10 +420,10 @@ public class InventManager : MonoBehaviour
                         LoadMenuprocess();
                         break;
                     case SelectionSettings.Choose.Save://セーブ実行
-
+                        ExecuteSave();
                         break;
                     case SelectionSettings.Choose.Load://ロード実行
-
+                        ExecuteLoad();
                         break;
                     case SelectionSettings.Choose.Consumables://消耗品選択
                         Consumablesprocess();
@@ -1104,13 +1107,6 @@ public class InventManager : MonoBehaviour
                 itemQuantity = itemInstance.AddComponent<ItemQuantity>();
             }
 
-            // SelectionSettings コンポーネントを追加
-            /*var selectionSettings = itemInstance.GetComponent<SelectionSettings>();
-            if (selectionSettings == null)
-            {
-                selectionSettings = itemInstance.AddComponent<SelectionSettings>();
-            }*/
-
             // ItemChoice リストに追加
             ItemChoice.Add(itemInstance);
 
@@ -1123,11 +1119,7 @@ public class InventManager : MonoBehaviour
         {
             // 1列目の一番下（9行目）
             GameObject toggle1 = Instantiate(selectionToggle.gameObject, itemChoiceField.transform);
-            /*RectTransform toggle1Rect = toggle1.GetComponent<RectTransform>();
-            if (toggle1Rect != null)
-            {
-                toggle1Rect.anchoredPosition = new Vector2(-230f, -405f);
-            }*/
+
             ItemChoice.Add(toggle1);
 
             // 2列目の一番下（9行目）
@@ -1169,12 +1161,12 @@ public class InventManager : MonoBehaviour
         // 既存のアイテム選択をクリア
         StatusEquipment.Clear();
         
-        // 既存のアイテムオブジェクトを削除　　3/19たまに削除しきれないことがある後修正
+        // 既存のアイテムオブジェクトを削除
         foreach (Transform child in EquipmentChoiceField.transform)
         {
             if (child.name != "Selection Toggle") // Selection Toggleは残す
             {
-                DestroyImmediate(child.gameObject);
+                Destroy(child.gameObject);
             }
         }
 
@@ -1366,6 +1358,12 @@ public class InventManager : MonoBehaviour
         // 現在の状態を履歴に保存
         SaveCurrentStateToHistory();
 
+        //セーブデータの内容を更新
+        foreach(var SaveData in SaveMenu)
+        {
+            SaveData.GetComponent<Savedatadisplay>()?.DisplaySaveData();
+        }
+
         // セーブメニュー表示
         if (skillField != null)
         {
@@ -1385,6 +1383,12 @@ public class InventManager : MonoBehaviour
     {
         // 現在の状態を履歴に保存
         SaveCurrentStateToHistory();
+
+        //セーブデータの内容を更新
+        foreach (var SaveData in SaveMenu)
+        {
+            SaveData.GetComponent<Savedatadisplay>()?.DisplaySaveData();
+        }
 
         // ロードメニュー表示
         if (skillField != null)
@@ -1428,9 +1432,6 @@ public class InventManager : MonoBehaviour
     {
         // 現在の状態を履歴に保存
         SaveCurrentStateToHistory();
-        
-        // 消耗品アイテムを生成（Buff,DeBuff,Attack,Magic,Recovery）
-        //GenerateItemIcons(new string[] { "Buff", "DeBuff", "Attack", "Magic", "Recovery" });
         
         // 選択対象を ItemChoice に切り替え
         uiElements = ItemChoice.ToArray();
@@ -1755,6 +1756,51 @@ public class InventManager : MonoBehaviour
 
         //処理後、戻る
         PreviousList();
+    }
+
+    /// <summary>
+    /// セーブを実行
+    /// 現在のデータを保存
+    /// </summary>
+    private void ExecuteSave()
+    {
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError("SaveManagerが存在しません");
+            return;
+        }
+
+        var SelectSaveData = SelectUI.GetComponent<Savedatadisplay>();
+        if (SelectSaveData == null)
+        {
+            Debug.LogWarning("Savedatadisplayが見つかりません");
+            return;
+        }
+        SaveManager.Instance.Save(SelectSaveData.SaveNumber);
+
+        // セーブデータ表示更新
+        SelectSaveData.DisplaySaveData();
+    }
+
+    /// <summary>
+    /// ロードを実行
+    /// 選択中のセーブデータに移行
+    /// </summary>
+    private void ExecuteLoad()
+    {
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError("SaveManagerが存在しません");
+            return;
+        }
+
+        var SelectSaveData = SelectUI.GetComponent<Savedatadisplay>();
+        if (SelectSaveData == null)
+        {
+            Debug.LogWarning("Savedatadisplayが見つかりません");
+            return;
+        }
+        SaveManager.Instance.Load(SelectSaveData.SaveNumber);
     }
 
     /// <summary>

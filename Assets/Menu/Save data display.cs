@@ -4,8 +4,8 @@ using System.IO;
 
 public class Savedatadisplay : MonoBehaviour
 {
-    [SerializeField, Header("セーブデータの番号")]
-    private int saveNumber;
+    [Header("セーブデータの番号")]
+    public int SaveNumber;
 
     [SerializeField, Header("表示するテキスト")]
     private TextMeshProUGUI StatusText1;
@@ -18,12 +18,12 @@ public class Savedatadisplay : MonoBehaviour
 
     public void DisplaySaveData()
     {
-        string path = SaveManager.Instance.GetFilePath(saveNumber);
+        string path = SaveManager.Instance.GetFilePath(SaveNumber);
 
         // セーブデータが無い場合
         if (!File.Exists(path))
         {
-            StatusText1.text = ($"セーブデータ{saveNumber}\n" + "データ無し");
+            StatusText1.text = ($"セーブデータ{SaveNumber}\n" + "データ無し");
             StatusText2.text = ("");
             return;
         }
@@ -34,7 +34,7 @@ public class Savedatadisplay : MonoBehaviour
 
         if (data == null)
         {
-            StatusText1.text = ($"セーブデータ{saveNumber}\n"+"データ無し");
+            StatusText1.text = ($"セーブデータ{SaveNumber}\n"+"データ無し");
             StatusText2.text = ("");
             return;
         }
@@ -59,7 +59,7 @@ public class Savedatadisplay : MonoBehaviour
         }
 
         // ▼ 表示
-        StatusText1.text =($"セーブデータ{saveNumber}\n" +$"{allyText}");
+        StatusText1.text =($"セーブデータ{SaveNumber}\n" +$"{allyText}");
         StatusText2.text = ($"プレイ時間:{playTime}");
     }
 
