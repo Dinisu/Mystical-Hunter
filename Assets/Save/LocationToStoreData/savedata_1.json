@@ -1,0 +1,101 @@
+{
+    "CurrentScene": 2,
+    "PlayerPosX": 0.0,
+    "PlayerPosY": 0.9796304702758789,
+    "PlayerPosZ": -1.4901161193847657e-8,
+    "ShouldRestorePlayerPosition": false,
+    "PlayerMoney": 0,
+    "PlayTime": 9.716392517089844,
+    "AlliesStatus": [
+        {
+            "Id": 1,
+            "Level": 1,
+            "Exp": 0,
+            "Sp": 0,
+            "MaxHp": 60,
+            "Hp": 60,
+            "MaxMp": 10,
+            "Mp": 4,
+            "Attack": 15,
+            "Magic": 3,
+            "Defense": 2,
+            "MagicDefense": 1,
+            "Speed": 3,
+            "CriticalRate": 0.05000000074505806,
+            "Weapon": 501,
+            "Armor": -1,
+            "Accessories1": 701,
+            "Accessories2": -1
+        }
+    ],
+    "SkillStatus": [
+        {
+            "Id": 1,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 901,
+            "UnlockSkills": false
+        },
+        {
+            "Id": 800,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 101,
+            "UnlockSkills": false
+        },
+        {
+            "Id": 0,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 600,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 900,
+            "UnlockSkills": false
+        }
+    ],
+    "ItemStatus": [
+        {
+            "Id": 501,
+            "Number": 1
+        },
+        {
+            "Id": 502,
+            "Number": 1
+        },
+        {
+            "Id": 602,
+            "Number": 1
+        },
+        {
+            "Id": 701,
+            "Number": 1
+        },
+        {
+            "Id": 101,
+            "Number": 95
+        },
+        {
+            "Id": 104,
+            "Number": 3
+        }
+    ],
+    "EventStatus": [
+        {
+            "Id": 0,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 0,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        }
+    ]
+}

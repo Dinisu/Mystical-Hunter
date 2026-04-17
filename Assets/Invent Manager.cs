@@ -1385,7 +1385,7 @@ public class InventManager : MonoBehaviour
         SaveCurrentStateToHistory();
 
         //セーブデータの内容を更新
-        foreach (var SaveData in SaveMenu)
+        foreach (var SaveData in LoadMenu)
         {
             SaveData.GetComponent<Savedatadisplay>()?.DisplaySaveData();
         }
@@ -1393,16 +1393,16 @@ public class InventManager : MonoBehaviour
         // ロードメニュー表示
         if (skillField != null)
         {
-            saveField.SetActive(true);
+            loadField.SetActive(true);
             selectionField.SetActive(false);
         }
 
         // 選択対象を切り替え
-        uiElements = SaveMenu.ToArray();
+        uiElements = LoadMenu.ToArray();
         currentIndex = 0; // 先頭に戻す
         SelectUI = uiElements[currentIndex];
         MoveFrameTo(SelectUI); // 枠を更新
-        Debug.Log("UI 切替 → SaveMenu");
+        Debug.Log("UI 切替 → LoadMenu");
     }
 
     private void ItemMenuprocess()//アイテムメニュー表示

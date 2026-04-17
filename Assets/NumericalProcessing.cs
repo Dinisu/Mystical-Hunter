@@ -708,7 +708,6 @@ public class NumericalProcessing : MonoBehaviour
     /// <summary>
     /// ダメージを受けたキャラクターオブジェクトを点滅させる（DOTween）。
     /// エフェクトと同期する場合は <paramref name="durationSeconds"/> に再生時間を渡す。
-    /// 3/26 後にエフェクト再生終了時に点滅するようにする
     /// </summary>
     private Sequence BlinkHitObject(D_Ch_StatusData targetCheck, float durationSeconds = 1f)
     {
@@ -865,10 +864,10 @@ public class NumericalProcessing : MonoBehaviour
         //行動リセット
         targetIcon.ActionReset();
 
-        // stateがActing_upならcurrentProgressを4下げる（滑らかに）
+        // stateがActing_upならcurrentProgressを3下げる（滑らかに）
         if (targetIcon.state == TimelineIconController.TimelineState.Acting_up)
         {
-            float targetProgress = Mathf.Max(0f, targetIcon.currentProgress - 0.4f);
+            float targetProgress = Mathf.Max(0f, targetIcon.currentProgress - 0.3f);
             
             // DOTweenで滑らかに下げる
             DOTween.To(

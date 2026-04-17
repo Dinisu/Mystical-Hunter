@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 3
+  SaveNumber: 3
   StatusText1: {fileID: 536726623072614603}
   StatusText2: {fileID: 5216997500173405569}
 --- !u!1 &186763305939524550
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 1
+  SaveNumber: 1
   StatusText1: {fileID: 6635427805814527676}
   StatusText2: {fileID: 4652105874463152104}
 --- !u!1 &1103890694032560779
@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 3
+  SaveNumber: 3
   StatusText1: {fileID: 4790476667467295661}
   StatusText2: {fileID: 8127663651465489497}
 --- !u!1 &1911328776692907334
@@ -6265,7 +6265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 4
+  SaveNumber: 4
   StatusText1: {fileID: 7542745605561266896}
   StatusText2: {fileID: 1173411068431463968}
 --- !u!1 &6073750160623383571
@@ -7440,7 +7440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 2
+  SaveNumber: 2
   StatusText1: {fileID: 3261253101333603664}
   StatusText2: {fileID: 7249175160854849309}
 --- !u!1 &8121402477952777710
@@ -7894,7 +7894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 2
+  SaveNumber: 2
   StatusText1: {fileID: 2193144396156089383}
   StatusText2: {fileID: 1462017081911923479}
 --- !u!1 &8302808168619340701
@@ -8924,7 +8924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 1
+  SaveNumber: 1
   StatusText1: {fileID: 3352151909596105709}
   StatusText2: {fileID: 3734548052239877400}
 --- !u!1 &8754736432317189288
@@ -9469,7 +9469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  saveNumber: 4
+  SaveNumber: 4
   StatusText1: {fileID: 3834481455729330184}
   StatusText2: {fileID: 7233643217689169138}
 --- !u!1 &9029284650623002615
