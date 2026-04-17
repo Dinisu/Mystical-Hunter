@@ -22,8 +22,8 @@ public class SaveManager : MonoBehaviour
     private Dss_Ev_StatusDataStores dss_Ev_StatusDataStores;
     private Dss_Sk_StatusDataStores dss_Sk_StatusDataStores;
 
+    public Db_Ch_StatusDataBase db_allyDataBase;
     private Db_It_StatusDataBase db_PlayerItem;
-    private Db_Ch_StatusDataBase db_allyDataBase;
     private Db_Sk_StatusDataBase db_skillDataBase;
     private Db_Ev_StatusDataBase db_eventDataBase;
 
@@ -58,7 +58,7 @@ public class SaveManager : MonoBehaviour
     /// セーブデータの保存先
     /// 確認しやすいようにUnityエディタ上ではプロジェクト内にビルド後は正規の場所に
     /// </summary>
-    private string GetFilePath(int saveNumber)
+    public string GetFilePath(int saveNumber)
     {
 #if UNITY_EDITOR
         return filePath = Application.dataPath + $"/Save/LocationToStoreData/savedata_{saveNumber}.json";
