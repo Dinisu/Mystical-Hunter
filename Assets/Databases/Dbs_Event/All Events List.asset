@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: All Events List
   m_EditorClassIdentifier: 
   list:
+  - {fileID: 11400000, guid: 78524ad1719a3b04785bbc3120f68d01, type: 2}
   - {fileID: 11400000, guid: 2c87637d68da9794aaa72981f4870ef6, type: 2}

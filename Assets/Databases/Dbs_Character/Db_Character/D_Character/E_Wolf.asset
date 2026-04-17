@@ -21,7 +21,7 @@ MonoBehaviour:
   sp: 0
   attribute: 0
   maxhp: 15
-  hp: 15
+  hp: 5
   maxmp: 3
   mp: 3
   attack: 10

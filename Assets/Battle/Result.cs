@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using DG.Tweening;
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
+using Unity.VisualScripting;
 
 public class Result : MonoBehaviour
 {
@@ -132,6 +133,9 @@ public class Result : MonoBehaviour
         GaugeUI.SetActive(false);
         Statusarea.SetActive(false);
 
+        //行動操作ができないように入力イベントを解除する
+        BattleManager.Instance.UnregisterInputEvents();
+
         BattleManager.Instance.ActionName.text = ("");//行動名リセット
 
         // VictoryDeclarationの表示
@@ -162,6 +166,9 @@ public class Result : MonoBehaviour
         DefeatResult.SetActive(true);
         GaugeUI.SetActive(false);
         Statusarea.SetActive(false);
+
+        //行動操作ができないように入力イベントを解除する
+        BattleManager.Instance.UnregisterInputEvents();
 
         BattleManager.Instance.ActionName.text = ("");//行動名リセット
 

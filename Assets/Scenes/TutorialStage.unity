@@ -3217,7 +3217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f9a085670757246aa952a2c45011d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ev_Itemacquisitionevent
-  Ev_StatusData: {fileID: 11400000, guid: a0f41a1ddf445e948af3116d9f94db85, type: 2}
+  Ev_StatusData: {fileID: 11400000, guid: 8356125aa0ef5eb47be1643a0fe2b5ae, type: 2}
   Treasurechest: 0
   It_StatusData: {fileID: 11400000, guid: dfa347809c7d75040804effd2da0b3cb, type: 2}
   payment: {fileID: 0}
