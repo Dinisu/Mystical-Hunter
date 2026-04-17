@@ -2353,7 +2353,7 @@ MonoBehaviour:
   EncounterArea:
   - {fileID: 1426484877}
   encounterRatePerSecond: 0.5
-  SceneName: 1
+  SceneName: 2
   battleStage: 0
 --- !u!54 &987690536
 Rigidbody:

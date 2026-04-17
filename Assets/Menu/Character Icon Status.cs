@@ -9,8 +9,9 @@ public class CharacterIconStatus : MonoBehaviour
     public D_Ch_StatusData status;
 
     [SerializeField, Header("表示するテキスト")]
-    public TextMeshProUGUI StatusText1;
-    public TextMeshProUGUI StatusText2;
+    private TextMeshProUGUI StatusText1;
+    [SerializeField]
+    private TextMeshProUGUI StatusText2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

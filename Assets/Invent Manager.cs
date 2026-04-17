@@ -411,10 +411,10 @@ public class InventManager : MonoBehaviour
                         SkillMenuprocess();
                         break;
                     case SelectionSettings.Choose.SaveMenu://セーブメニュー表示
-                        
+                        SaveMenuprocess();
                         break;
                     case SelectionSettings.Choose.LoadMenu://ロードメニュー表示
-
+                        LoadMenuprocess();
                         break;
                     case SelectionSettings.Choose.Save://セーブ実行
 
@@ -579,21 +579,21 @@ public class InventManager : MonoBehaviour
         if (currentType == "SkillMenu")
         {
             skillField.SetActive(false);
-            selectionField.SetActive(true);
+            statusField.SetActive(true);
         }
 
         //セーブメニューから戻った際
         if (currentType == "SaveMenu")
         {
             saveField.SetActive(false);
-            statusField.SetActive(true);
+            selectionField.SetActive(true);
         }
 
         //ロードメニューから戻った際
         if (currentType == "SaveMenu")
         {
             loadField.SetActive(false);
-            statusField.SetActive(true);
+            selectionField.SetActive(true);
         }
 
         //アイテム選択から戻った際、アイテム説明リセット
@@ -1338,7 +1338,7 @@ public class InventManager : MonoBehaviour
         Debug.Log("UI 切替 → StatusMenu");
     }
 
-    private void SkillMenuprocess()//アイテムメニュー表示
+    private void SkillMenuprocess()//スキルメニュー表示
     {
         // 現在の状態を履歴に保存
         SaveCurrentStateToHistory();
@@ -1359,6 +1359,46 @@ public class InventManager : MonoBehaviour
         SelectUI = uiElements[currentIndex];
         MoveFrameTo(SelectUI); // 枠を更新
         Debug.Log("UI 切替 → SkillMenu");
+    }
+
+    private void SaveMenuprocess()//セーブメニュー表示
+    {
+        // 現在の状態を履歴に保存
+        SaveCurrentStateToHistory();
+
+        // セーブメニュー表示
+        if (skillField != null)
+        {
+            saveField.SetActive(true);
+            selectionField.SetActive(false);
+        }
+
+        // 選択対象を切り替え
+        uiElements = SaveMenu.ToArray();
+        currentIndex = 0; // 先頭に戻す
+        SelectUI = uiElements[currentIndex];
+        MoveFrameTo(SelectUI); // 枠を更新
+        Debug.Log("UI 切替 → SaveMenu");
+    }
+
+    private void LoadMenuprocess()//ロードメニュー表示
+    {
+        // 現在の状態を履歴に保存
+        SaveCurrentStateToHistory();
+
+        // ロードメニュー表示
+        if (skillField != null)
+        {
+            saveField.SetActive(true);
+            selectionField.SetActive(false);
+        }
+
+        // 選択対象を切り替え
+        uiElements = SaveMenu.ToArray();
+        currentIndex = 0; // 先頭に戻す
+        SelectUI = uiElements[currentIndex];
+        MoveFrameTo(SelectUI); // 枠を更新
+        Debug.Log("UI 切替 → SaveMenu");
     }
 
     private void ItemMenuprocess()//アイテムメニュー表示
