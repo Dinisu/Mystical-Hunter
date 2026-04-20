@@ -467,7 +467,7 @@ public class NumericalProcessing : MonoBehaviour
         }
 
         // ▼ ダメージ適用
-        ApplyDamage(defender, finalDamage);
+        ApplyDamage(defender, finalDamage, isCritical);
 
         // ▼ MP消費
         attacker.Mp -= skill.MpConsumption;
@@ -552,7 +552,7 @@ public class NumericalProcessing : MonoBehaviour
             defendAttr
         );
     }
-    private void ApplyDamage(D_Ch_StatusData target, int damage)//ダメージ処理
+    private void ApplyDamage(D_Ch_StatusData target, int damage, bool isCritical = false)//ダメージ処理
     {
         target.Hp -= damage;
         target.Hp = Mathf.Max(0, target.Hp);
@@ -574,7 +574,7 @@ public class NumericalProcessing : MonoBehaviour
                     blinkSeq.OnComplete(() =>
                     {
                         battleManager.RemoveCharacterOnDeath(target);
-                        DamageText(target, damage, true);
+                        DamageText(target, damage, true, isCritical);
                     });
 
                     //メモ　blinkSeq.OnCompleteはこのアニメーション（Sequence）が全部終わったら、この中の処理を実行してくださいという意味
@@ -583,7 +583,7 @@ public class NumericalProcessing : MonoBehaviour
                 {
                     // フェイルセーフ
                     battleManager.RemoveCharacterOnDeath(target);
-                    DamageText(target, damage, true);
+                    DamageText(target, damage, true, isCritical);
                 }
             }
             else
@@ -595,7 +595,7 @@ public class NumericalProcessing : MonoBehaviour
         {
             // ダメージを受けたキャラクターのオブジェクトを点滅させる
             BlinkHitObject(target);
-            DamageText(target, damage, true);
+            DamageText(target, damage, true, isCritical);
             // ダメージを受けたキャラクターのTimelineIconControllerを探して、currentProgressを下げる
             ReduceTimelineProgress(target);
         }
@@ -660,10 +660,10 @@ public class NumericalProcessing : MonoBehaviour
 
     /// <summary>
     /// ダメージを受けたキャラクターオブジェクトにダメージ数を表示。
-    /// 後にダメージか回復かで色を変える、メソッド名もその時変える　　クリティカル時黄色
+    /// ダメージか回復かで色を変える、クリティカル時黄色
     /// true: ダメージ, false: 回復
     /// </summary>
-    private void DamageText(D_Ch_StatusData targetCheck, int damage, bool Damage_or_healing)
+    private void DamageText(D_Ch_StatusData targetCheck, int damage, bool Damage_or_healing, bool isCritical = false)
     {
         if (targetCheck == null) return;
         if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) return;
@@ -678,12 +678,25 @@ public class NumericalProcessing : MonoBehaviour
         TMP_Text tmp = damageTextTransform.GetComponent<TMP_Text>();
         if (tmp == null) return;
 
+        // テキスト設定
+        tmp.text = damage.ToString();
+
+        // 色設定
+        if (isCritical)
+        {
+            tmp.color = Color.yellow;//黄
+        }
+        else if (Damage_or_healing)
+        {
+            tmp.color = Color.red;//赤
+        }
+        else
+        {
+            tmp.color = new Color(0.5f, 1f, 0f); // 黄緑
+        }
 
         // 表示ON
         damageDisplay.gameObject.SetActive(true);
-
-        // テキスト設定
-        tmp.text = damage.ToString();
 
         // スケール初期化
         damageTextTransform.localScale = Vector3.zero;
@@ -1398,7 +1411,7 @@ public class NumericalProcessing : MonoBehaviour
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
         // ▼ ダメージ適用
-        ApplyDamage(defender, finalDamage);
+        ApplyDamage(defender, finalDamage, isCritical);
 
         // ▼ アイテム個数を減らす
         item.Number -= 1;
@@ -1485,7 +1498,7 @@ public class NumericalProcessing : MonoBehaviour
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
         // ▼ ダメージ適用
-        ApplyDamage(defender, finalDamage);
+        ApplyDamage(defender, finalDamage, isCritical);
 
         // ▼ アイテム個数を減らす
         item.Number -= 1;
