@@ -30,5 +30,5 @@ MonoBehaviour:
   Unlock: 1
   Icon: {fileID: 0}
   B_Icon: {fileID: 2077527046347190955, guid: 5c0057bcc520fae41b98f6d53afb9fe8, type: 3}
-  Effect: {fileID: 0}
+  Effect: {fileID: 8307060409358143758, guid: 8f767d0b23c8e3b4cb2ead5380b1074d, type: 3}
   SoundEffects: {fileID: 0}
