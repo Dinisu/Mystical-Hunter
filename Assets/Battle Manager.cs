@@ -196,7 +196,9 @@ public class BattleManager : MonoBehaviour
                     numericalProcessing.Use_subject_ChData = icon.characterData;//発動される対象
                     numericalProcessing.Use_characterObject = icon.characterObject;//発動される対象オブジェクト
                     ActionName.text = ($"{skill.Name}");//発動スキル名表示
-                    numericalProcessing.DamageCalculation();
+                    
+                    // エフェクト再生完了まで待つ
+                    yield return StartCoroutine(numericalProcessing.DamageCalculationAsync());
 
                     break;
             }

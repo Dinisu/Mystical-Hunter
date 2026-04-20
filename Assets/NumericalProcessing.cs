@@ -552,6 +552,37 @@ public class NumericalProcessing : MonoBehaviour
             defendAttr
         );
     }
+
+    /// <summary>
+    /// DamageCalculation() の非同期版。エフェクト再生完了まで待つ。
+    /// </summary>
+    public IEnumerator DamageCalculationAsync(D_Sk_StatusData targetSkills)
+    {
+        DamageCalculation();
+
+        float waitTime = 1f; // デフォルト待機時間（エフェクトがない場合）
+
+        // ▼ アイコン停止
+        BattleManager.Instance.Stopallicons();
+
+        GameObject effectInstance = null;
+
+        // ▼ エフェクトが設定されている場合
+        if (targetSkills != null && targetSkills.Effect != null)
+        {
+            effectInstance = Instantiate(targetSkills.Effect);
+            // ▼ ParticleSystemがある場合は再生時間取得
+            ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                waitTime = ps.main.duration;
+            }
+        }
+
+        // エフェクト再生時間（+余裕）待つ
+        yield return new WaitForSeconds(waitTime + 0.5f);
+    }
+
     private void ApplyDamage(D_Ch_StatusData target, int damage, bool isCritical = false)//ダメージ処理
     {
         target.Hp -= damage;
@@ -786,7 +817,7 @@ public class NumericalProcessing : MonoBehaviour
         float waitTime = 1f; // デフォルト待機時間（エフェクトがない場合）
 
         // ▼ アイコン停止
-        //BattleManager.Instance.Stopallicons();
+        BattleManager.Instance.Stopallicons();
 
         GameObject effectInstance = null;
 
@@ -817,7 +848,7 @@ public class NumericalProcessing : MonoBehaviour
         }
 
         // ▼ アイコン再開
-        //BattleManager.Instance.Moveallicons();
+        BattleManager.Instance.Moveallicons();
 
         // ▼ 行動名リセット
         BattleManager.Instance.ActionName.text = "";
@@ -878,7 +909,7 @@ public class NumericalProcessing : MonoBehaviour
         targetIcon.ActionReset();
 
         // stateがActing_upならcurrentProgressを3下げる（滑らかに）
-        if (targetIcon.state == TimelineIconController.TimelineState.Acting_up)
+        if (targetIcon.state == TimelineIconController.TimelineState.Acting_up || targetIcon.state == TimelineIconController.TimelineState.Interrupted)
         {
             float targetProgress = Mathf.Max(0f, targetIcon.currentProgress - 0.3f);
             
@@ -893,7 +924,14 @@ public class NumericalProcessing : MonoBehaviour
             {
                 // アニメーション完了後、行動ゾーンから出たことを伝える処理
                 // isActionTriggeredはGaugeRoutine()で自動的にリセットされる
-                targetIcon.state = TimelineIconController.TimelineState.Moving;
+                if (targetIcon.state == TimelineIconController.TimelineState.Acting_up)
+                {
+                    targetIcon.state = TimelineIconController.TimelineState.Moving;
+                }
+                else
+                {
+                    targetIcon.state = TimelineIconController.TimelineState.WaitingForCommand;
+                }
             });
 
             Debug.Log($"{targetCharacter.name} の currentProgress を {targetIcon.currentProgress} → {targetProgress} に下げました");

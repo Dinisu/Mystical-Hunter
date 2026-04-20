@@ -172,7 +172,7 @@ public class TimelineIconController : MonoBehaviour
     public void ResumeMovement()
     {
         isActionTriggered = false;
-        state = TimelineState.Moving;
+        state = TimelineState.WaitingForCommand;
         currentProgress = 0f;
     }
 
