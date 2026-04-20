@@ -198,7 +198,7 @@ public class BattleManager : MonoBehaviour
                     ActionName.text = ($"{skill.Name}");//発動スキル名表示
                     
                     // エフェクト再生完了まで待つ
-                    yield return StartCoroutine(numericalProcessing.DamageCalculationAsync());
+                    yield return StartCoroutine(numericalProcessing.DamageCalculationAsync(skill));
 
                     break;
             }
