@@ -15,9 +15,11 @@ MonoBehaviour:
   name: "\u72E9\u731F\u30CA\u30A4\u30D5"
   id: 501
   ItemDescription: aaaaaa
-  EfficacyItemDescription: 
+  EfficacyItemDescription: "\u653B\u6483\u529B:5\n\u9632\u5FA1\u529B:2\n\u7D20\u65E9\u3055:1"
   attribute: 0
+  itemRange: 0
   kinds: 0
+  buff_DeBuff_kind: 0
   abnormalstatus: 0
   Equipment:
     MaxHpup: 0
@@ -27,8 +29,10 @@ MonoBehaviour:
     Defenceup: 2
     MagicDefenseup: 0
     Speedup: 1
+    Criticalup: 0
   efficacy1: 0
   efficacy2: 0
+  criticalRate: 0
   duration: 0
   number: 1
   price: 0

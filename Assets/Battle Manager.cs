@@ -2106,14 +2106,12 @@ public class BattleManager : MonoBehaviour
             .Take(20)
             .ToList();
 
-        // 二列配置の位置設定
-        Vector2[] positions = new Vector2[20];
-        for (int i = 0; i < 20; i++)
+        // 位置設定（一列配置、最大10個）
+        Vector2[] positions = new Vector2[10];
+        for (int i = 0; i < 10; i++)
         {
-            int row = i / 2;
-            int col = i % 2;
-            float x = col == 0 ? -230f : 230f;
-            float y = 450f - (row * 95f);
+            float x = 0f;
+            float y = 450f - (i * 95f);
             positions[i] = new Vector2(x, y);
         }
 

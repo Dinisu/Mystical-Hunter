@@ -15,8 +15,7 @@ MonoBehaviour:
   name: "\u30DE\u30CA\u8349"
   id: 104
   ItemDescription: "\u9B54\u529B\u306E\u56DE\u5FA9\u52B9\u679C\u306E\u3042\u308B\u85AC\u8349"
-  ID: 
-  EfficacyItemDescription: "MP\uFF1A10\u56DE\u5FA9"
+  EfficacyItemDescription: "MP:10\u56DE\u5FA9"
   attribute: 0
   itemRange: 0
   kinds: 8

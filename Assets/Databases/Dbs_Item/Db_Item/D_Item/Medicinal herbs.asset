@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u85AC\u8349"
   id: 101
-  ItemDescription: "\u56DE\u5FA9\u52B9\u679C\u306E\u3042\u308B\u85AC\u8349"
-  EfficacyItemDescription: "HP\uFF1A10\u56DE\u5FA9"
+  ItemDescription: "\u4F53\u529B\u306E\u56DE\u5FA9\u52B9\u679C\u306E\u3042\u308B\u85AC\u8349"
+  EfficacyItemDescription: "HP:10\u56DE\u5FA9"
   attribute: 0
   itemRange: 0
   kinds: 7

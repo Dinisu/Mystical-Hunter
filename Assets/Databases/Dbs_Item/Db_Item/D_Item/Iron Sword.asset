@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u9244\u5263"
   id: 502
-  ItemDescription: 
-  EfficacyItemDescription: 
+  ItemDescription: "\u4E00\u822C\u7684\u306A\u9244\u306E\u5263"
+  EfficacyItemDescription: "\u653B\u6483\u529B:10"
   attribute: 0
+  itemRange: 0
   kinds: 0
+  buff_DeBuff_kind: 0
   abnormalstatus: 0
   Equipment:
     MaxHpup: 0
@@ -27,8 +29,10 @@ MonoBehaviour:
     Defenceup: 0
     MagicDefenseup: 0
     Speedup: 0
+    Criticalup: 0
   efficacy1: 0
   efficacy2: 0
+  criticalRate: 0
   duration: 0
   number: 1
   price: 0
