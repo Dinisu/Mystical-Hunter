@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_Sk_StatusData
   name: "\u9632\u5FA1"
   id: 0
-  ItemDescription: 
-  ID: 
-  EfficacyItemDescription: "\u6B21\u306B\u653B\u6483\u3059\u308B\u307E\u3067\u30C0\u30E1\u30FC\u30B8\u3092\u534A\u6E1B\u3059\u308B"
+  ItemDescription: "\u77AC\u6642\u306B\u653B\u6483\u3092\u9632\u3050"
+  EfficacyItemDescription: "\u7A2E\u985E\uFF1A\u30C7\u30A3\u30D5\u30A7\u30F3\u30B9\n\u6B21\u306B\u653B\u6483\u3059\u308B\u307E\u3067\u30C0\u30E1\u30FC\u30B8\u3092\u534A\u6E1B\u3059\u308B"
   attribute: 0
   skillRange: 0
   attack_or_Magic: 0

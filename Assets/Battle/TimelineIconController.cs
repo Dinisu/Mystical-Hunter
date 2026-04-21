@@ -136,12 +136,7 @@ public class TimelineIconController : MonoBehaviour
         // アイテム
         if (ActivatedItem != null)
         {
-           /* switch (ActivatedItem.SeeKinds)
-            {
-                case D_It_StatusData.Kinds.HP_Recovery:
-                case D_It_StatusData.Kinds.MP_Recovery:
-                    return 999f; // 即時発動用
-            }*/
+
         }
 
         return 1f;

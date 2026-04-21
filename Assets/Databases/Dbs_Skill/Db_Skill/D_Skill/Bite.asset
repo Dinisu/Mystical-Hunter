@@ -21,8 +21,9 @@ MonoBehaviour:
   attack_or_Magic: 0
   kind: 0
   buff_DeBuff_kind: 0
-  efficacy1: 10
+  efficacy1: 1.1
   efficacy2: 0
+  criticalRate: 0
   duration: 0
   mpConsumption: 0
   needSp: 0

@@ -153,8 +153,8 @@ public class Result : MonoBehaviour
 
         //エンカウントした敵の情報をクリア
         GameManager.Instance.ClearEncounteredEnemies();
-        // 3秒待機後にシーン遷移
-        yield return new WaitForSecondsRealtime(3f);
+        // 2秒待機後にシーン遷移
+        yield return new WaitForSecondsRealtime(2f);
         // シーン遷移前に時間を戻す
         Time.timeScale = 1;
         SceneManager.LoadScene(GameManager.Instance.PreviousSceneName.ToString());
