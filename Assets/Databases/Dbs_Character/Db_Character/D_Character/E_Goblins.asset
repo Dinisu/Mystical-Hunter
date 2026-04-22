@@ -26,7 +26,7 @@ MonoBehaviour:
   mp: 5
   attack: 15
   magic: 0
-  defense: 0
+  defense: 5
   magicDefense: 5
   speed: 2
   criticalRate: 0

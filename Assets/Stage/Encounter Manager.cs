@@ -140,6 +140,6 @@ public class EncounterManager : MonoBehaviour
         Debug.Log($"エンカウント！ 敵数: {GameManager.Instance.EncounteredEnemys.Count}");
 
         // ▼ 戦闘シーンへ
-        SceneManager.LoadScene(battleStage.ToString());
+        SceneFader.Instance.FadeToScene(battleStage.ToString());
     }
 }

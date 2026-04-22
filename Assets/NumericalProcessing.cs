@@ -699,11 +699,11 @@ public class NumericalProcessing : MonoBehaviour
         if (targetCheck == null) return;
         if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) return;
 
-        // Damage display を取得
-        Transform damageDisplay = root.transform.Find("Damage display");
-        if (damageDisplay == null) return;
+        // Status display を取得
+        Transform StatusDisplay = root.transform.Find("Status display");
+        if (StatusDisplay == null) return;
 
-        Transform damageTextTransform = damageDisplay.Find("DamageText");
+        Transform damageTextTransform = StatusDisplay.Find("DamageText");
         if (damageTextTransform == null) return;
 
         TMP_Text tmp = damageTextTransform.GetComponent<TMP_Text>();
@@ -727,7 +727,7 @@ public class NumericalProcessing : MonoBehaviour
         }
 
         // 表示ON
-        damageDisplay.gameObject.SetActive(true);
+        StatusDisplay.gameObject.SetActive(true);
 
         // スケール初期化
         damageTextTransform.localScale = Vector3.zero;
@@ -745,7 +745,7 @@ public class NumericalProcessing : MonoBehaviour
            .AppendInterval(0.65f)                                                   // 合計約1秒
            .OnComplete(() =>
            {
-               damageDisplay.gameObject.SetActive(false);
+               StatusDisplay.gameObject.SetActive(false);
            });
     }
 

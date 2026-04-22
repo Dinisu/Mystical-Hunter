@@ -21,12 +21,12 @@ MonoBehaviour:
   sp: 0
   attribute: 0
   maxhp: 15
-  hp: 3
+  hp: 15
   maxmp: 3
   mp: 3
   attack: 10
   magic: 0
-  defense: 0
+  defense: 2
   magicDefense: 2
   speed: 4
   criticalRate: 0

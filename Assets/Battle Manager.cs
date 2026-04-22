@@ -940,29 +940,7 @@ public class BattleManager : MonoBehaviour
                         RunAwayProcess();
                         break;
                     case B_SelectionSettings.Choose.Quick_Action://クイック行動対象決定
-
-                        string rawName = SelectUI.name;
-                        string targetName = rawName;
-                        // 先頭の "B_" を除去
-                        if (targetName.StartsWith("B_"))
-                            targetName = targetName.Substring(2);
-
-                        // 後ろの "(Clone)" を除去
-                        //targetName = targetName.Replace("(Clone)", "");
-
-                        Debug.Log(targetName +"のクイック行動をします。");
-
-                        // --- AllyParticipationList / EnemyParticipationList の中から一致する名前を探す ---
-
-                        // まず味方
-                        foreach (var Ic_data in allyIcons)
-                        {
-                            if (Ic_data.name == $"Ic_{targetName}")
-                            {
-                                QuickActionDecision(Ic_data);
-                                break;
-                            }
-                        }
+                        QuickActionProcess();
                         break;
 
                     default:
@@ -1707,6 +1685,35 @@ public class BattleManager : MonoBehaviour
         }
 
         Debug.Log($"アイテム使用処理: {targetItem.name}");
+    }
+
+    /// <summary>
+    /// クイック行動対象決定
+    /// </summary>
+    private void QuickActionProcess()
+    {
+        string rawName = SelectUI.name;
+        string targetName = rawName;
+        // 先頭の "B_" を除去
+        if (targetName.StartsWith("B_"))
+            targetName = targetName.Substring(2);
+
+        // 後ろの "(Clone)" を除去
+        //targetName = targetName.Replace("(Clone)", "");
+
+        Debug.Log(targetName + "のクイック行動をします。");
+
+        // --- AllyParticipationList / EnemyParticipationList の中から一致する名前を探す ---
+
+        // まず味方
+        foreach (var Ic_data in allyIcons)
+        {
+            if (Ic_data.name == $"Ic_{targetName}")
+            {
+                QuickActionDecision(Ic_data);
+                break;
+            }
+        }
     }
 
     /// <summary>

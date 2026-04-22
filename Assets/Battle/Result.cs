@@ -155,9 +155,11 @@ public class Result : MonoBehaviour
         GameManager.Instance.ClearEncounteredEnemies();
         // 2秒待機後にシーン遷移
         yield return new WaitForSecondsRealtime(2f);
+
+        WinningResult.SetActive(false);
         // シーン遷移前に時間を戻す
         Time.timeScale = 1;
-        SceneManager.LoadScene(GameManager.Instance.PreviousSceneName.ToString());
+        SceneFader.Instance.FadeToScene(GameManager.Instance.PreviousSceneName.ToString());
     }
 
     private IEnumerator ShowDefeatResult()// 敗北リザルトの表示処理

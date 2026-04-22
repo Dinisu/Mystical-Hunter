@@ -212,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8685048656539858028, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_Name
-      value: Damage display
+      value: Status display
       objectReference: {fileID: 0}
     - target: {fileID: 8685048656539858028, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_IsActive

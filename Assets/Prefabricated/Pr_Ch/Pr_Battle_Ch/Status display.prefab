@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 3942538783370335966}
   - component: {fileID: 4227922165412857646}
   m_Layer: 5
-  m_Name: Damage display
+  m_Name: Status display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
