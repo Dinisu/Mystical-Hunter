@@ -9,6 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 using System.Linq;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
+using static UnityEditor.Progress;
 
 public class NumericalProcessing : MonoBehaviour
 {
@@ -345,7 +346,7 @@ public class NumericalProcessing : MonoBehaviour
                 }
 
                 // ▼ エフェクトを再生
-                StartCoroutine(PlayTheEffect(defender, skill));
+                StartCoroutine(PlayTheEffect_Skill(defender, skill));
                 // ▼ 効果音を再生
                 if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
                 {
@@ -364,7 +365,7 @@ public class NumericalProcessing : MonoBehaviour
                 defender.Hp += RecoveryAmount;
 
                 // ▼ エフェクトを再生
-                StartCoroutine(PlayTheEffect(defender, skill));
+                StartCoroutine(PlayTheEffect_Skill(defender, skill));
                 // ▼ 効果音を再生
                 if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
                 {
@@ -458,7 +459,7 @@ public class NumericalProcessing : MonoBehaviour
         }
 
         // ▼ エフェクトを再生
-        StartCoroutine(PlayTheEffect(defender, skill));
+        StartCoroutine(PlayTheEffect_Skill(defender, skill));
 
         // ▼ 効果音を再生
         if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
@@ -807,7 +808,7 @@ public class NumericalProcessing : MonoBehaviour
     /// エフェクトを再生中タイムライン上の全アイコンを停止
     /// 再生が終わるまでまつ
     /// </summary>
-    private IEnumerator PlayTheEffect(D_Ch_StatusData targetCheck, D_Sk_StatusData targetSkills)
+    private IEnumerator PlayTheEffect_Skill(D_Ch_StatusData targetCheck, D_Sk_StatusData targetSkills)
     {
         if (targetCheck == null) yield break;
         if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) yield break;
@@ -825,6 +826,53 @@ public class NumericalProcessing : MonoBehaviour
         if (targetSkills != null && targetSkills.Effect != null)
         {
             effectInstance = Instantiate(targetSkills.Effect, root.transform);
+            effectInstance.transform.localPosition = Vector3.zero;
+
+            // ▼ ParticleSystemがある場合は再生時間取得
+            ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                ps.Play();
+                waitTime = ps.main.duration;
+            }
+        }
+
+        Debug.Log($"{waitTime}秒程エフェクトを再生します。");
+
+        // ▼ 再生終了まで待つ
+        yield return new WaitForSeconds(waitTime);
+
+        // ▼ エフェクト削除
+        if (effectInstance != null)
+        {
+            Destroy(effectInstance);
+        }
+
+        // ▼ アイコン再開
+        BattleManager.Instance.Moveallicons();
+
+        // ▼ 行動名リセット
+        BattleManager.Instance.ActionName.text = "";
+    }
+
+    private IEnumerator PlayTheEffect_Item(D_Ch_StatusData targetCheck, D_It_StatusData targetItems)
+    {
+        if (targetCheck == null) yield break;
+        if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) yield break;
+
+        Debug.Log($"エフェクトを再生します。");
+
+        float waitTime = 1f; // デフォルト待機時間（エフェクトがない場合）
+
+        // ▼ アイコン停止
+        BattleManager.Instance.Stopallicons();
+
+        GameObject effectInstance = null;
+
+        // ▼ エフェクトが設定されている場合
+        if (targetItems != null && targetItems.Effect != null)
+        {
+            effectInstance = Instantiate(targetItems.Effect, root.transform);
             effectInstance.transform.localPosition = Vector3.zero;
 
             // ▼ ParticleSystemがある場合は再生時間取得
@@ -1448,6 +1496,8 @@ public class NumericalProcessing : MonoBehaviour
         int maxDamage = Mathf.CeilToInt(baseDamage * 1.2f);
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
+        PlayTheEffect_Item(defender, item);
+
         // ▼ ダメージ適用
         ApplyDamage(defender, finalDamage, isCritical);
 
@@ -1535,6 +1585,8 @@ public class NumericalProcessing : MonoBehaviour
         int maxDamage = Mathf.CeilToInt(baseDamage * 1.2f);
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
+        PlayTheEffect_Item(defender, item);
+
         // ▼ ダメージ適用
         ApplyDamage(defender, finalDamage, isCritical);
 
@@ -1579,6 +1631,7 @@ public class NumericalProcessing : MonoBehaviour
                 db_PlayerItem.ItemList.RemoveAll(item => item.Number <= 0);
             }
 
+            PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData);
         }
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
         UpdateAllStatusIcons();
@@ -1596,6 +1649,8 @@ public class NumericalProcessing : MonoBehaviour
             {
                 db_PlayerItem.ItemList.RemoveAll(item => item.Number <= 0);
             }
+
+            PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData);
         }
 
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
