@@ -12,26 +12,38 @@ public class CharacterIconStatus : MonoBehaviour
     private TextMeshProUGUI StatusText1;
     [SerializeField]
     private TextMeshProUGUI StatusText2;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    [SerializeField, Header("表示するオブジェクト")]
+    private GameObject GameObject;
 
-    }
-
-    public void StatusUpdates() //装備などでステータスが変わった際呼ぶ,アイコンステータス
+    /// <summary>
+    /// 装備などでステータスが変わった際呼ぶ,アイコンステータス
+    /// </summary>
+    public void StatusUpdates() 
     {
         StatusText1.text = ($"{status.Name}   Lv{status.Level}   EXP{status.Exp}/{status.LevelExp[status.Level].NeedExp}");
         StatusText2.text = ($"HP{status.Hp}/{status.MaxHp}   MP{status.Mp}/{status.MaxMp}");
     }
 
-    public void StatusUpdateMini()//小さい方のアイコン用
+    /// <summary>
+    /// 小さい方のアイコン用
+    /// </summary>
+    public void StatusUpdateMini()
     {
         StatusText1.text = ($"{status.Name}   Lv{status.Level}\nHP{status.Hp}/{status.MaxHp}\nMP{status.Mp}/{status.MaxMp}");
     }
 
-    public void StatusUpdateBattle()//戦闘用
+    /// <summary>
+    /// 戦闘用,HP,MPステータス表示
+    /// バフ表示
+    /// </summary>
+    public void StatusUpdateBattle()
     {
         StatusText1.text = ($"{status.Name}　\nHP{status.Hp}/{status.MaxHp}\nMP{status.Mp}/{status.MaxMp}");
+
+        //GameObjectにstatus.ActiveBuffs.baseData.Iconとstatus.ActiveBuffs_It.baseData.Iconを子オブジェクトとして追加、管理したいです。
+        //ActiveBuffs、ActiveBuffs_Itはpublic List<ActiveBuff> ActiveBuffs = new List<ActiveBuff>();のようになっていて
+        //ActiveBuffクラスで効果ターンと付与バフを管理しています。ActiveBuffにある全てのbaseDataのIconを子オブジェクトにしてActiveBuffのremainingTurnsを
+        //Iconの子オブジェクトのテキストに反映、既にあるアイコンはターンを更新して、remainingTurnsが0かActiveBuffs、ActiveBuffs_Itから消えたらそのIconを消す。
     }
 
     public void StatusUpdateEXP(int acquisitionEXP)//獲得EXP表示
@@ -42,7 +54,11 @@ public class CharacterIconStatus : MonoBehaviour
         StartCoroutine(AnimateExpGain(acquisitionEXP));
     }
 
-    public void DisplayOfMoneyHeld()//所持金表示
+
+    /// <summary>
+    /// 所持金表示
+    /// </summary>
+    public void DisplayOfMoneyHeld()
     {
         StatusText1.text = ($"所持金:{GameManager.Instance.PlayerMoney}$");
     }

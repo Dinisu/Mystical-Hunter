@@ -126,7 +126,9 @@ MonoBehaviour:
   Accessories1: {fileID: 11400000, guid: c0f14ef513f4ac84aaa6d500650afaa9, type: 2}
   Accessories2: {fileID: 0}
   SkillList: {fileID: 11400000, guid: cfa638e9bb24b2e4aa45e27cae17e469, type: 2}
-  ActiveBuffs: []
+  ActiveBuffs:
+  - baseData: {fileID: 11400000, guid: 41198ebcef794644d9b5c345688e457c, type: 2}
+    remainingTurns: 3
   ActiveBuffs_It: []
   abnormalstatus: 0
   Character: {fileID: 8923146222536966875, guid: aa2b918b94ffa844897df2ad6e71aaec, type: 3}

@@ -176,10 +176,10 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         public Db_Sk_StatusDataBase SkillList;
 
         [SerializeField, Header("受けているスキルバフ")]
-        public List<ActiveBuff> ActiveBuffs = new List<ActiveBuff>();//スキルバフのデータ管理
+        public List<ActiveBuff<D_Sk_StatusData>> ActiveBuffs = new();//スキルバフのデータ管理
         //[HideInInspector]
         [SerializeField, Header("受けているアイテムバフ")]
-        public List<ActiveBuff_It> ActiveBuffs_It = new List<ActiveBuff_It>();//アイテムバフのデータ管理
+        public List<ActiveBuff<D_It_StatusData>> ActiveBuffs_It = new();//アイテムバフのデータ管理
         public enum Abnormalstatus
         {
             None

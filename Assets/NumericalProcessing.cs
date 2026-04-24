@@ -97,7 +97,7 @@ public class NumericalProcessing : MonoBehaviour
         }
         else
         {
-            target.ActiveBuffs.Add(new ActiveBuff(buffData));
+            target.ActiveBuffs.Add(new ActiveBuff<D_Sk_StatusData>(buffData, buffData.Duration));
         }
     }
 
@@ -145,7 +145,7 @@ public class NumericalProcessing : MonoBehaviour
     /// <summary>
     /// スキル由来のバフ・デバフを反映
     /// </summary>
-    private void ApplyBuffList(D_Ch_StatusData character, List<ActiveBuff> activeBuffs)
+    private void ApplyBuffList(D_Ch_StatusData character, List<ActiveBuff<D_Sk_StatusData>> activeBuffs)
     {
         if (activeBuffs == null || activeBuffs.Count == 0) return;
 
@@ -172,7 +172,7 @@ public class NumericalProcessing : MonoBehaviour
     /// <summary>
     /// アイテム由来のバフ・デバフを反映
     /// </summary>
-    private void ApplyBuffList_It(D_Ch_StatusData character, List<ActiveBuff_It> activeBuffs)
+    private void ApplyBuffList_It(D_Ch_StatusData character, List<ActiveBuff<D_It_StatusData>> activeBuffs)
     {
         if (activeBuffs == null || activeBuffs.Count == 0) return;
 
@@ -323,7 +323,7 @@ public class NumericalProcessing : MonoBehaviour
                 else
                 {
                     // 新しく追加
-                    var newBuff = new ActiveBuff(skill);
+                    var newBuff = new ActiveBuff<D_Sk_StatusData>(skill, skill.Duration);
                     defender.ActiveBuffs.Add(newBuff);
 
                     Debug.Log($"【Buff追加】 {attacker.name} → {defender.name} / {skill.SeeBuff_DeBuff_Kinds}");
@@ -373,6 +373,9 @@ public class NumericalProcessing : MonoBehaviour
                 }
 
                 DamageText(defender, Mathf.RoundToInt(RecoveryAmount), false);
+
+                // ▼ UI更新（ステータスアイコンをすべて更新）
+                UpdateAllStatusIcons();
                 return;
             case D_Sk_StatusData.Kinds.Quick:
                 //疲労のデバフをattackerに付与してダメージ計算へ
@@ -390,7 +393,7 @@ public class NumericalProcessing : MonoBehaviour
                 else
                 {
                     // 新しく追加
-                    var newBuff = new ActiveBuff(FatigueData);
+                    var newBuff = new ActiveBuff<D_Sk_StatusData>(FatigueData, FatigueData.Duration);
                     attacker.ActiveBuffs.Add(newBuff);
                     Debug.LogWarning("疲労デバフを付与");
                 }
@@ -804,7 +807,7 @@ public class NumericalProcessing : MonoBehaviour
     }
 
     /// <summary>
-    /// エフェクトを1ループ再生する
+    ///  エフェクトを再生時間分、再生する
     /// エフェクトを再生中タイムライン上の全アイコンを停止
     /// 再生が終わるまでまつ
     /// </summary>
@@ -855,6 +858,11 @@ public class NumericalProcessing : MonoBehaviour
         BattleManager.Instance.ActionName.text = "";
     }
 
+    // <summary>
+    /// エフェクトを再生時間分、再生する
+    /// エフェクトを再生中タイムライン上の全アイコンを停止
+    /// 再生が終わるまでまつ
+    /// </summary>
     private IEnumerator PlayTheEffect_Item(D_Ch_StatusData targetCheck, D_It_StatusData targetItems)
     {
         if (targetCheck == null) yield break;
@@ -1405,7 +1413,7 @@ public class NumericalProcessing : MonoBehaviour
         else
         {
             // 新しく追加
-            var newBuff_It = new ActiveBuff_It(ItemUse_ItData);
+            var newBuff_It = new ActiveBuff<D_It_StatusData>(ItemUse_ItData, ItemUse_ItData.Duration);
             Use_subject_ChData.ActiveBuffs_It.Add(newBuff_It);
 
             Debug.Log($"【Buff追加】 {Use_ChData.name} → {Use_subject_ChData.name} / {ItemUse_ItData.SeeBuff_DeBuff_Kinds}");
@@ -1429,7 +1437,7 @@ public class NumericalProcessing : MonoBehaviour
         else
         {
             // 新しく追加
-            var newBuff_It = new ActiveBuff_It(ItemUse_ItData);
+            var newBuff_It = new ActiveBuff<D_It_StatusData>(ItemUse_ItData, ItemUse_ItData.Duration);
             Use_subject_ChData.ActiveBuffs_It.Add(newBuff_It);
 
             Debug.Log($"【Buff追加】 {Use_ChData.name} → {Use_subject_ChData.name} / {ItemUse_ItData.SeeBuff_DeBuff_Kinds}");

@@ -4,14 +4,15 @@ using App.BaseSystem.DataStores.ScriptableObjects.Status;
 /// <summary>
 /// バフ、デバフのターン管理
 /// </summary>
-public class ActiveBuff//クラス
+public class ActiveBuff<T>
 {
-    public D_Sk_StatusData baseData; // 元データ（参照のみ）
-    public int remainingTurns;       // 現在の残りターン
+    public T baseData;// 元データ（参照のみ）
+    public int remainingTurns;// 元データ（参照のみ）
 
-    public ActiveBuff(D_Sk_StatusData data)
+    public ActiveBuff(T data, int duration)
     {
         baseData = data;
-        remainingTurns = data.Duration; // 初期値は元データのDuration
+        remainingTurns = duration;
+        //remainingTurns = data.Duration; // 初期値は元データのDuration
     }
 }

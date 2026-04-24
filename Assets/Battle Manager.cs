@@ -982,7 +982,7 @@ public class BattleManager : MonoBehaviour
         string menuType = GetCurrentMenuType();
         MenuHistory history = new MenuHistory(uiElements, currentIndex, menuType);
         menuHistory.Add(history);
-        Debug.Log($"履歴に保存: {menuType} (index: {currentIndex})");
+        Debug.Log($"履歴に保存: {menuType} (index: {currentIndex})　現在の履歴: {menuHistory.Count}");
     }
 
     /// <summary>
@@ -1020,7 +1020,7 @@ public class BattleManager : MonoBehaviour
         }
 
         //クイック行動をやめる
-        if (currentType == "Area_of_Effect" && QuickAction && prevHistory == false)
+        if (QuickAction && prevHistory == false)
         {
             // --- タイムライン上の全アイコンを動かす ---
             Moveallicons();
@@ -1128,10 +1128,9 @@ public class BattleManager : MonoBehaviour
         SelectUI = uiElements[currentIndex];
 
 
-        if (menuHistory.Count >= 1)
+        if (menuHistory.Count == 0)
         {
-            //前の履歴がある
-            prevHistory = true;
+            prevHistory = false;
         }
 
         if (QuickAction && prevHistory == false)//クイック行動対象選択時のみ動くよう
@@ -1141,6 +1140,7 @@ public class BattleManager : MonoBehaviour
             {
                 Frame.transform.SetParent(ActionSelectionUI.transform, false);
                 MoveFrametoObject(SelectUI);
+                Debug.Log($"クイック行動対象選択");
             }
         }
         else
@@ -1148,6 +1148,7 @@ public class BattleManager : MonoBehaviour
             MoveFrameTo(SelectUI);
         }
 
+        Debug.Log($"現在の履歴: {menuHistory.Count}");
         Debug.Log($"履歴から復元: {lastHistory.menuType} (index: {lastHistory.index})");
 
         if (GameManager.Instance.audioSource != null && GameManager.Instance.decision != null)
@@ -1575,9 +1576,6 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private void ItemUseProcess()
     {
-        // 現在の状態を履歴に保存
-        SaveCurrentStateToHistory();
-
         // 使用するアイテムの対象判別
         var targetItem = SelectUI.GetComponent<ItemQuantity>()?.D_It_StatusData;
         if (targetItem == null)
@@ -1592,6 +1590,9 @@ public class BattleManager : MonoBehaviour
             Debug.Log("クイック行動中はクイックスキル以外を発動できません");
             return;
         }
+
+        // 現在の状態を履歴に保存
+        SaveCurrentStateToHistory();
 
         // 行動ゾーンに入っているアイコンにあるTimelineIconController.ActivatedItemにアイテムデータを入れる
         TimelineIconController currentIcon = null;
