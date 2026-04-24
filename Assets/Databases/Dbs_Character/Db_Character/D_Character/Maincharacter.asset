@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 1
   ItemDescription: 
   level: 1
-  exp: 16
+  exp: 19
   LevelExp:
   - Levelup: 2
     NeedExp: 100
@@ -111,9 +111,9 @@ MonoBehaviour:
   sp: 0
   attribute: 0
   maxhp: 60
-  hp: 50
+  hp: 28
   maxmp: 10
-  mp: 10
+  mp: 1
   attack: 15
   magic: 3
   defense: 2

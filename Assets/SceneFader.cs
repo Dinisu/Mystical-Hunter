@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
 using System.Collections;
+using App.BaseSystem.DataStores.ScriptableObjects.Status;
 
 public class SceneFader : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SceneFader : MonoBehaviour
 
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 0.5f;
+
+    private Ds_Ev_StatusDataStore ds_Ev_StatusDataStore;
 
     private void Awake()
     {
@@ -22,6 +25,8 @@ public class SceneFader : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        ds_Ev_StatusDataStore = FindObjectOfType<Ds_Ev_StatusDataStore>();
     }
 
     private void Start()
@@ -38,6 +43,10 @@ public class SceneFader : MonoBehaviour
 
     private IEnumerator FadeAndLoad(string sceneName)
     {
+        var StopEvent = ds_Ev_StatusDataStore.FindWithName("PlayerStop");
+
+        //プレイヤー停止イベントON
+        StopEvent.Event1 = true;
         // フェードアウト
         yield return fadeImage.DOFade(1f, fadeDuration).WaitForCompletion();
 
@@ -46,6 +55,8 @@ public class SceneFader : MonoBehaviour
 
         yield return null;
 
+        //プレイヤー停止イベントOFF
+        StopEvent.Event1 = false;
         // フェードイン
         yield return fadeImage.DOFade(0f, fadeDuration).WaitForCompletion();
     }

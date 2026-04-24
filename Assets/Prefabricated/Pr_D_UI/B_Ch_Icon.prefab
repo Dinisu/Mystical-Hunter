@@ -95,7 +95,8 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: 70649551ac2330642a0ef2d0dbd1074e, type: 2}
   StatusText1: {fileID: 4420998821166870966}
   StatusText2: {fileID: 0}
-  GameObject: {fileID: 1994324274108387587}
+  Displayfields: {fileID: 8894931877013801159}
+  buffIconPrefab: {fileID: 270664181704272971, guid: 1d9b74902abeb77478a52c62ec5a9232, type: 3}
 --- !u!114 &6190458482037428858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +134,7 @@ GameObject:
   - component: {fileID: 8894931877013801159}
   - component: {fileID: 6877799198799837258}
   - component: {fileID: 1316769937544186679}
+  - component: {fileID: 8251451248260940459}
   m_Layer: 5
   m_Name: BuffDisplay
   m_TagString: Untagged
@@ -197,6 +199,30 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8251451248260940459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994324274108387587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 130, y: 130}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 1
+  m_ConstraintCount: 3
 --- !u!1 &4374734194836443779
 GameObject:
   m_ObjectHideFlags: 0

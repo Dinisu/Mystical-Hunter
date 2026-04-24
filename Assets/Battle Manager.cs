@@ -796,6 +796,9 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+
+        // ▼ UI更新（ステータスアイコンをすべて更新）
+        numericalProcessing.UpdateAllStatusIcons();
     }
 
     // --- UI操作関連メソッド ---

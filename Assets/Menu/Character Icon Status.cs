@@ -1,5 +1,6 @@
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +14,11 @@ public class CharacterIconStatus : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI StatusText2;
     [SerializeField, Header("表示するオブジェクト")]
-    private GameObject GameObject;
+    private Transform Displayfields;
+    [SerializeField] private GameObject buffIconPrefab;
+
+    // ActiveBuff と UI の紐付け
+    private Dictionary<object, GameObject> buffIconMap = new();
 
     /// <summary>
     /// 装備などでステータスが変わった際呼ぶ,アイコンステータス
@@ -40,10 +45,92 @@ public class CharacterIconStatus : MonoBehaviour
     {
         StatusText1.text = ($"{status.Name}　\nHP{status.Hp}/{status.MaxHp}\nMP{status.Mp}/{status.MaxMp}");
 
-        //GameObjectにstatus.ActiveBuffs.baseData.Iconとstatus.ActiveBuffs_It.baseData.Iconを子オブジェクトとして追加、管理したいです。
-        //ActiveBuffs、ActiveBuffs_Itはpublic List<ActiveBuff> ActiveBuffs = new List<ActiveBuff>();のようになっていて
-        //ActiveBuffクラスで効果ターンと付与バフを管理しています。ActiveBuffにある全てのbaseDataのIconを子オブジェクトにしてActiveBuffのremainingTurnsを
-        //Iconの子オブジェクトのテキストに反映、既にあるアイコンはターンを更新して、remainingTurnsが0かActiveBuffs、ActiveBuffs_Itから消えたらそのIconを消す。
+        // ▼ 現在の全Buffをまとめる
+        // ▼ 現在存在するバフ一覧を統合
+        List<object> currentBuffs = new();
+
+        foreach (var b in status.ActiveBuffs)
+            currentBuffs.Add(b);
+
+        foreach (var b in status.ActiveBuffs_It)
+            currentBuffs.Add(b);
+
+        // =========================
+        // ① 既存バフの更新 or 新規生成
+        // =========================
+        foreach (var buffObj in currentBuffs)
+        {
+            int remainingTurns = 0;
+            Sprite iconSprite = null;
+
+            // ▼ 型ごとに取得
+            if (buffObj is ActiveBuff<D_Sk_StatusData> skBuff)
+            {
+                remainingTurns = skBuff.remainingTurns;
+                iconSprite = skBuff.baseData.DataIcon;
+            }
+            else if (buffObj is ActiveBuff<D_It_StatusData> itBuff)
+            {
+                remainingTurns = itBuff.remainingTurns;
+                iconSprite = itBuff.baseData.DataIcon;
+            }
+
+            // ▼ 既に存在する場合 → 更新
+            if (buffIconMap.ContainsKey(buffObj))
+            {
+                var iconObj = buffIconMap[buffObj];
+
+                // ターン更新
+                var text = iconObj.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                text.text = remainingTurns.ToString();
+            }
+            else
+            {
+                // ▼ 新規生成
+                GameObject iconObj = Instantiate(buffIconPrefab, Displayfields);
+
+                // 画像
+                var image = iconObj.GetComponent<UnityEngine.UI.Image>();
+                image.sprite = iconSprite;
+
+                // ターン表示
+                var text = iconObj.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+
+                text.text = remainingTurns.ToString();
+
+                // 登録
+                buffIconMap.Add(buffObj, iconObj);
+            }
+        }
+
+        // =========================
+        // ② 消えたバフの削除
+        // =========================
+        var removeList = new List<object>();
+
+        foreach (var kvp in buffIconMap)
+        {
+            var buffObj = kvp.Key;
+            bool exists = currentBuffs.Contains(buffObj);
+
+            int remainingTurns = 0;
+
+            if (buffObj is ActiveBuff<D_Sk_StatusData> skBuff)
+                remainingTurns = skBuff.remainingTurns;
+            else if (buffObj is ActiveBuff<D_It_StatusData> itBuff)
+                remainingTurns = itBuff.remainingTurns;
+
+            // ▼ 条件：リストに無い or ターン0
+            if (!exists || remainingTurns <= 0)
+            {
+                Destroy(kvp.Value);
+                removeList.Add(buffObj);
+            }
+        }
+
+        // 辞書から削除
+        foreach (var key in removeList)
+            buffIconMap.Remove(key);
     }
 
     public void StatusUpdateEXP(int acquisitionEXP)//獲得EXP表示

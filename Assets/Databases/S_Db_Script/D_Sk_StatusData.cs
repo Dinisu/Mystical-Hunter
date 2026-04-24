@@ -163,6 +163,9 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         [SerializeField, Header("アイコン")]
         public GameObject Icon;
 
+        [SerializeField, Header("データアイコン画像")]
+        public Sprite DataIcon;
+
         [SerializeField, Header("バトル用アイコン")]
         public GameObject B_Icon;
 

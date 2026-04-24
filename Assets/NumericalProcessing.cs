@@ -997,7 +997,7 @@ public class NumericalProcessing : MonoBehaviour
     /// <summary>
     /// StatusIcons の子にある CharacterIconStatus を全て更新
     /// </summary>
-    private void UpdateAllStatusIcons()
+    public void UpdateAllStatusIcons()
     {
         if (BattleManager.Instance == null)
         {
