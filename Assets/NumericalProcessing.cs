@@ -1504,7 +1504,7 @@ public class NumericalProcessing : MonoBehaviour
         int maxDamage = Mathf.CeilToInt(baseDamage * 1.2f);
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
-        PlayTheEffect_Item(defender, item);
+        StartCoroutine(PlayTheEffect_Item(defender, item));
 
         // ▼ ダメージ適用
         ApplyDamage(defender, finalDamage, isCritical);
@@ -1593,7 +1593,7 @@ public class NumericalProcessing : MonoBehaviour
         int maxDamage = Mathf.CeilToInt(baseDamage * 1.2f);
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
-        PlayTheEffect_Item(defender, item);
+        StartCoroutine(PlayTheEffect_Item(defender, item));
 
         // ▼ ダメージ適用
         ApplyDamage(defender, finalDamage, isCritical);
@@ -1639,7 +1639,7 @@ public class NumericalProcessing : MonoBehaviour
                 db_PlayerItem.ItemList.RemoveAll(item => item.Number <= 0);
             }
 
-            PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData);
+            StartCoroutine(PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData));
         }
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
         UpdateAllStatusIcons();
@@ -1658,7 +1658,7 @@ public class NumericalProcessing : MonoBehaviour
                 db_PlayerItem.ItemList.RemoveAll(item => item.Number <= 0);
             }
 
-            PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData);
+            StartCoroutine(PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData));
         }
 
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
