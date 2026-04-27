@@ -1,3 +1,4 @@
+using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +7,10 @@ public class St_PlayerController : MonoBehaviour
     public static St_PlayerController Controllerinstance;
     [Header("移動設定")]
     [SerializeField] private float moveSpeed = 5f;
-    
+
+    //イベント停止判定
+    private Ds_Ev_StatusDataStore ds_Ev_StatusDataStore;
+
     private Rigidbody rb;
     private PlayerInput playerInput;
     private Vector2 moveInput;
@@ -16,6 +20,9 @@ public class St_PlayerController : MonoBehaviour
     [SerializeField] private GameObject Mmenu_Canvas; // プレハブ参照
     private GameObject menuCanvasInstance; // 生成されたインスタンス
     private InventManager inventManager; // InventManagerへの参照
+
+    // ▼ PlayerStopイベント参照
+    private D_Ev_StatusData stopEvent;
 
     void Awake()
     {
@@ -43,6 +50,19 @@ public class St_PlayerController : MonoBehaviour
         if (inventManager == null)
         {
             Debug.LogWarning("InventManager がシーン内に見つかりません。");
+        }
+
+        ds_Ev_StatusDataStore = FindObjectOfType<Ds_Ev_StatusDataStore>();
+
+        // ▼ PlayerStopイベント取得
+        if (ds_Ev_StatusDataStore != null)
+        {
+            stopEvent = ds_Ev_StatusDataStore.FindWithName("PlayerStop");
+        }
+
+        if (stopEvent == null)
+        {
+            Debug.LogWarning("PlayerStop イベントが見つかりません");
         }
     }
 
@@ -123,6 +143,20 @@ public class St_PlayerController : MonoBehaviour
     /// </summary>
     public void OnMove(InputAction.CallbackContext context)
     {
+        // ▼ Event1なら完全停止
+        if (IsFullStop())
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
+
+        // ▼ Event2なら移動禁止
+        if (IsDecisionOnly())
+        {
+            moveInput = Vector2.zero;
+            return;
+        }
+
         moveInput = context.ReadValue<Vector2>();
     }
 
@@ -135,6 +169,20 @@ public class St_PlayerController : MonoBehaviour
 
         // メニューが開いている場合は移動しない
         if (isMenuOpen) return;
+
+        // ▼ Event1 完全停止
+        if (IsFullStop())
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            return;
+        }
+
+        // ▼ Event2 決定以外禁止（移動禁止）
+        if (IsDecisionOnly())
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            return;
+        }
 
         // 移動方向を計算（XZ平面での移動）
         Vector3 moveDirection = new Vector3(moveInput.x, 0f, moveInput.y);
@@ -156,6 +204,11 @@ public class St_PlayerController : MonoBehaviour
     {
         if (!context.performed) return;
 
+        // ▼ Event1なら決定も禁止
+        if (IsFullStop()) return;
+
+        // ▼ Event2なら決定だけ許可（そのまま通す）
+
         // Itemタグのオブジェクトに触れている場合
         if (currentItemObject != null)
         {
@@ -174,6 +227,12 @@ public class St_PlayerController : MonoBehaviour
     {
         if (!context.performed) return;
 
+        // ▼ Event1ならメニュー禁止
+        if (IsFullStop()) return;
+
+        // ▼ Event2ならメニュー禁止
+        if (IsDecisionOnly()) return;
+
         if (menuCanvasInstance == null || !menuCanvasInstance.activeSelf)
         {
             ShowMenuCanvas();
@@ -182,6 +241,22 @@ public class St_PlayerController : MonoBehaviour
         {
             HideMenuCanvas();
         }
+    }
+
+    /// <summary>
+    /// Event1：完全停止
+    /// </summary>
+    private bool IsFullStop()
+    {
+        return stopEvent != null && stopEvent.Event1;
+    }
+
+    /// <summary>
+    /// Event2：決定以外禁止
+    /// </summary>
+    private bool IsDecisionOnly()
+    {
+        return stopEvent != null && stopEvent.Event2;
     }
 
     /// <summary>
