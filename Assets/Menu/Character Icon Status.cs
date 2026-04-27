@@ -56,7 +56,7 @@ public class CharacterIconStatus : MonoBehaviour
             currentBuffs.Add(b);
 
         // =========================
-        // ① 既存バフの更新 or 新規生成
+        // 既存バフの更新 or 新規生成
         // =========================
         foreach (var buffObj in currentBuffs)
         {
@@ -104,7 +104,7 @@ public class CharacterIconStatus : MonoBehaviour
         }
 
         // =========================
-        // ② 消えたバフの削除
+        // 消えたバフの削除
         // =========================
         var removeList = new List<object>();
 
