@@ -13,7 +13,10 @@ public class Savedatadisplay : MonoBehaviour
     private TextMeshProUGUI StatusText2;
     void Start()
     {
-        DisplaySaveData();
+        if (StatusText1 != null && StatusText2 != null)
+        {
+            DisplaySaveData();
+        }
     }
 
     public void DisplaySaveData()

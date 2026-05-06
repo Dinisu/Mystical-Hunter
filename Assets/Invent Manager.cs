@@ -1731,26 +1731,6 @@ public class InventManager : MonoBehaviour
             icon.transform.SetSiblingIndex(i);
         }
 
-        // Selection Toggle の調整（存在するならアイコンの下に配置）
-        // 既に存在する Selection Toggle オブジェクトを探して、必要なら最後に移動する
-        /*var toggles = new List<GameObject>();
-        foreach (Transform child in itemChoiceField.transform)
-        {
-            if (Normalize(child.name) == "Selection Toggle")
-                toggles.Add(child.gameObject);
-        }
-
-        // アイコンの後にSelection Toggleを配置する（GenerateItemIcons のように 2 つ）
-        for (int t = 0; t < toggles.Count; t++)
-        {
-            int idx = placeCount + t;
-            toggles[t].transform.SetSiblingIndex(idx);
-            var rect = toggles[t].GetComponent<RectTransform>();
-            if (rect != null && idx < positions.Length)
-            {
-                rect.anchoredPosition = positions[Mathf.Min(idx, positions.Length - 1)];
-            }
-        }*/
 
         Debug.Log($"アイコン削除と詰め直し完了。removedAny={removedAny} remainingIcons={iconList.Count}");
 

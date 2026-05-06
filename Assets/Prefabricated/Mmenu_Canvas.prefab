@@ -9215,6 +9215,8 @@ MonoBehaviour:
   status: {fileID: 0}
   StatusText1: {fileID: 1587140260416329633}
   StatusText2: {fileID: 0}
+  Displayfields: {fileID: 0}
+  buffIconPrefab: {fileID: 0}
 --- !u!1 &8895642363501788079
 GameObject:
   m_ObjectHideFlags: 0

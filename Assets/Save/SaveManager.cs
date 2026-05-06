@@ -92,8 +92,7 @@ public class SaveManager : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            Debug.Log("セーブデータなし。初期化します");
-            InitSaveData();
+            Debug.Log("セーブデータなし。");
             return;
         }
 
@@ -348,10 +347,6 @@ public class SaveManager : MonoBehaviour
         // 最後にシーン移動
         //------------------------
         SceneManager.LoadScene(save.CurrentScene.ToString());
-
-    }
-    public void InitSaveData()
-    {
 
     }
 }
