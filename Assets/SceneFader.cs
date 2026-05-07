@@ -16,6 +16,15 @@ public class SceneFader : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;  //é©ï™é©êgÇê›íË
+            DontDestroyOnLoad(this.gameObject);//îjâÛÇ≥ÇÍÇ»Ç¢ÇÊÇ§Ç…
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         ds_Ev_StatusDataStore = FindObjectOfType<Ds_Ev_StatusDataStore>();
     }
 

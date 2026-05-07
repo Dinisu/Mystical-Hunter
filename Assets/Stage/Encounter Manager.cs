@@ -24,14 +24,10 @@ public class EncounterManager : MonoBehaviour
        長時間歩く → ほぼ確定レベル
      */
 
-    private enum BattleStage
-    {
-        BattleScene_Forest
-    }
     [SerializeField, Header("このシーン")]
     private SceneName SceneName;
     [SerializeField, Header("戦闘する場所")]
-    private BattleStage battleStage;
+    private SceneName battleStage;
 
     private float encounterTimer = 0f;
     private bool isPlayerInside = false;

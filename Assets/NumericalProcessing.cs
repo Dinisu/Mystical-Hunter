@@ -967,7 +967,7 @@ public class NumericalProcessing : MonoBehaviour
         // stateがActing_upならcurrentProgressを3下げる（滑らかに）
         if (targetIcon.state == TimelineIconController.TimelineState.Acting_up || targetIcon.state == TimelineIconController.TimelineState.Interrupted)
         {
-            float targetProgress = Mathf.Max(0f, targetIcon.currentProgress - 0.3f);
+            float targetProgress = Mathf.Max(0f, targetIcon.currentProgress - 0.4f);
             
             // DOTweenで滑らかに下げる
             DOTween.To(
