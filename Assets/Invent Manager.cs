@@ -55,10 +55,12 @@ public class InventManager : MonoBehaviour
     private GameObject loadField;
     private GameObject itemChoiceField;
     private GameObject itemDescription;
+    private GameObject skillDescription;
     private GameObject EquipmentChoiceField;
 
     //アイテム説明テキスト
-    private TextMeshProUGUI descriptionText;
+    private TextMeshProUGUI itemdescriptionText;
+    private TextMeshProUGUI skilldescriptionText;
 
     //キャラクターデータストア
     private Dss_Ch_StatusDataStores dss_Ch_StatusDataStores;
@@ -180,11 +182,17 @@ public class InventManager : MonoBehaviour
         itemDescription = FindObjectOrError(itemField.transform, "ItemDescription");
         if (itemDescription == null) return;
 
+        skillDescription = FindObjectOrError(skillField.transform, "SkillDescription");
+        if (skillDescription == null) return;
+
         EquipmentChoiceField = FindObjectOrError(statusField.transform, "EquipmentChoiceField");
         if (EquipmentChoiceField == null) return;
 
-        descriptionText = FindComponentOrError<TextMeshProUGUI>(itemDescription.transform,"DescriptionText");
-        if (descriptionText == null) return;
+        itemdescriptionText = FindComponentOrError<TextMeshProUGUI>(itemDescription.transform,"DescriptionText");
+        if (itemdescriptionText == null) return;
+
+        skilldescriptionText = FindComponentOrError<TextMeshProUGUI>(skillDescription.transform, "DescriptionText");
+        if (skilldescriptionText == null) return;
 
         // 最初は非表示にしておく
         statusField.SetActive(false);
@@ -300,7 +308,16 @@ public class InventManager : MonoBehaviour
         }
         else
         {
-            descriptionText.text = ("");
+            itemdescriptionText.text = ("");
+        }
+
+        if (currentMenuType == "SkillMenu")
+        {
+            Skilliconexplanation();
+        }
+        else
+        {
+            skilldescriptionText.text = ("");
         }
     }
 
@@ -333,12 +350,40 @@ public class InventManager : MonoBehaviour
         var itemQuantity = SelectUI.GetComponent<ItemQuantity>();
         if (itemQuantity != null)
         {
-            descriptionText.text = ($"{itemQuantity.D_It_StatusData.ItemDescription}\n\n" +
+            itemdescriptionText.text = ($"{itemQuantity.D_It_StatusData.ItemDescription}\n\n" +
                 $"{itemQuantity.D_It_StatusData.EfficacyItemDescription}");
         }
     }
 
-    private void Itemicondisplay()//アイテムアイコン表示
+    /// <summary>
+    /// 選択中のスキル説明表示
+    /// </summary>
+    private void Skilliconexplanation()
+    {
+        //選択中のアイテム説明
+        var skillQuantity = SelectUI.GetComponent<Dataicondisplay>();
+        if (skillQuantity != null && skillQuantity.D_Sk_StatusData != null)
+        {
+            string spText = skillQuantity.D_Sk_StatusData.Unlock
+                          ? "習得済み"
+                          : $"必要SP: {skillQuantity.D_Sk_StatusData.NeedSp}　 所持SP: {d_ch_Status.Sp}";
+
+            skilldescriptionText.text = 
+                ($"{skillQuantity.D_Sk_StatusData.Name}\n\n" +
+                $"{spText}\n\n" +
+                $"{skillQuantity.D_Sk_StatusData.ItemDescription}\n\n" +
+                $"{skillQuantity.D_Sk_StatusData.EfficacyItemDescription}");
+        }
+        else
+        {
+            skilldescriptionText.text = "";
+        }
+    }
+
+    /// <summary>
+    /// アイテムアイコン表示
+    /// </summary>
+    private void Itemicondisplay()
     {
         // 既存のアイテムオブジェクトを削除念のため2回目
         foreach (Transform child in itemChoiceField.transform)
@@ -373,6 +418,42 @@ public class InventManager : MonoBehaviour
         else
         {
             Debug.LogWarning("SelectionSettings がアタッチされていません → " + SelectUI.name);
+        }
+    }
+    /// <summary>
+    /// 習得可能スキル表示
+    /// </summary>
+    private void Skillicondisplay()
+    {
+        for (int i = 0; i < SkillMenu.Count; i++)
+        {
+            // ▼ Dataicondisplay取得
+            Dataicondisplay dataIcon = SkillMenu[i].GetComponent<Dataicondisplay>();
+
+            if (dataIcon != null)
+            {
+                // =========================
+                // まずリセット
+                // =========================
+                dataIcon.D_Sk_StatusData = null;
+                dataIcon.IconDisplay();
+
+                // ▼ SkillList不足なら次へ
+                if (i >= d_ch_Status.SkillList.ItemList.Count)
+                    continue;
+
+                // =========================
+                // データ設定
+                // =========================
+                dataIcon.D_Sk_StatusData = d_ch_Status.SkillList.ItemList[i];
+
+                // ▼ 表示更新
+                dataIcon.IconDisplay();
+            }
+            else
+            {
+                Debug.LogWarning($"{SkillMenu[i].name} に Dataicondisplay がありません");
+            }
         }
     }
     /// <summary>
@@ -412,6 +493,9 @@ public class InventManager : MonoBehaviour
                         break;
                     case SelectionSettings.Choose.SkillMenu://スキルメニュー表示
                         SkillMenuprocess();
+                        break;
+                    case SelectionSettings.Choose.SkillAcquisition://スキル習得
+                        SkillAcquisitionProcess();
                         break;
                     case SelectionSettings.Choose.SaveMenu://セーブメニュー表示
                         SaveMenuprocess();
@@ -602,7 +686,7 @@ public class InventManager : MonoBehaviour
         //アイテム選択から戻った際、アイテム説明リセット
         if (currentType == "ItemChoice")
         {
-            descriptionText.text = ("");
+            itemdescriptionText.text = ("");
         }
 
         // 履歴から復元
@@ -1336,7 +1420,7 @@ public class InventManager : MonoBehaviour
         SaveCurrentStateToHistory();
 
         //習得可能スキル表示
-
+        Skillicondisplay();
 
         // スキルメニュー表示
         if (skillField != null)
@@ -1351,6 +1435,8 @@ public class InventManager : MonoBehaviour
         SelectUI = uiElements[currentIndex];
         MoveFrameTo(SelectUI); // 枠を更新
         Debug.Log("UI 切替 → SkillMenu");
+
+        Skilliconexplanation();
     }
 
     private void SaveMenuprocess()//セーブメニュー表示
@@ -1643,6 +1729,31 @@ public class InventManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// スキル習得処理
+    /// </summary>
+    private void SkillAcquisitionProcess()
+    {
+        Dataicondisplay dataIcon = SelectUI.GetComponent<Dataicondisplay>();
+
+        Debug.Log("スキルを習得します。");
+        if (dataIcon != null && dataIcon.D_Sk_StatusData != null)
+        {
+            if (!dataIcon.D_Sk_StatusData.Unlock && dataIcon.D_Sk_StatusData.NeedSp <= d_ch_Status.Sp)
+            {
+                d_ch_Status.Sp -= dataIcon.D_Sk_StatusData.NeedSp;
+                dataIcon.D_Sk_StatusData.Unlock = true;
+
+                Skilliconexplanation();
+                Debug.Log($"{dataIcon.D_Sk_StatusData.Name}スキルを習得しました。");
+            }
+            else
+            {
+                Debug.Log("スキルを習得済みかSPが足りません");
+            }
+        }
+    }
+
     private void Removemissingitems()//アイテムアイコン削除と整理
     {
         if (numericalProcessing == null || numericalProcessing.ItemUse_ItData == null)
@@ -1802,6 +1913,7 @@ public class InventManager : MonoBehaviour
                 selectionField.SetActive(true);
                 statusField.SetActive(false);
                 itemField.SetActive(false);
+                skillField.SetActive(false);
                 EquipmentChoiceField.SetActive(false);
 
                 //ステータスの更新
@@ -1843,8 +1955,6 @@ public class InventManager : MonoBehaviour
         }
         
         Debug.Log($"入力処理を {(enabled ? "有効" : "無効")} にしました");
-
-        //現在の作りでは最初の履歴に戻ってからしか非表示にできないので履歴をリセットする必要はない
     }
 
     /// <summary>
