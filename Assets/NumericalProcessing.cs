@@ -647,9 +647,9 @@ public class NumericalProcessing : MonoBehaviour
     }
 
     /// <summary>
-    /// 被ダメージキャラの表示用ルートを取得。
+    /// 対象キャラの表示用ルートを取得。
     /// </summary>
-    private bool TryGetDamagedCharacterRoot(D_Ch_StatusData data, out GameObject root)
+    private bool TryGetCharacterDisplayRoot(D_Ch_StatusData data, out GameObject root)
     {
         root = null;
         if (data == null) return false;
@@ -701,7 +701,7 @@ public class NumericalProcessing : MonoBehaviour
     private void DamageText(D_Ch_StatusData targetCheck, int damage, bool Damage_or_healing, bool isCritical = false)
     {
         if (targetCheck == null) return;
-        if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) return;
+        if (!TryGetCharacterDisplayRoot(targetCheck, out GameObject root) || root == null) return;
 
         // Status display を取得
         Transform StatusDisplay = root.transform.Find("Status display");
@@ -760,7 +760,7 @@ public class NumericalProcessing : MonoBehaviour
     private Sequence BlinkHitObject(D_Ch_StatusData targetCheck, float durationSeconds = 1f)
     {
         if (targetCheck == null) return null;
-        if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) return null;
+        if (!TryGetCharacterDisplayRoot(targetCheck, out GameObject root) || root == null) return null;
 
 
         KillHitBlinkOnRoot(root);
@@ -814,7 +814,7 @@ public class NumericalProcessing : MonoBehaviour
     private IEnumerator PlayTheEffect_Skill(D_Ch_StatusData targetCheck, D_Sk_StatusData targetSkills)
     {
         if (targetCheck == null) yield break;
-        if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) yield break;
+        if (!TryGetCharacterDisplayRoot(targetCheck, out GameObject root) || root == null) yield break;
 
         Debug.Log($"エフェクトを再生します。");
 
@@ -866,7 +866,7 @@ public class NumericalProcessing : MonoBehaviour
     private IEnumerator PlayTheEffect_Item(D_Ch_StatusData targetCheck, D_It_StatusData targetItems)
     {
         if (targetCheck == null) yield break;
-        if (!TryGetDamagedCharacterRoot(targetCheck, out GameObject root) || root == null) yield break;
+        if (!TryGetCharacterDisplayRoot(targetCheck, out GameObject root) || root == null) yield break;
 
         Debug.Log($"エフェクトを再生します。");
 

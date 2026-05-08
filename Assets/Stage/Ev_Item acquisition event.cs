@@ -50,7 +50,10 @@ public class Ev_Itemacquisitionevent : MonoBehaviour
         db_PlayerItem = dss_It_StatusDataStores.FindDatabaseWithName("Player_Item");
 
         //このオブジェクトからアイテムを既に入手済みかチェック
-        Objectafteracquisition();
+        if (Ev_StatusData.Event1!)
+        {
+            Destroy(gameObject);
+        }
     }
 
     /// <summary>
