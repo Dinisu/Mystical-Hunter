@@ -21,7 +21,7 @@ MonoBehaviour:
   attack_or_Magic: 1
   kind: 7
   buff_DeBuff_kind: 5
-  efficacy1: 20
+  efficacy1: 50
   efficacy2: 0
   criticalRate: 0
   duration: 2

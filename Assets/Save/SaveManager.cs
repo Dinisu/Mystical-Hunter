@@ -56,15 +56,17 @@ public class SaveManager : MonoBehaviour
 
     /// <summary>
     /// セーブデータの保存先
-    /// 確認しやすいようにUnityエディタ上ではプロジェクト内にビルド後は正規の場所に
+    /// 確認しやすいようにUnityエディタ上ではプロジェクト内にビルド後は正規の場所にもできる
     /// </summary>
     public string GetFilePath(int saveNumber)
     {
-#if UNITY_EDITOR
+        //プロジェクト内にセーブする
+        return filePath = Application.dataPath + $"/Save/LocationToStoreData/savedata_{saveNumber}.json";
+/*#if UNITY_EDITOR
         return filePath = Application.dataPath + $"/Save/LocationToStoreData/savedata_{saveNumber}.json";
 #else
     return filePath = Application.persistentDataPath + $"/savedata_{saveNumber}.json";
-#endif
+#endif*/
     }
     //セーブ実行
     public void Save(int saveNumber)

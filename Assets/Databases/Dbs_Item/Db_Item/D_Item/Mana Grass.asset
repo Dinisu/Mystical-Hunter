@@ -34,9 +34,10 @@ MonoBehaviour:
   efficacy2: 0
   criticalRate: 0
   duration: 0
-  number: 2
+  number: 0
   price: 7
   Icon: {fileID: 2077527046347190955, guid: 6075eaf57ae957444bb2562c7a4416ac, type: 3}
+  DataIcon: {fileID: 0}
   B_Icon: {fileID: 0}
   Effect: {fileID: 0}
   SoundEffects: {fileID: 0}

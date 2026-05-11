@@ -1134,8 +1134,8 @@ public class InventManager : MonoBehaviour
                     }
                 }
             }
-            
-            if (isMatch)
+
+            if (isMatch && item.Number > 0)
             {
                 filteredItems.Add(item);
             }
@@ -1272,7 +1272,7 @@ public class InventManager : MonoBehaviour
                 }
             }
             
-            if (isMatch)
+            if (isMatch && item.Number > 0)
             {
                 filteredItems.Add(item);
             }

@@ -23,12 +23,12 @@ MonoBehaviour:
   maxhp: 100
   hp: 100
   maxmp: 50
-  mp: 40
+  mp: 0
   attack: 20
   magic: 0
   defense: 8
   magicDefense: 0
-  speed: 2
+  speed: 5
   criticalRate: 0
   money: 0
   Weapon: {fileID: 0}

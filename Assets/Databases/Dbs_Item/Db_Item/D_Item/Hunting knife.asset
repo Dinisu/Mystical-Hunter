@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u72E9\u731F\u30CA\u30A4\u30D5"
   id: 501
-  ItemDescription: aaaaaa
+  ItemDescription: "\u72E9\u731F\u7528\u306E\u30CA\u30A4\u30D5"
   EfficacyItemDescription: "\u653B\u6483\u529B:5\n\u9632\u5FA1\u529B:2\n\u7D20\u65E9\u3055:1"
   attribute: 0
   itemRange: 0
@@ -37,6 +37,7 @@ MonoBehaviour:
   number: 1
   price: 0
   Icon: {fileID: 2077527046347190955, guid: c3285e1dc1e8a2146ad85f1d744a884d, type: 3}
+  DataIcon: {fileID: 0}
   B_Icon: {fileID: 0}
   Effect: {fileID: 0}
   SoundEffects: {fileID: 0}

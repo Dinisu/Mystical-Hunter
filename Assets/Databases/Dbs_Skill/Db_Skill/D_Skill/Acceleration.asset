@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 111c5ab749b19024599fbcd5b04c983c, type: 3}
   m_Name: Acceleration
   m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_Sk_StatusData
-  name: 
+  name: 801
   id: 0
-  ItemDescription: 
-  EfficacyItemDescription: 
+  ItemDescription: "\u9B54\u6CD5\u306E\u529B\u3067\u7D20\u65E9\u304F\u306A\u308B"
+  EfficacyItemDescription: "\uFF13\u30BF\u30FC\u30F3\n\u653B\u6483\u529B\u304C\u5C0FUP"
   attribute: 0
   skillRange: 0
   attack_or_Magic: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   efficacy1: 0
   efficacy2: 0
   criticalRate: 0
-  duration: 0
+  duration: 4
   mpConsumption: 0
   needSp: 0
   Unlock: 0
