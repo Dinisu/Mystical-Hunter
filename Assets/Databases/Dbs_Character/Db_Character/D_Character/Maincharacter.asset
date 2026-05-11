@@ -16,10 +16,10 @@ MonoBehaviour:
   id: 1
   ItemDescription: 
   level: 1
-  exp: 5
+  exp: 0
   LevelExp:
   - Levelup: 2
-    NeedExp: 100
+    NeedExp: 10
     AcquisitionSp: 0
     MaxHpup: 5
     MaxMpup: 2

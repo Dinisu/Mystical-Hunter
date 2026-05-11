@@ -1702,7 +1702,8 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: 70649551ac2330642a0ef2d0dbd1074e, type: 2}
   StatusText1: {fileID: 1675270469}
   StatusText2: {fileID: 0}
-  GameObject: {fileID: 0}
+  Displayfields: {fileID: 0}
+  buffIconPrefab: {fileID: 0}
 --- !u!114 &571469757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2192,7 +2193,8 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: 70649551ac2330642a0ef2d0dbd1074e, type: 2}
   StatusText1: {fileID: 1244929382}
   StatusText2: {fileID: 0}
-  GameObject: {fileID: 0}
+  Displayfields: {fileID: 0}
+  buffIconPrefab: {fileID: 0}
 --- !u!1 &679036884
 GameObject:
   m_ObjectHideFlags: 0
@@ -2980,7 +2982,7 @@ Transform:
   m_GameObject: {fileID: 1028346863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 1, z: -8.7}
+  m_LocalPosition: {x: 1.5, y: 1, z: -8.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5476,7 +5478,7 @@ Transform:
   m_GameObject: {fileID: 1671599030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2, y: 1, z: -10.2}
+  m_LocalPosition: {x: 2.5, y: 1, z: -10.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6107,7 +6109,8 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: 70649551ac2330642a0ef2d0dbd1074e, type: 2}
   StatusText1: {fileID: 219167145}
   StatusText2: {fileID: 0}
-  GameObject: {fileID: 0}
+  Displayfields: {fileID: 0}
+  buffIconPrefab: {fileID: 0}
 --- !u!114 &1851498458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7022,7 +7025,8 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: 70649551ac2330642a0ef2d0dbd1074e, type: 2}
   StatusText1: {fileID: 456316874}
   StatusText2: {fileID: 0}
-  GameObject: {fileID: 0}
+  Displayfields: {fileID: 0}
+  buffIconPrefab: {fileID: 0}
 --- !u!114 &2036801151
 MonoBehaviour:
   m_ObjectHideFlags: 0

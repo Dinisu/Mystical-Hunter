@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u76EE\u6F70\u3057"
   id: 901
-  ItemDescription: 
+  ItemDescription: "\u9B54\u6CD5\u306E\u7C89\u3092\u98DB\u3070\u3057\u76F8\u624B\u306E\u884C\u52D5\u3092\u963B\u5BB3\u3059\u308B"
   EfficacyItemDescription: "2\u30BF\u30FC\u30F3\n\u7D20\u65E9\u3055\u3092\u5C0FDOWN"
   attribute: 0
   skillRange: 3
@@ -29,6 +29,7 @@ MonoBehaviour:
   needSp: 1
   Unlock: 0
   Icon: {fileID: 0}
+  DataIcon: {fileID: 0}
   B_Icon: {fileID: 0}
-  Effect: {fileID: 0}
+  Effect: {fileID: 5631927496442371602, guid: 6c52ee79710704a4dab242c5ba8e0408, type: 3}
   SoundEffects: {fileID: 0}

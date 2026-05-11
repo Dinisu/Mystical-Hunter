@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ddc16f201cc4b4e8827f8d02d425de, type: 3}
+  m_Name: E_Matango
+  m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_Ch_StatusData
+  name: "\u30DE\u30BF\u30F3\u30B4"
+  id: 0
+  ItemDescription: 
+  level: 0
+  exp: 20
+  LevelExp: []
+  sp: 0
+  attribute: 3
+  maxhp: 100
+  hp: 100
+  maxmp: 50
+  mp: 50
+  attack: 20
+  magic: 0
+  defense: 8
+  magicDefense: 0
+  speed: 2
+  criticalRate: 0
+  money: 0
+  Weapon: {fileID: 0}
+  Armor: {fileID: 0}
+  Accessories1: {fileID: 0}
+  Accessories2: {fileID: 0}
+  SkillList: {fileID: 0}
+  ActiveBuffs: []
+  ActiveBuffs_It: []
+  abnormalstatus: 0
+  Character: {fileID: 0}
+  B_Character: {fileID: 7465381492159604352, guid: 04f9d0dbfa73b28448439071af254199, type: 3}
+  B_Icon: {fileID: 0}
+  B_Icon_Ch: {fileID: 0}
+  Icon_Character1: {fileID: 0}
+  Icon_Character2: {fileID: 0}
+  DroppedItems: []
+  Status: {fileID: 0}
+  Event: {fileID: 11400000, guid: 0763877090becc346b06aa3d027bd794, type: 2}
