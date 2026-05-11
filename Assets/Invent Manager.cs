@@ -1915,6 +1915,10 @@ public class InventManager : MonoBehaviour
                 itemField.SetActive(false);
                 skillField.SetActive(false);
                 EquipmentChoiceField.SetActive(false);
+                saveField.SetActive(false);
+                loadField.SetActive(false);
+
+
 
                 //ステータスの更新
                 foreach (var Status in CharacterStatus)

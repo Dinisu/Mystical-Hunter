@@ -1,11 +1,11 @@
 {
     "CurrentScene": 2,
-    "PlayerPosX": 0.0,
+    "PlayerPosX": 10.109583854675293,
     "PlayerPosY": 0.9796304702758789,
-    "PlayerPosZ": -1.4901161193847657e-8,
+    "PlayerPosZ": -0.49804097414016726,
     "ShouldRestorePlayerPosition": false,
     "PlayerMoney": 0,
-    "PlayTime": 9.716392517089844,
+    "PlayTime": 22.525325775146486,
     "AlliesStatus": [
         {
             "Id": 1,
@@ -78,16 +78,18 @@
         {
             "Id": 101,
             "Number": 95
-        },
-        {
-            "Id": 104,
-            "Number": 3
         }
     ],
     "EventStatus": [
         {
             "Id": 0,
             "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 0,
+            "EventFlag1": true,
             "EventFlag2": false,
             "EventFlag3": false
         },

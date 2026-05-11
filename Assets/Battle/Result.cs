@@ -248,6 +248,8 @@ public class Result : MonoBehaviour
                 if (enemy == null) continue;
                 acquisitionMoney += enemy.Money;
 
+                numericalProcessing.CharacterEvent(enemy);
+
                 if (enemy.DroppedItems == null) continue;
                 foreach (var item in enemy.DroppedItems)
                 {

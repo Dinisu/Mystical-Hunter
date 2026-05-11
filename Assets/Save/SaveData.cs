@@ -14,7 +14,6 @@ public class SaveData
     public float PlayerPosX;
     public float PlayerPosY;
     public float PlayerPosZ;
-    public bool ShouldRestorePlayerPosition;
 
     public int PlayerMoney;
 

@@ -150,8 +150,6 @@ public class SaveManager : MonoBehaviour
         //------------------------
         // 味方データ
         //------------------------
-        // フラグ
-        save.ShouldRestorePlayerPosition = GameManager.Instance.ShouldRestorePlayerPosition;
 
         var db_allyData = db_allyDataBase.ItemList;
         foreach (var allyData in db_allyData)
@@ -251,7 +249,7 @@ public class SaveManager : MonoBehaviour
             save.PlayerPosZ
         );
 
-        GameManager.Instance.ShouldRestorePlayerPosition = save.ShouldRestorePlayerPosition;
+        GameManager.Instance.ShouldRestorePlayerPosition = true; //save.ShouldRestorePlayerPosition;
 
         //------------------------
         // 味方データ
@@ -348,5 +346,7 @@ public class SaveManager : MonoBehaviour
         //------------------------
         SceneManager.LoadScene(save.CurrentScene.ToString());
 
+        //シーン移動位置読み込み
+        GameManager.Instance.RestorePlayerPosition();
     }
 }

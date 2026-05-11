@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 278ff4fcc2a6edb46b9287e734719129, type: 3}
-  m_Name: Matango_Sk_List
+  m_Name: BossMatango_Sk_List
   m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.Db_Sk_StatusDataBase
   itemList:
   - {fileID: 11400000, guid: 4acd8ce0aec8f14449fa847dd69b1d4a, type: 2}

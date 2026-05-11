@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -8017886535773668023, guid: a6b195ecdc8626b43992631c05da205c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 3481214003554576615}
   - component: {fileID: 7276606402553886822}
   m_Layer: 5
-  m_Name: Ic_E_Matango
+  m_Name: Ic_E_BossMatango
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

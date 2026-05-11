@@ -1712,6 +1712,17 @@ public class NumericalProcessing : MonoBehaviour
     }
 
     /// <summary>
+    /// 敵を倒した際のイベント判定
+    /// </summary>
+    public void CharacterEvent(D_Ch_StatusData ch_StatusData)
+    {
+        if (ch_StatusData.Event != null)
+        {
+            ch_StatusData.Event.Event1 = true;
+        }
+    }
+
+    /// <summary>
     /// 獲得したEXPを実際にデータに入れる
     /// レベルアップ処理
     /// </summary>

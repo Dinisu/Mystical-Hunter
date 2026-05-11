@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0ddc16f201cc4b4e8827f8d02d425de, type: 3}
-  m_Name: E_Matango
+  m_Name: E_BossMatango
   m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_Ch_StatusData
-  name: "\u30DE\u30BF\u30F3\u30B4"
+  name: "\u30DC\u30B9\u30DE\u30BF\u30F3\u30B4"
   id: 0
   ItemDescription: 
   level: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   maxhp: 100
   hp: 100
   maxmp: 50
-  mp: 50
+  mp: 40
   attack: 20
   magic: 0
   defense: 8
@@ -35,13 +35,13 @@ MonoBehaviour:
   Armor: {fileID: 0}
   Accessories1: {fileID: 0}
   Accessories2: {fileID: 0}
-  SkillList: {fileID: 0}
+  SkillList: {fileID: 11400000, guid: 4525fecaa6555ac409cb360e61cd0ad9, type: 2}
   ActiveBuffs: []
   ActiveBuffs_It: []
   abnormalstatus: 0
   Character: {fileID: 0}
   B_Character: {fileID: 7465381492159604352, guid: 04f9d0dbfa73b28448439071af254199, type: 3}
-  B_Icon: {fileID: 0}
+  B_Icon: {fileID: 8917708082994333342, guid: 8c7dda0a5b4431c4aaedb16ceffe3d84, type: 3}
   B_Icon_Ch: {fileID: 0}
   Icon_Character1: {fileID: 0}
   Icon_Character2: {fileID: 0}
