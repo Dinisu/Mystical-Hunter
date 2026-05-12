@@ -25,7 +25,7 @@ MonoBehaviour:
   efficacy2: 0
   criticalRate: 0
   duration: 4
-  mpConsumption: 3
+  mpConsumption: 2
   needSp: 1
   Unlock: 1
   Icon: {fileID: 0}

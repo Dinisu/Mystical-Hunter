@@ -21,14 +21,14 @@ MonoBehaviour:
   sp: 0
   attribute: 3
   maxhp: 100
-  hp: 100
+  hp: 60
   maxmp: 50
   mp: 0
   attack: 20
   magic: 0
   defense: 8
   magicDefense: 0
-  speed: 5
+  speed: 3
   criticalRate: 0
   money: 0
   Weapon: {fileID: 0}

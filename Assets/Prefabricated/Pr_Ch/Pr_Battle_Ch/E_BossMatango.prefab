@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 4417093948715174413}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
-  m_LocalScale: {x: 10, y: 13, z: 0}
+  m_LocalPosition: {x: 0, y: 0.037, z: 0}
+  m_LocalScale: {x: 0.44999996, y: 0.3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7043796277946846558}
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1.5, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -118,7 +118,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.3, z: 10}
+  m_LocalScale: {x: 10, y: 13, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7130272894763978317}
@@ -255,7 +255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1607182468142068910, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1607182468142068910, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_LocalRotation.w
@@ -275,11 +275,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1607182468142068910, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.072
       objectReference: {fileID: 0}
     - target: {fileID: 1607182468142068910, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.328
+      value: -0.077
       objectReference: {fileID: 0}
     - target: {fileID: 1607182468142068910, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -307,11 +307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8297342468063588382, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_fontSize
-      value: 0.6
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 8297342468063588382, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_fontSizeBase
-      value: 0.6
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 8685048656539858028, guid: 770525f4bf8a78e44be31f1029eaca81, type: 3}
       propertyPath: m_Name

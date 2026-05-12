@@ -376,7 +376,7 @@ public class InventManager : MonoBehaviour
         }
         else
         {
-            skilldescriptionText.text = "";
+            skilldescriptionText.text = "スキルなし";
         }
     }
 

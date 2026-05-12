@@ -251,7 +251,7 @@ public class SaveManager : MonoBehaviour
             save.PlayerPosZ
         );
 
-        GameManager.Instance.ShouldRestorePlayerPosition = true; //save.ShouldRestorePlayerPosition;
+        GameManager.Instance.ShouldRestorePlayerPosition = true;
 
         //------------------------
         // ñ°ï˚ÉfÅ[É^

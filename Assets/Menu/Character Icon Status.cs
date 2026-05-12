@@ -25,7 +25,7 @@ public class CharacterIconStatus : MonoBehaviour
     /// </summary>
     public void StatusUpdates() 
     {
-        StatusText1.text = ($"{status.Name}   Lv{status.Level}   EXP{status.Exp}/{status.LevelExp[status.Level].NeedExp}");
+        StatusText1.text = ($"{status.Name}   Lv{status.Level}   EXP{status.Exp}/{status.LevelExp[status.Level　- 1].NeedExp}");
         StatusText2.text = ($"HP{status.Hp}/{status.MaxHp}   MP{status.Mp}/{status.MaxMp}");
     }
 

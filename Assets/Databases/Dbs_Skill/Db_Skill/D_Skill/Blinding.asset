@@ -15,7 +15,7 @@ MonoBehaviour:
   name: "\u76EE\u6F70\u3057"
   id: 901
   ItemDescription: "\u9B54\u6CD5\u306E\u7C89\u3092\u98DB\u3070\u3057\u76F8\u624B\u306E\u884C\u52D5\u3092\u963B\u5BB3\u3059\u308B"
-  EfficacyItemDescription: "2\u30BF\u30FC\u30F3\n\u7D20\u65E9\u3055\u3092\u5C0FDOWN"
+  EfficacyItemDescription: "2\u30BF\u30FC\u30F3\n\u7D20\u65E9\u3055\u3092DOWN"
   attribute: 0
   skillRange: 3
   attack_or_Magic: 1

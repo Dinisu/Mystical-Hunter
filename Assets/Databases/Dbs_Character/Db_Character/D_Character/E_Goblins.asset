@@ -16,19 +16,19 @@ MonoBehaviour:
   id: 101
   ItemDescription: 
   level: 1
-  exp: 3
+  exp: 7
   LevelExp: []
   sp: 0
   attribute: 0
-  maxhp: 35
-  hp: 35
+  maxhp: 30
+  hp: 30
   maxmp: 5
   mp: 5
   attack: 15
   magic: 0
   defense: 5
   magicDefense: 5
-  speed: 3
+  speed: 4
   criticalRate: 0
   money: 5
   Weapon: {fileID: 0}

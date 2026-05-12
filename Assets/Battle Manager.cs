@@ -61,6 +61,7 @@ public class BattleManager : MonoBehaviour
 
     [SerializeField]
     private bool QuickAction = false;//行動選択外でクイックを発動しようとしているか
+    private bool quickActionBlocked = false; // Stopallicons中はクイック行動を禁止する
 
     //UI生成する場合
     private GameObject actionField;
@@ -895,6 +896,12 @@ public class BattleManager : MonoBehaviour
         //通常入力有効がfalseならクイック行動に入る
         if (!NormalinputEnabled)
         {
+            if (quickActionBlocked)
+            {
+                Debug.Log("クイック行動は現在無効です。");
+                return;
+            }
+
             QuickActionSelection();
             return;
         }
@@ -1924,6 +1931,8 @@ public class BattleManager : MonoBehaviour
     ///</summary>
     public void Stopallicons()
     {
+        quickActionBlocked = true;
+
         foreach (var ally in allyIcons)
         {
             if (ally.state == TimelineIconController.TimelineState.Acting_up)
@@ -1946,6 +1955,8 @@ public class BattleManager : MonoBehaviour
     ///</summary>
     public void Moveallicons()
     {
+        quickActionBlocked = false;
+
         foreach (var ally in allyIcons)
         {
             if (ally.state == TimelineIconController.TimelineState.Interrupted)
