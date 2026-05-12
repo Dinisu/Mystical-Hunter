@@ -1,0 +1,114 @@
+{
+    "CurrentScene": 2,
+    "PlayerPosX": 0.0,
+    "PlayerPosY": 1.0,
+    "PlayerPosZ": 0.0,
+    "PlayerMoney": 0,
+    "PlayTime": 0.0,
+    "AlliesStatus": [
+        {
+            "Id": 1,
+            "Level": 1,
+            "Exp": 0,
+            "Sp": 0,
+            "MaxHp": 50,
+            "Hp": 50,
+            "MaxMp": 10,
+            "Mp": 10,
+            "Attack": 15,
+            "Magic": 3,
+            "Defense": 3,
+            "MagicDefense": 1,
+            "Speed": 4,
+            "CriticalRate": 0.05000000074505806,
+            "Weapon": 501,
+            "Armor": -1,
+            "Accessories1": -1,
+            "Accessories2": -1
+        }
+    ],
+    "SkillStatus": [
+        {
+            "Id": 801,
+            "UnlockSkills": false
+        },
+        {
+            "Id": 1,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 0,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 901,
+            "UnlockSkills": false
+        },
+        {
+            "Id": 0,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 0,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 900,
+            "UnlockSkills": false
+        },
+        {
+            "Id": 600,
+            "UnlockSkills": false
+        },
+        {
+            "Id": 800,
+            "UnlockSkills": true
+        },
+        {
+            "Id": 101,
+            "UnlockSkills": false
+        }
+    ],
+    "ItemStatus": [
+        {
+            "Id": 501,
+            "Number": 1
+        },
+        {
+            "Id": 502,
+            "Number": 0
+        },
+        {
+            "Id": 602,
+            "Number": 0
+        },
+        {
+            "Id": 701,
+            "Number": 0
+        },
+        {
+            "Id": 101,
+            "Number": 10
+        }
+    ],
+    "EventStatus": [
+        {
+            "Id": 0,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 0,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 0,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        }
+    ]
+}

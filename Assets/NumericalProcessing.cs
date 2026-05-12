@@ -2,19 +2,14 @@ using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
-using static UnityEngine.GraphicsBuffer;
 using System.Linq;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
-using static UnityEditor.Progress;
 
 public class NumericalProcessing : MonoBehaviour
 {
-    [SerializeField]
-    public InventManager InventManager;
+    [SerializeField]public InventManager InventManager;
     [SerializeField, Header("使用データ")]
     public D_Ch_StatusData Use_ChData;//使用するキャラクターデータ
     public D_Ch_StatusData Use_subject_ChData;//使用される対象データ

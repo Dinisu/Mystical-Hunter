@@ -2,7 +2,7 @@ using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using UnityEngine;
 using TMPro;
 using System.Linq;
-using static UnityEditor.Progress;
+
 
 public class ItemQuantity : MonoBehaviour
 {

@@ -610,7 +610,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 300}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 330, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &478175875
 MonoBehaviour:
@@ -632,7 +632,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30BF\u30A4\u30C8\u30EB"
+  m_text: "\u795E\u79D8\u306E\u72E9\u4EBA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2803eac2cf3105a46a620217d90b2c9f, type: 2}
   m_sharedMaterial: {fileID: 1629796540468882676, guid: 2803eac2cf3105a46a620217d90b2c9f, type: 2}
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0349c74d69389d469e60f3dc95ef819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Savedatadisplay
-  SaveNumber: 1
+  SaveNumber: 0
   StatusText1: {fileID: 0}
   StatusText2: {fileID: 0}
 --- !u!114 &1458079387

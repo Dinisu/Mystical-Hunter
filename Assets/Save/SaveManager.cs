@@ -2,6 +2,7 @@ using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GameConstants;
 
 public class SaveManager : MonoBehaviour
 {
@@ -54,6 +55,12 @@ public class SaveManager : MonoBehaviour
         db_eventDataBase = dss_Ev_StatusDataStores.FindDatabaseWithName("For search_Event");
     }
 
+    void Start()
+    {
+        //初期セーブ
+    Save(0);
+    }
+
     /// <summary>
     /// セーブデータの保存先
     /// 確認しやすいようにUnityエディタ上ではプロジェクト内にビルド後は正規の場所にもできる
@@ -71,6 +78,12 @@ public class SaveManager : MonoBehaviour
     //セーブ実行
     public void Save(int saveNumber)
     {
+        //saveNumberが0初期セーブなら
+        if (saveNumber == 0)
+        {
+            GameManager.Instance.CurrentSceneName = SceneName.TutorialStage;
+        }
+
         SaveDataProcessing(); // セーブ前に現在データを反映
 
         //セーブデータをJSON形式に変換
@@ -145,6 +158,9 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
+            save.PlayerPosX = 0;
+            save.PlayerPosY = 1;
+            save.PlayerPosZ = 0;
             Debug.LogWarning("Playerが見つかりませんでした");
         }
 
