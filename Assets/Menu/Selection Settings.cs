@@ -23,7 +23,9 @@ public class SelectionSettings : MonoBehaviour
         LoadMenu,
         Save,
         Load,
-        SkillAcquisition
+        SkillAcquisition,
+        Title,
+        End
     }
     [SerializeField, Header("‘I‘ð‚µ")]
     public Choose choose;

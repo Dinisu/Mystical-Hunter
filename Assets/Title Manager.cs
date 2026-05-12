@@ -179,6 +179,9 @@ public class TitleManager : MonoBehaviour
             case SelectionSettings.Choose.Load:
                 LoadMenuProcess();
                 break;
+            case SelectionSettings.Choose.End:
+                EndGame();
+                break;
             default:
                 Debug.Log($"TitleManager: 未対応の Choose: {settings.choose}");
                 break;
@@ -340,5 +343,17 @@ public class TitleManager : MonoBehaviour
         if (TitleField != null && TitleField.activeSelf) return true;
         if (LoadField != null && LoadField.activeSelf) return true;
         return uiElements != null && uiElements.Length > 0;
+    }
+
+    /// <summary>
+    /// ゲーム終了
+    /// </summary>
+    public void EndGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
     }
 }

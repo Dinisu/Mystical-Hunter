@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using System.Linq;
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InventManager : MonoBehaviour
 {
@@ -531,6 +532,9 @@ public class InventManager : MonoBehaviour
                         break;
                     case SelectionSettings.Choose.Accessories2Choice://アクセサリー2選択
                         Generateequipment(new string[] { "Accessories" });
+                        break;
+                    case SelectionSettings.Choose.Title://タイトルに戻る
+                        BackToTitle();
                         break;
 
                     default:
@@ -1846,6 +1850,14 @@ public class InventManager : MonoBehaviour
     }
 
     /// <summary>
+    /// タイトルに戻る
+    /// </summary>
+    private void BackToTitle()
+    {
+        SceneManager.LoadScene("Title");
+    }
+
+    /// <summary>
     /// セーブを実行
     /// 現在のデータを保存
     /// </summary>
@@ -1947,7 +1959,7 @@ public class InventManager : MonoBehaviour
             MoveFrameTo(SelectUI); // 枠を更新
         }
 
-        if (enabled)//いらないかも？
+        if (enabled)
         {
             // メニューが開かれた時に履歴をクリア
             menuHistory.Clear();

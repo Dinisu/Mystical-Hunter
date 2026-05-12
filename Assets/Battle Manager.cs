@@ -2470,21 +2470,6 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        // ステータスアイコンを削除（StatusIconsの子オブジェクトから）
-        /*if (StatusIcons != null)
-        {
-            foreach (Transform child in StatusIcons.transform)
-            {
-                var iconStatus = child.GetComponent<CharacterIconStatus>();
-                if (iconStatus != null && iconStatus.status == characterData)
-                {
-                    Destroy(child.gameObject);
-                    Debug.Log($"ステータスアイコン {child.name} を削除しました");
-                    break;
-                }
-            }
-        }*/
-
         // Area_of_Effectからも削除（該当する場合）
         if (characterObject != null)
         {
