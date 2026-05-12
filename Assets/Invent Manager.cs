@@ -1,14 +1,10 @@
 using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using System.Linq;
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using TMPro;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
-using UnityEngine.UIElements;
 
 public class InventManager : MonoBehaviour
 {
