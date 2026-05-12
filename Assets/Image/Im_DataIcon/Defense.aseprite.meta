@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f885c219c7c51b54aa36c0c86f92556b
+guid: bd9045e5a2467824c813f4fe8bee0cf8
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: "\u75B2\u52B4"
+  - name: "\u9632\u5FA1"
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -139,7 +139,7 @@ ScriptedImporter:
       y: 4
       width: 64
       height: 64
-    spriteID: 9a0a4b38f47d1c94d82c8c74a390e7a6
+    spriteID: 36a1e544ca168684fa27adc5ed9d70a1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,17 +153,17 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 796271820
+      value0: 2073600811
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: "\u75B2\u52B4"
+    name: "\u9632\u5FA1"
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: "\u75B2\u52B4"
+    - name: Defense
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -171,7 +171,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 9a0a4b38f47d1c94d82c8c74a390e7a6
+      spriteId: 36a1e544ca168684fa27adc5ed9d70a1
     linkedCells: []
     tileCells: []
     tileSetIndex: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bd9045e5a2467824c813f4fe8bee0cf8
+guid: de84a32572aaeba419b2372480e7b45e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: "\u9632\u5FA1"
+  - name: "\u4E3B\u4EBA\u516C\u30A2\u30A4\u30B3\u30F3"
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 64
-      height: 64
-    spriteID: 36a1e544ca168684fa27adc5ed9d70a1
+      width: 24
+      height: 21
+    spriteID: a608638ecb7e0284ba7592c1ffa2c8b6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2073600811
+      value0: 3242329387
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: "\u9632\u5FA1"
+    name: "\u4E3B\u4EBA\u516C\u30A2\u30A4\u30B3\u30F3"
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: "\u9632\u5FA1"
+    - name: Main character icon
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 64
-        height: 64
-      spriteId: 36a1e544ca168684fa27adc5ed9d70a1
+        width: 24
+        height: 21
+      spriteId: a608638ecb7e0284ba7592c1ffa2c8b6
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -181,5 +181,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 128, y: 128}
+  canvasSize: {x: 24, y: 21}
+  previousTextureSize: {x: 32, y: 32}

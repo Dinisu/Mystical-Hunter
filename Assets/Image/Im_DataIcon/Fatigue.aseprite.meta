@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 80de899a0a64950429577cd75866b876
+guid: f885c219c7c51b54aa36c0c86f92556b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: "\u30B4\u30D6\u30EA\u30F3\u30A2\u30A4\u30B3\u30F3"
+  - name: "\u75B2\u52B4"
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 60
-      height: 45
-    spriteID: c9fd89fd133ce1844a236593d4e09424
+      width: 64
+      height: 64
+    spriteID: 9a0a4b38f47d1c94d82c8c74a390e7a6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2383838333
+      value0: 796271820
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: "\u30B4\u30D6\u30EA\u30F3\u30A2\u30A4\u30B3\u30F3"
+    name: "\u75B2\u52B4"
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: "\u30B4\u30D6\u30EA\u30F3\u30A2\u30A4\u30B3\u30F3"
+    - name: Fatigue
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 60
-        height: 45
-      spriteId: c9fd89fd133ce1844a236593d4e09424
+        width: 64
+        height: 64
+      spriteId: 9a0a4b38f47d1c94d82c8c74a390e7a6
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -181,5 +181,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 60, y: 45}
-  previousTextureSize: {x: 128, y: 64}
+  canvasSize: {x: 64, y: 64}
+  previousTextureSize: {x: 128, y: 128}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 667caffdf99fd024f85a5f3b109556be
+guid: 811bc215867475341a1bdeff3ad2756b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: "\u653B\u6483"
+  - name: SPDDOWN
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -139,7 +139,7 @@ ScriptedImporter:
       y: 4
       width: 64
       height: 64
-    spriteID: dcdee9dbb88cb3b4b84aa970e507a9a1
+    spriteID: d8af24091535a964aa40b1404ceb0ecf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,17 +153,17 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1002370716
+      value0: 1077701841
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: "\u653B\u6483"
+    name: SPDDOWN
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: "\u653B\u6483"
+    - name: SPDDOWN
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -171,7 +171,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: dcdee9dbb88cb3b4b84aa970e507a9a1
+      spriteId: d8af24091535a964aa40b1404ceb0ecf
     linkedCells: []
     tileCells: []
     tileSetIndex: 0

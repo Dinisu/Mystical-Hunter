@@ -60,7 +60,7 @@ public class BattleManager : MonoBehaviour
     private bool QuickAction = false;//行動選択外でクイックを発動しようとしているか
     private bool quickActionBlocked = false; // Stopallicons中はクイック行動を禁止する
 
-    //UI生成する場合
+    //UI生成する場所
     private GameObject actionField;
     private GameObject skillField;
     private GameObject itemField;
@@ -121,7 +121,6 @@ public class BattleManager : MonoBehaviour
 
         Instance = this;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SetupBattleParticipants();//参戦キャラ設定
@@ -154,7 +153,7 @@ public class BattleManager : MonoBehaviour
         // 他のバトル初期化処理（例）
         // InitializeTimeline();
         // StartCoroutine(BattleLoop());
-        //特性があればここで発動出来るように
+        //特性があればここで発動
         foreach (var icon in allyIcons)
         {
             icon.OnEnterActionZone += HandleActionSelection;
@@ -2359,7 +2358,7 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        // TimelineIconControllerからcharacterObjectを取得（最も確実な方法）
+        // TimelineIconControllerからcharacterObjectを取得
         TimelineIconController targetIcon = null;
         GameObject characterObject = null;
         

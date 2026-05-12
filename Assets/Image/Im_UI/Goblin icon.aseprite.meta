@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a6b195ecdc8626b43992631c05da205c
+guid: 80de899a0a64950429577cd75866b876
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: "\u30DE\u30BF\u30F3\u30B4\u30A2\u30A4\u30B3\u30F3"
+  - name: "\u30B4\u30D6\u30EA\u30F3\u30A2\u30A4\u30B3\u30F3"
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -139,7 +139,7 @@ ScriptedImporter:
       y: 4
       width: 60
       height: 45
-    spriteID: c5d62619b49c36d47b5146e72da833d2
+    spriteID: c9fd89fd133ce1844a236593d4e09424
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,17 +153,17 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3392407926
+      value0: 2383838333
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: "\u30DE\u30BF\u30F3\u30B4\u30A2\u30A4\u30B3\u30F3"
+    name: "\u30B4\u30D6\u30EA\u30F3\u30A2\u30A4\u30B3\u30F3"
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: "\u30DE\u30BF\u30F3\u30B4\u30A2\u30A4\u30B3\u30F3"
+    - name: Goblin icon
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -171,7 +171,7 @@ ScriptedImporter:
         y: 0
         width: 60
         height: 45
-      spriteId: c5d62619b49c36d47b5146e72da833d2
+      spriteId: c9fd89fd133ce1844a236593d4e09424
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
