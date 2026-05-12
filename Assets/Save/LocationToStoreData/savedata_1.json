@@ -1,10 +1,10 @@
 {
     "CurrentScene": 2,
-    "PlayerPosX": 5.348003387451172,
+    "PlayerPosX": 3.7331454753875734,
     "PlayerPosY": 0.9796304702758789,
-    "PlayerPosZ": -3.6880288124084474,
+    "PlayerPosZ": -2.278303623199463,
     "PlayerMoney": 0,
-    "PlayTime": 13.612041473388672,
+    "PlayTime": 2.5798258781433107,
     "AlliesStatus": [
         {
             "Id": 1,
@@ -89,23 +89,69 @@
         {
             "Id": 101,
             "Number": 10
+        },
+        {
+            "Id": 104,
+            "Number": 3
         }
     ],
     "EventStatus": [
         {
-            "Id": 0,
+            "Id": 1,
             "EventFlag1": false,
             "EventFlag2": false,
             "EventFlag3": false
         },
         {
-            "Id": 0,
+            "Id": 1001,
             "EventFlag1": false,
             "EventFlag2": false,
             "EventFlag3": false
         },
         {
-            "Id": 0,
+            "Id": 1002,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1003,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1004,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1005,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1006,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1007,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1008,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 100,
             "EventFlag1": false,
             "EventFlag2": false,
             "EventFlag3": false

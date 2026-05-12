@@ -38,7 +38,7 @@
         },
         {
             "Id": 0,
-            "UnlockSkills": false
+            "UnlockSkills": true
         },
         {
             "Id": 901,
@@ -97,19 +97,61 @@
     ],
     "EventStatus": [
         {
-            "Id": 0,
+            "Id": 1,
             "EventFlag1": false,
             "EventFlag2": false,
             "EventFlag3": false
         },
         {
-            "Id": 0,
+            "Id": 1001,
             "EventFlag1": false,
             "EventFlag2": false,
             "EventFlag3": false
         },
         {
-            "Id": 0,
+            "Id": 1002,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1003,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1004,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1005,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1006,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1007,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 1008,
+            "EventFlag1": false,
+            "EventFlag2": false,
+            "EventFlag3": false
+        },
+        {
+            "Id": 100,
             "EventFlag1": false,
             "EventFlag2": false,
             "EventFlag3": false
