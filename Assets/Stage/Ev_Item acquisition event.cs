@@ -43,6 +43,11 @@ public class Ev_Itemacquisitionevent : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            var parentObj = Acquireditemtext.transform.parent != null ? Acquireditemtext.transform.parent.gameObject : null;
+            parentObj.SetActive(false);
+        }
     }
     void Start()
     {

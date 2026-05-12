@@ -38,7 +38,7 @@
         },
         {
             "Id": 0,
-            "UnlockSkills": true
+            "UnlockSkills": false
         },
         {
             "Id": 901,
@@ -89,6 +89,10 @@
         {
             "Id": 101,
             "Number": 10
+        },
+        {
+            "Id": 104,
+            "Number": 3
         }
     ],
     "EventStatus": [

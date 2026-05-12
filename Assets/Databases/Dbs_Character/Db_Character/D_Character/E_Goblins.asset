@@ -24,7 +24,7 @@ MonoBehaviour:
   hp: 30
   maxmp: 5
   mp: 5
-  attack: 15
+  attack: 13
   magic: 0
   defense: 5
   magicDefense: 5

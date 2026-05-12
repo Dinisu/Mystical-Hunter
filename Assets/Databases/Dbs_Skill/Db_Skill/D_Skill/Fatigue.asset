@@ -32,4 +32,4 @@ MonoBehaviour:
   DataIcon: {fileID: -9076412455232042958, guid: f885c219c7c51b54aa36c0c86f92556b, type: 3}
   B_Icon: {fileID: 0}
   Effect: {fileID: 0}
-  SoundEffects: {fileID: 0}
+  SoundEffects: {fileID: 8300000, guid: be1cf02b5d940f142b6218a7cfa247ec, type: 3}

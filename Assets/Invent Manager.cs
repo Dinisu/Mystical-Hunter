@@ -816,11 +816,6 @@ public class InventManager : MonoBehaviour
         }
 
         Debug.Log($"履歴から復元: {lastHistory.menuType} (index: {lastHistory.index})");
-
-        if (GameManager.Instance.audioSource != null && GameManager.Instance.decision != null)
-        {
-            GameManager.Instance.audioSource.PlayOneShot(GameManager.Instance.decision); // キャンセル音（仮）
-        }
     }
 
     /// <summary>

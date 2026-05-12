@@ -345,7 +345,7 @@ public class NumericalProcessing : MonoBehaviour
                 // ▼ 効果音を再生
                 if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
                 {
-                    GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); // 決定音
+                    GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); //効果音を鳴らす
                 }
 
                 // ▼ UI更新（ステータスアイコンをすべて更新）
@@ -364,7 +364,7 @@ public class NumericalProcessing : MonoBehaviour
                 // ▼ 効果音を再生
                 if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
                 {
-                    GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); // 決定音
+                    GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects);//効果音を鳴らす
                 }
 
                 DamageText(defender, Mathf.RoundToInt(RecoveryAmount), false);
@@ -462,7 +462,7 @@ public class NumericalProcessing : MonoBehaviour
         // ▼ 効果音を再生
         if (GameManager.Instance.audioSource != null && skill.SoundEffects != null)
         {
-            GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); // 決定音
+            GameManager.Instance.audioSource.PlayOneShot(skill.SoundEffects); //効果音を鳴らす
         }
 
         // ▼ ダメージ適用
@@ -1069,6 +1069,11 @@ public class NumericalProcessing : MonoBehaviour
                 Use_subject_ChData.Hp = 1;
             }
 
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
+
             Debug.Log($"{ItemUse_ItData.Name} を外しました。");
         }
         else
@@ -1091,6 +1096,11 @@ public class NumericalProcessing : MonoBehaviour
                 Use_subject_ChData.Weapon = ItemUse_ItData;
                 ApplyEquipmentStats(Use_subject_ChData, ItemUse_ItData);
 
+                if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+                }
+
                 Debug.Log($"{ItemUse_ItData.Name} に変更しました。");
             }
             else
@@ -1098,6 +1108,11 @@ public class NumericalProcessing : MonoBehaviour
                 //装備をする
                 Use_subject_ChData.Weapon = ItemUse_ItData;
                 ApplyEquipmentStats(Use_subject_ChData, ItemUse_ItData);
+
+                if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+                }
 
                 Debug.Log($"{ItemUse_ItData.Name} を装備しました。");
             }
@@ -1131,6 +1146,11 @@ public class NumericalProcessing : MonoBehaviour
                 Use_subject_ChData.Hp = 1;
             }
 
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
+
             Debug.Log($"{ItemUse_ItData.Name} を外しました。");
         }
         else
@@ -1158,6 +1178,11 @@ public class NumericalProcessing : MonoBehaviour
                     Use_subject_ChData.Hp = 1;
                 }
 
+                if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+                }
+
                 Debug.Log($"{ItemUse_ItData.Name} に変更しました。");
             }
             else
@@ -1169,6 +1194,11 @@ public class NumericalProcessing : MonoBehaviour
                 if (Use_subject_ChData.Hp <= 0)
                 {
                     Use_subject_ChData.Hp = 1;
+                }
+
+                if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
                 }
 
                 Debug.Log($"{ItemUse_ItData.Name} を装備しました。");
@@ -1234,6 +1264,11 @@ public class NumericalProcessing : MonoBehaviour
             if (Use_subject_ChData.MaxHp < 1) Use_subject_ChData.MaxHp = 1;
             if (Use_subject_ChData.Hp < 1) Use_subject_ChData.Hp = 1;
 
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
+
             Debug.Log($"{ItemUse_ItData.Name} を Accessories1 から外しました。");
             return;
         }
@@ -1259,6 +1294,11 @@ public class NumericalProcessing : MonoBehaviour
 
             if (Use_subject_ChData.MaxHp < 1) Use_subject_ChData.MaxHp = 1;
             if (Use_subject_ChData.Hp < 1) Use_subject_ChData.Hp = 1;
+
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
 
             Debug.Log($"{ItemUse_ItData.Name} を Accessories2 から外しました。");
             return;
@@ -1292,6 +1332,11 @@ public class NumericalProcessing : MonoBehaviour
                 if (Use_subject_ChData.MaxHp < 1) Use_subject_ChData.MaxHp = 1;
                 if (Use_subject_ChData.Hp < 1) Use_subject_ChData.Hp = 1;
 
+                if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+                }
+
                 Debug.Log($"{ItemUse_ItData.Name} を Accessories1 に装備しました。");
                 return;
             }
@@ -1320,6 +1365,11 @@ public class NumericalProcessing : MonoBehaviour
                 if (Use_subject_ChData.MaxHp < 1) Use_subject_ChData.MaxHp = 1;
                 if (Use_subject_ChData.Hp < 1) Use_subject_ChData.Hp = 1;
 
+                if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+                {
+                    GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+                }
+
                 Debug.Log($"{ItemUse_ItData.Name} を Accessories2 に装備しました。");
                 return;
             }
@@ -1331,6 +1381,11 @@ public class NumericalProcessing : MonoBehaviour
         {
             Use_subject_ChData.Accessories1 = ItemUse_ItData;
             ApplyEquipmentStats(Use_subject_ChData, ItemUse_ItData);
+
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
             Debug.Log($"{ItemUse_ItData.Name} を Accessories1 に装備しました。");
             return;
         }
@@ -1339,6 +1394,11 @@ public class NumericalProcessing : MonoBehaviour
         {
             Use_subject_ChData.Accessories2 = ItemUse_ItData;
             ApplyEquipmentStats(Use_subject_ChData, ItemUse_ItData);
+
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
             Debug.Log($"{ItemUse_ItData.Name} を Accessories2 に装備しました。");
             return;
         }
@@ -1367,6 +1427,11 @@ public class NumericalProcessing : MonoBehaviour
 
             if (Use_subject_ChData.MaxHp < 1) Use_subject_ChData.MaxHp = 1;
             if (Use_subject_ChData.Hp < 1) Use_subject_ChData.Hp = 1;
+
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
 
             Debug.Log($"{ItemUse_ItData.Name} を Accessories1 に上書きしました。");
         }
@@ -1415,6 +1480,11 @@ public class NumericalProcessing : MonoBehaviour
             Debug.Log($"→ ActiveBuffs に {ItemUse_ItData.name} を追加（残り {newBuff_It.remainingTurns} ターン）");
         }
 
+        if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+        }
+
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
         UpdateAllStatusIcons();
     }   
@@ -1437,6 +1507,11 @@ public class NumericalProcessing : MonoBehaviour
 
             Debug.Log($"【Buff追加】 {Use_ChData.name} → {Use_subject_ChData.name} / {ItemUse_ItData.SeeBuff_DeBuff_Kinds}");
             Debug.Log($"→ ActiveBuffs に {ItemUse_ItData.name} を追加（残り {newBuff_It.remainingTurns} ターン）");
+        }
+
+        if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
         }
 
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
@@ -1499,6 +1574,11 @@ public class NumericalProcessing : MonoBehaviour
         int maxDamage = Mathf.CeilToInt(baseDamage * 1.2f);
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
+
+        if (GameManager.Instance.audioSource != null && item.SoundEffects != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(item.SoundEffects);//効果音を鳴らす
+        }
         StartCoroutine(PlayTheEffect_Item(defender, item));
 
         // ▼ ダメージ適用
@@ -1588,6 +1668,10 @@ public class NumericalProcessing : MonoBehaviour
         int maxDamage = Mathf.CeilToInt(baseDamage * 1.2f);
         int finalDamage = UnityEngine.Random.Range(minDamage, maxDamage + 1);
 
+        if (GameManager.Instance.audioSource != null && item.SoundEffects != null)
+        {
+            GameManager.Instance.audioSource.PlayOneShot(item.SoundEffects);//効果音を鳴らす
+        }
         StartCoroutine(PlayTheEffect_Item(defender, item));
 
         // ▼ ダメージ適用
@@ -1634,6 +1718,11 @@ public class NumericalProcessing : MonoBehaviour
                 db_PlayerItem.ItemList.RemoveAll(item => item.Number <= 0);
             }
 
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
+            }
+
             StartCoroutine(PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData));
         }
         // ▼ UI更新（ステータスアイコンをすべて更新 戦闘用）
@@ -1651,6 +1740,11 @@ public class NumericalProcessing : MonoBehaviour
             if (ItemUse_ItData.Number <= 0)
             {
                 db_PlayerItem.ItemList.RemoveAll(item => item.Number <= 0);
+            }
+
+            if (GameManager.Instance.audioSource != null && ItemUse_ItData.SoundEffects != null)
+            {
+                GameManager.Instance.audioSource.PlayOneShot(ItemUse_ItData.SoundEffects);//効果音を鳴らす
             }
 
             StartCoroutine(PlayTheEffect_Item(Use_subject_ChData, ItemUse_ItData));

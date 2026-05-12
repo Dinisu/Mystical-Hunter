@@ -211,9 +211,9 @@ MonoBehaviour:
   PlayerMoney: 0
   EncounteredEnemys: []
   PlayTime: 0
-  choice: {fileID: 0}
-  decision: {fileID: 0}
-  cancel: {fileID: 0}
+  choice: {fileID: 8300000, guid: 2bdeb522a50b47446b3718c861c0b2a7, type: 3}
+  decision: {fileID: 8300000, guid: 00916de6b0fbdfc429948b4384b4593b, type: 3}
+  cancel: {fileID: 8300000, guid: 7b86de90d2d7c42479c62f0f2e8073c1, type: 3}
   audioSource: {fileID: 0}
 --- !u!114 &1979487674841337316
 MonoBehaviour:

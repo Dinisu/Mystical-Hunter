@@ -29,7 +29,7 @@ MonoBehaviour:
   needSp: 2
   Unlock: 0
   Icon: {fileID: 0}
-  DataIcon: {fileID: 0}
+  DataIcon: {fileID: -3103688801085422420, guid: 2d1b25397bbfc9546baf29f74c8057e0, type: 3}
   B_Icon: {fileID: 2077527046347190955, guid: 1e7d7c1efabf35a44be260ad7c50bfc2, type: 3}
   Effect: {fileID: 8307060409358143758, guid: 8f767d0b23c8e3b4cb2ead5380b1074d, type: 3}
-  SoundEffects: {fileID: 0}
+  SoundEffects: {fileID: 8300000, guid: 105d180fe53247e45b1648ff3b44bc7b, type: 3}

@@ -15,7 +15,7 @@ MonoBehaviour:
   name: "\u85AC\u8349"
   id: 101
   ItemDescription: "\u4F53\u529B\u306E\u56DE\u5FA9\u52B9\u679C\u306E\u3042\u308B\u85AC\u8349"
-  EfficacyItemDescription: "HP:10\u56DE\u5FA9"
+  EfficacyItemDescription: "HP:20\u56DE\u5FA9"
   attribute: 0
   itemRange: 0
   kinds: 7
@@ -30,7 +30,7 @@ MonoBehaviour:
     MagicDefenseup: 0
     Speedup: 0
     Criticalup: 0
-  efficacy1: 10
+  efficacy1: 20
   efficacy2: 0
   criticalRate: 0
   duration: 0
@@ -40,5 +40,5 @@ MonoBehaviour:
   DataIcon: {fileID: 0}
   B_Icon: {fileID: 0}
   Effect: {fileID: 0}
-  SoundEffects: {fileID: 0}
+  SoundEffects: {fileID: 8300000, guid: 911d403e361d2bd418031bd4ec6c69a9, type: 3}
   Event: {fileID: 0}

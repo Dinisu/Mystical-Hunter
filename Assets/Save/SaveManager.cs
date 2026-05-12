@@ -58,7 +58,7 @@ public class SaveManager : MonoBehaviour
     void Start()
     {
         //初期セーブ
-    Save(0);
+    　　Save(0);
     }
 
     /// <summary>
