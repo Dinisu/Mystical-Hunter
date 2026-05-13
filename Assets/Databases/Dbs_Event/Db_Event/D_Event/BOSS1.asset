@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BOSS1
   m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_Ev_StatusData
   name: "BOSS\u30DE\u30BF\u30F3\u30B4"
-  id: 0
+  id: 100
   ItemDescription: "\u30DC\u30B9\u3092\u5012\u3057\u305F\u304B\u306E\u5224\u5B9A"
   Event1Explanation: "BOSS\u30DE\u30BF\u30F3\u30B4\u3092\u5012\u3057\u305F\u304B"
   Event1: 0

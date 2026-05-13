@@ -38,7 +38,7 @@
         },
         {
             "Id": 0,
-            "UnlockSkills": true
+            "UnlockSkills": false
         },
         {
             "Id": 901,

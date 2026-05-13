@@ -20,7 +20,7 @@ MonoBehaviour:
   LevelExp:
   - Levelup: 2
     NeedExp: 10
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -30,7 +30,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 3
     NeedExp: 15
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -40,7 +40,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 4
     NeedExp: 20
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -50,7 +50,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 5
     NeedExp: 25
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -60,7 +60,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 6
     NeedExp: 30
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -70,7 +70,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 7
     NeedExp: 35
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -80,7 +80,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 8
     NeedExp: 40
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -90,7 +90,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 9
     NeedExp: 45
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 5
     MaxMpup: 2
     Attackup: 3
@@ -100,7 +100,7 @@ MonoBehaviour:
     Speedup: 0
   - Levelup: 10
     NeedExp: 60
-    AcquisitionSp: 0
+    AcquisitionSp: 1
     MaxHpup: 10
     MaxMpup: 10
     Attackup: 5

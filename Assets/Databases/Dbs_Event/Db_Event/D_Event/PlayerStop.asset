@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerStop
   m_EditorClassIdentifier: Assembly-CSharp::App.BaseSystem.DataStores.ScriptableObjects.Status.D_Ev_StatusData
   name: 
-  id: 0
+  id: 1
   ItemDescription: "\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u64CD\u4F5C\u3092\u4E00\u90E8\u3001\u307E\u305F\u306F\u5168\u3066\u505C\u6B62\u3055\u305B\u308B"
   Event1Explanation: "\u30D7\u30EC\u30A4\u30E4\u30FC\u306E\u64CD\u4F5C\u3092\u505C\u6B62\u3059\u308B\u304B"
   Event1: 0
