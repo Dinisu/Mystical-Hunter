@@ -1,10 +1,10 @@
 {
     "CurrentScene": 2,
-    "PlayerPosX": 0.0,
+    "PlayerPosX": 4.746217727661133,
     "PlayerPosY": 0.9796304702758789,
-    "PlayerPosZ": -3.5152392387390138,
+    "PlayerPosZ": -1.035688042640686,
     "PlayerMoney": 0,
-    "PlayTime": 6.63643217086792,
+    "PlayTime": 3.6680526733398439,
     "AlliesStatus": [
         {
             "Id": 1,
@@ -38,7 +38,7 @@
         },
         {
             "Id": 0,
-            "UnlockSkills": true
+            "UnlockSkills": false
         },
         {
             "Id": 901,

@@ -26,8 +26,6 @@ public class SaveManager : MonoBehaviour
     private Db_Sk_StatusDataBase db_skillDataBase;
     private Db_Ev_StatusDataBase db_eventDataBase;
 
-    private InventManager inventManager;
-
     //起動処理
     void Awake()
     {
@@ -360,16 +358,18 @@ public class SaveManager : MonoBehaviour
         //------------------------
         // 最後にシーン移動
         //------------------------
-        if (SceneManager.GetActiveScene().name != save.CurrentScene.ToString())//先が現在と同じシーンでなければ
-        {
-            SceneManager.LoadScene(save.CurrentScene.ToString());
-        }
-        else
-        {
-            // InventManagerを取得
-            inventManager = FindObjectOfType<InventManager>();
-            inventManager.SetInputEnabled(false);
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        SceneManager.LoadScene(save.CurrentScene.ToString());
+    }
+
+    /// <summary>
+    /// シーン読み込み完了後に呼ばれる処理。
+    /// 同じシーンを再読み込みした際にプレイヤー座標が初期位置へ戻る問題を防ぐ
+    /// </summary>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
 
         //シーン移動位置読み込み
         GameManager.Instance.RestorePlayerPosition();
