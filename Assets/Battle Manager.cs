@@ -72,6 +72,10 @@ public class BattleManager : MonoBehaviour
     private int currentIndex = 0;    // 選択中インデックス
     public GameObject SelectUI;      // 現在選択中のUI
 
+    [Header("戦闘中のUI")]
+    [SerializeField] private GameObject GaugeUI;
+    [SerializeField] private GameObject Statusarea;
+
     // 履歴管理システム
     private List<MenuHistory> menuHistory = new List<MenuHistory>();
 
@@ -942,7 +946,7 @@ public class BattleManager : MonoBehaviour
                         Targetdetermination();
                         break;
                     case B_SelectionSettings.Choose.run_away://逃げる
-                        RunAwayProcess();
+                        StartCoroutine(RunAwayProcess());
                         break;
                     case B_SelectionSettings.Choose.Quick_Action://クイック行動対象決定
                         QuickActionProcess();
@@ -1818,10 +1822,25 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// 逃げる処理
     /// </summary>
-    private void RunAwayProcess()
+    private IEnumerator RunAwayProcess()
     {
-        // TODO: 逃げる処理を実装
+        if (QuickAction)
+        {
+            Debug.Log("クイック行動中はクイックスキル以外を発動できません");
+            yield break;
+        }
+
+        ActionName.text = "逃げる";
+        // ▼ アイコン停止
+        Stopallicons();
+        GaugeUI.SetActive(false);
+        Statusarea.SetActive(false);
+        ActionSelectionUI.SetActive(false);
+
+        yield return new WaitForSecondsRealtime(1f);
+
         Debug.Log("逃げる処理");
+        SceneFader.Instance.FadeToScene(GameManager.Instance.PreviousSceneName.ToString());
     }
 
 

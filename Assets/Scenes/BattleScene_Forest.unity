@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 187794073}
   - component: {fileID: 187794072}
   m_Layer: 5
-  m_Name: status
+  m_Name: Run_away
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -817,7 +817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b7af39be602154585824e8efc23184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::B_SelectionSettings
-  choose: 9
+  choose: 8
 --- !u!114 &187794073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2657,6 +2657,7 @@ MonoBehaviour:
   - {fileID: 1218497580}
   - {fileID: 597425021}
   - {fileID: 2030478212}
+  - {fileID: 187794070}
   SkillSelection: []
   ItemSelection: []
   Switching_sides: []
@@ -2664,6 +2665,8 @@ MonoBehaviour:
   QuickAction: 0
   StatusIcons: {fileID: 0}
   SelectUI: {fileID: 0}
+  GaugeUI: {fileID: 146411540}
+  Statusarea: {fileID: 1517846953}
   Frame: {fileID: 1030363690}
   currentCharacterData: {fileID: 0}
   skillDescriptionText: {fileID: 1994830349}
@@ -4039,7 +4042,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30B9\u30C6\u30FC\u30BF\u30B9"
+  m_text: "\u9003\u3052\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2803eac2cf3105a46a620217d90b2c9f, type: 2}
   m_sharedMaterial: {fileID: 1629796540468882676, guid: 2803eac2cf3105a46a620217d90b2c9f, type: 2}
