@@ -1026,10 +1026,10 @@ public class InventManager : MonoBehaviour
         // 位置設定（4個まで）
         Vector2[] positions = new Vector2[]
         {
-            new Vector2(960, 380),   // 一番目
-            new Vector2(960, 120),   // 二番目
-            new Vector2(960, -140),  // 三番目
-            new Vector2(960, -400)   // 四番目
+            new Vector2(220, 380),   // 一番目
+            new Vector2(220, 120),   // 二番目
+            new Vector2(220, -140),  // 三番目
+            new Vector2(220, -400)   // 四番目
         };
 
         // 最大4個まで生成
