@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using System.Linq;
 using App.BaseSystem.DataStores.ScriptableObjects.Status;
 using TMPro;
+using System;
 using UnityEngine.SceneManagement;
 
 public class InventManager : MonoBehaviour
@@ -103,6 +104,9 @@ public class InventManager : MonoBehaviour
     private PlayerInput playerInput;
     private bool inputEnabled = true; // 入力処理の有効/無効フラグ
 
+    // UI選択処理を管理するDictionary
+    private Dictionary<SelectionSettings.Choose, Action> chooseActions;
+
     private void Awake()
     {
         dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
@@ -117,6 +121,49 @@ public class InventManager : MonoBehaviour
 
         // メニュー非表示時は操作不可にしておく
         inputEnabled = statusMenu != null && statusMenu.activeSelf;
+
+        // UI選択処理用Dictionaryを初期化
+        InitializeChooseActions();
+    }
+
+    /// <summary>
+    /// UI選択処理用Dictionaryを初期化
+    /// </summary>
+    private void InitializeChooseActions()
+    {
+        chooseActions = new Dictionary<SelectionSettings.Choose, Action>()
+        {
+            // ===== キャラクターエリア =====
+            { SelectionSettings.Choose.StatusIcon, StatusIconprocess },                    // キャラクターアイコン選択
+
+            // ===== メニュー選択 =====
+            { SelectionSettings.Choose.StatusMenu, StatusMenuprocess },                   // ステータスメニュー表示
+            { SelectionSettings.Choose.ItemMenu, ItemMenuprocess },                       // アイテムメニュー表示
+            { SelectionSettings.Choose.SkillMenu, SkillMenuprocess },                     // スキルメニュー表示
+            { SelectionSettings.Choose.SaveMenu, SaveMenuprocess },                       // セーブメニュー表示
+            { SelectionSettings.Choose.LoadMenu, LoadMenuprocess },                       // ロードメニュー表示
+
+            // ===== スキル・セーブ =====
+            { SelectionSettings.Choose.SkillAcquisition, SkillAcquisitionProcess },       // スキル習得
+            { SelectionSettings.Choose.Save, ExecuteSave },                               // セーブ実行
+            { SelectionSettings.Choose.Load, ExecuteLoad },                               // ロード実行
+
+            // ===== アイテム選択 =====
+            { SelectionSettings.Choose.Consumables, Consumablesprocess },                 // 消耗品アイテム選択
+            { SelectionSettings.Choose.Equipment, Equipmentprocess },                     // 装備品アイテム選択
+            { SelectionSettings.Choose.Valuables, Valuablesprocess },                     // 貴重品アイテム選択
+            { SelectionSettings.Choose.ItemUsechoice, ItemUsechoiceprocess },             // アイテム使用先選択
+            { SelectionSettings.Choose.ItemUse, ItemUseprocess },                         // アイテム使用
+
+            // ===== 装備選択 =====
+            { SelectionSettings.Choose.WeaponChoice, () => Generateequipment(new string[] { "Weapon" }) },           // 武器選択
+            { SelectionSettings.Choose.ArmorChoice, () => Generateequipment(new string[] { "Armor" }) },             // 防具選択
+            { SelectionSettings.Choose.Accessories1Choice, () => Generateequipment(new string[] { "Accessories" }) }, // アクセサリー1選択
+            { SelectionSettings.Choose.Accessories2Choice, () => Generateequipment(new string[] { "Accessories" }) }, // アクセサリー2選択
+
+            // ===== システム =====
+            { SelectionSettings.Choose.Title, BackToTitle }                               // タイトルに戻る
+        };
     }
     void Start()
     {
@@ -476,70 +523,14 @@ public class InventManager : MonoBehaviour
             var settings = SelectUI.GetComponent<SelectionSettings>();
             if (settings != null)
             {
-                // enum Choose を確認
-                switch (settings.choose)
+                // Dictionaryから対応する処理を取得して実行
+                if (chooseActions.TryGetValue(settings.choose, out var action))
                 {
-                    case SelectionSettings.Choose.StatusIcon://キャラクターアイコン選択
-                        StatusIconprocess();
-                        break;
-                    case SelectionSettings.Choose.StatusMenu://ステータスメニュー表示
-                        StatusMenuprocess();
-                        break;
-                    case SelectionSettings.Choose.ItemMenu://アイテムメニュー表示
-                        ItemMenuprocess();
-                        break;
-                    case SelectionSettings.Choose.SkillMenu://スキルメニュー表示
-                        SkillMenuprocess();
-                        break;
-                    case SelectionSettings.Choose.SkillAcquisition://スキル習得
-                        SkillAcquisitionProcess();
-                        break;
-                    case SelectionSettings.Choose.SaveMenu://セーブメニュー表示
-                        SaveMenuprocess();
-                        break;
-                    case SelectionSettings.Choose.LoadMenu://ロードメニュー表示
-                        LoadMenuprocess();
-                        break;
-                    case SelectionSettings.Choose.Save://セーブ実行
-                        ExecuteSave();
-                        break;
-                    case SelectionSettings.Choose.Load://ロード実行
-                        ExecuteLoad();
-                        break;
-                    case SelectionSettings.Choose.Consumables://消耗品選択
-                        Consumablesprocess();
-                        break;
-                    case SelectionSettings.Choose.Equipment://装備品選択
-                        Equipmentprocess();
-                        break;
-                    case SelectionSettings.Choose.Valuables://貴重品選択
-                        Valuablesprocess();
-                        break;
-                    case SelectionSettings.Choose.ItemUsechoice://アイテム使用選択
-                        ItemUsechoiceprocess();
-                        break;
-                    case SelectionSettings.Choose.ItemUse://アイテム使用
-                        ItemUseprocess();
-                        break;
-                    case SelectionSettings.Choose.WeaponChoice://武器選択
-                        Generateequipment(new string[] { "Weapon" });
-                        break;
-                    case SelectionSettings.Choose.ArmorChoice://防具選択
-                        Generateequipment(new string[] { "Armor" });
-                        break;
-                    case SelectionSettings.Choose.Accessories1Choice://アクセサリー1選択
-                        Generateequipment(new string[] { "Accessories" });
-                        break;
-                    case SelectionSettings.Choose.Accessories2Choice://アクセサリー2選択
-                        Generateequipment(new string[] { "Accessories" });
-                        break;
-                    case SelectionSettings.Choose.Title://タイトルに戻る
-                        BackToTitle();
-                        break;
-
-                    default:
-                        Debug.Log("未対応の Choose: " + settings.choose);
-                        break;
+                    action?.Invoke();
+                }
+                else
+                {
+                    Debug.Log("未対応の Choose: " + settings.choose);
                 }
             }
             else
@@ -819,7 +810,7 @@ public class InventManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 選択中のUIを縦方向に切り替える（従来の上下移動）
+    /// 選択中のUIを縦方向に切り替える
     /// direction = -1（上へ移動）、+1（下へ移動）
     /// </summary>
     private void MoveSelectionVertical(int direction)
