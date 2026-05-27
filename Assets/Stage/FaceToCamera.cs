@@ -25,17 +25,5 @@ public class FaceToCamera : MonoBehaviour
     {
         if (Camera.main == null) return;
         transform.forward = Camera.main.transform.forward;
-        /*if (targetCamera == null) return;
-
-        Vector3 cameraPosition = targetCamera.transform.position;
-
-        // Z軸を向ける
-        Vector3 direction = transform.position - cameraPosition;
-        direction.y = 0f; // 水平のみ正対（縦方向は回転しない）
-
-        if (direction.sqrMagnitude > 0.0001f)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }*/
     }
 }
