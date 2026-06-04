@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f49e3e4f6f285424caf05445471be02b
+guid: 885268b1f3722964d9d416294af12943
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -54,9 +54,9 @@ ScriptedImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 2
+    wrapV: 2
+    wrapW: 2
     normalMap: 0
     textureFormat: 0
     maxTextureSize: 0
@@ -78,7 +78,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 4
+    mosaicPadding: 0
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -93,7 +93,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 4
+    mosaicPadding: 0
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639159980070183535
+  platformSettingsDirtyTick: 639160038518314781
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,7 +127,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: ATKUP
+  - name: Ground
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -135,11 +135,11 @@ ScriptedImporter:
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
+      x: 0
+      y: 0
       width: 64
       height: 64
-    spriteID: 8eb7fd3a596552a4685994d104ec17fc
+    spriteID: 09ba16bcad10c8d4f8c5a8604bf68c6d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,23 +147,23 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 0, y: 0}
   spriteSheetImportData: []
   tileSetImportData: []
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 1817412403
+      value0: 2024493761
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: ATKUP
+    name: Ground
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: ATKUP
+    - name: Ground
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -171,7 +171,7 @@ ScriptedImporter:
         y: 0
         width: 64
         height: 64
-      spriteId: 8eb7fd3a596552a4685994d104ec17fc
+      spriteId: 09ba16bcad10c8d4f8c5a8604bf68c6d
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -206,4 +206,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 128, y: 128}
+  previousTextureSize: {x: 64, y: 64}

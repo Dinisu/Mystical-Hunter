@@ -442,6 +442,8 @@ MonoBehaviour:
   status: {fileID: 11400000, guid: 70649551ac2330642a0ef2d0dbd1074e, type: 2}
   StatusText1: {fileID: 1852710747731156470}
   StatusText2: {fileID: 4711739511549971139}
+  Displayfields: {fileID: 0}
+  buffIconPrefab: {fileID: 0}
 --- !u!114 &165815345671152211
 MonoBehaviour:
   m_ObjectHideFlags: 0
