@@ -13,6 +13,5 @@ public class ActiveBuff<T>
     {
         baseData = data;
         remainingTurns = duration;
-        //remainingTurns = data.Duration; // 初期値は元データのDuration
     }
 }

@@ -47,12 +47,6 @@ public class ObjectMarker : MonoBehaviour
             _targetUI.gameObject.SetActive(false);
     }
 
-    // UIの位置を毎フレーム更新
-    /*private void Update()
-    {
-        OnUpdatePosition();
-    }*/
-
     // UIの位置を更新する
     public void OnUpdatePosition()
     {

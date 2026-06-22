@@ -26,11 +26,6 @@ public class StatusNumber : MonoBehaviour
     public TextMeshProUGUI AccessoriesText1;
     public TextMeshProUGUI AccessoriesText2;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
     public void StatusNumber_Updates() //装備などでステータスが変わった際呼ぶ
     {
         NameText.text = ($"{D_status.Name}");
@@ -49,10 +44,5 @@ public class StatusNumber : MonoBehaviour
         ArmorText.text = ($"防具: {(D_status.Armor == null ? "なし" : D_status.Armor.Name)}");
         AccessoriesText1.text = ($"アクセサリー1: {(D_status.Accessories1 == null ? "なし" : D_status.Accessories1.Name)}");
         AccessoriesText2.text = ($"アクセサリー2: {(D_status.Accessories2 == null ? "なし" : D_status.Accessories2.Name)}");
-    }
-
-    public void StatusNumber_comparison()//ステータス比較　　作成予定ステージ後
-    {
-
     }
 }

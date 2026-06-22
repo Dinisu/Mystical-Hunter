@@ -15,9 +15,6 @@ namespace App.BaseSystem.DataStores.ScriptableObjects
         [SerializeField]
         protected T dataBases; // エディターでデータベースを指定
 
-        /* [SerializeField]
-         private List<SkillsData> PskillsDatabase;*/
-
         // データベースからnameに一致するデータを検索
         public U FindDatabaseWithName(string name)
         {
@@ -27,16 +24,5 @@ namespace App.BaseSystem.DataStores.ScriptableObjects
 
             return dataBases.List.Find(e => e.name == name);
         }
-
-        /*public List<SkillsData> PFindWithName(string databaseName)
-        {
-            // 指定された名前のデータベース（ここではスキルリスト全体）を返す
-            if (databaseName == "Player Skills Database")
-            {
-                return PskillsDatabase;
-            }
-            return null;
-        }*/
-
     }
 }

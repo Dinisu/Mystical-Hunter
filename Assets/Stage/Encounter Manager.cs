@@ -66,22 +66,6 @@ public class EncounterManager : MonoBehaviour
             encounterGauge = 0f;
             StartEncounter();
         }
-
-        /*if (!isPlayerInside) return;
-
-        bool isMoving = Vector3.Distance(playerTransform.position, lastPlayerPos) > 0.01f;
-        lastPlayerPos = playerTransform.position;
-        if (!isMoving) return;
-
-        Debug.Log("エンカウントエリアでプレイヤーが動いている");
-
-        encounterGauge += encounterRatePerSecond * Time.deltaTime;
-
-        if (encounterGauge >= 100f)
-        {
-            encounterGauge = 0f;
-            StartEncounter();
-        }*/
     }
 
 
