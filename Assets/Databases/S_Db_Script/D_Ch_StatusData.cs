@@ -180,17 +180,6 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         //[HideInInspector]
         [SerializeField, Header("受けているアイテムバフ")]
         public List<ActiveBuff<D_It_StatusData>> ActiveBuffs_It = new();//アイテムバフのデータ管理
-        public enum Abnormalstatus
-        {
-            None
-        }
-        public Abnormalstatus SeeAbnormalstatus//参照時はこれを呼ぶ
-        {
-            get => abnormalstatus;
-            set => abnormalstatus = value;
-        }
-        [SerializeField, Header("状態異常")]
-        private Abnormalstatus abnormalstatus;
 
         [SerializeField, Header("キャラクター")]
         public GameObject Character;

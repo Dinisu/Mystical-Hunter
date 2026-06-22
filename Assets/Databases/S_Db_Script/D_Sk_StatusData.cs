@@ -98,18 +98,6 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
         [SerializeField, Header("バフ対象ステータス")]
         private Buff_DeBuff_Kinds buff_DeBuff_kind;
 
-        public enum Abnormalstatus
-        {
-            None
-        }
-        [SerializeField, Header("状態異常")]
-        public Abnormalstatus SeeAbnormalstatus//蜿ら・譎ゅ・縺薙ｌ繧貞他縺ｶ
-        {
-            get => abnormalstatus;
-            set => abnormalstatus = value;
-        }
-        private Abnormalstatus abnormalstatus;
-
         public float Efficacy1
         {
             get => efficacy1;
