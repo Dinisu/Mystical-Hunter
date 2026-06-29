@@ -21,20 +21,6 @@ public class TimelineGaugeUI : MonoBehaviour
             else
                 Debug.LogError("Gauge オブジェクトがシーンにありません！");
         }
-        // 親内の "Gauge" オブジェクトを自動で探す
-        /*if (gaugeBar == null)
-        {
-            var gaugeObj = transform.parent.Find("Gauge");
-            if (gaugeObj != null)
-            {
-                gaugeBar = gaugeObj.GetComponent<RectTransform>();
-            }
-            else
-            {
-                Debug.LogWarning($"[TimelineGaugeUI] 親内に 'Gauge' オブジェクトが見つかりません: {gameObject.name}");
-                return;
-            }
-        }*/
 
         // ゲージ全体の実サイズを取得（横方向）
         gaugeLength = gaugeBar.rect.width;
@@ -45,12 +31,6 @@ public class TimelineGaugeUI : MonoBehaviour
         if (iconController == null || gaugeBar == null) return;
         // 進行率を取得（0〜1）
         float progressRate = Mathf.Clamp01(iconController.currentProgress / iconController.actionZoneEnd);
-
-        // fillAmountでゲージを表現する場合
-        /*if (gaugeFillImage != null)
-        {
-            gaugeFillImage.fillAmount = progressRate;
-        }*/
 
         // アイコン位置で進行を表現する
         if (iconTransform != null)

@@ -24,7 +24,7 @@ public class Ev_Itemacquisitionevent : MonoBehaviour
 
     private void Awake()
     {
-        dss_It_StatusDataStores = FindObjectOfType<Dss_It_StatusDataStores>();
+        dss_It_StatusDataStores = FindAnyObjectByType<Dss_It_StatusDataStores>();
 
         // シーン上の "AcquireditemText" を自動参照（未設定の場合）
         if (Acquireditemtext == null)

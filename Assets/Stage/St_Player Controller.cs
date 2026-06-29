@@ -38,7 +38,7 @@ public class St_PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         if (playerInput == null)
         {
-            playerInput = FindObjectOfType<PlayerInput>();
+            playerInput = FindAnyObjectByType<PlayerInput>();
             if (playerInput == null)
             {
                 Debug.LogError("PlayerInput がシーン内に見つかりません！");
@@ -46,13 +46,13 @@ public class St_PlayerController : MonoBehaviour
         }
 
         // InventManagerを取得
-        inventManager = FindObjectOfType<InventManager>();
+        inventManager = FindAnyObjectByType<InventManager>();
         if (inventManager == null)
         {
             Debug.LogWarning("InventManager がシーン内に見つかりません。");
         }
 
-        ds_Ev_StatusDataStore = FindObjectOfType<Ds_Ev_StatusDataStore>();
+        ds_Ev_StatusDataStore = FindAnyObjectByType<Ds_Ev_StatusDataStore>();
 
         // ▼ PlayerStopイベント取得
         if (ds_Ev_StatusDataStore != null)
@@ -276,7 +276,7 @@ public class St_PlayerController : MonoBehaviour
         {
             menuCanvasInstance = Instantiate(Mmenu_Canvas);
             // InventManagerを取得
-            inventManager = FindObjectOfType<InventManager>();
+            inventManager = FindAnyObjectByType<InventManager>();
             if (inventManager == null)
             {
                 Debug.LogWarning("InventManager がシーン内に見つかりません。メニューの非表示処理がスキップされます。");

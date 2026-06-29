@@ -33,9 +33,9 @@ public class NumericalProcessing : MonoBehaviour
 
     private void Awake()
     {
-        dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
-        dss_It_StatusDataStores = FindObjectOfType<Dss_It_StatusDataStores>();
-        ds_Sk_StatusDataStore = FindObjectOfType<Ds_Sk_StatusDataStore>();
+        dss_Ch_StatusDataStores = FindAnyObjectByType<Dss_Ch_StatusDataStores>();
+        dss_It_StatusDataStores = FindAnyObjectByType<Dss_It_StatusDataStores>();
+        ds_Sk_StatusDataStore = FindAnyObjectByType<Ds_Sk_StatusDataStore>();
 
 
         // Dictionaryを生成

@@ -112,8 +112,8 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
-        dss_It_StatusDataStores = FindObjectOfType<Dss_It_StatusDataStores>();
+        dss_Ch_StatusDataStores = FindAnyObjectByType<Dss_Ch_StatusDataStores>();
+        dss_It_StatusDataStores = FindAnyObjectByType<Dss_It_StatusDataStores>();
         // 数値処理スクリプト取得
         numericalProcessing = GameObject.Find("Numerical Processing").GetComponent<NumericalProcessing>();
 
@@ -289,7 +289,7 @@ public class BattleManager : MonoBehaviour
         // PlayerInput を探す
         if (playerInput == null)
         {
-            playerInput = FindObjectOfType<PlayerInput>();
+            playerInput = FindAnyObjectByType<PlayerInput>();
             if (playerInput == null)
             {
                 Debug.LogError("PlayerInput がシーン内に見つかりません！");

@@ -18,7 +18,7 @@ public class Gameclearjudgment : MonoBehaviour
 
     private void Awake()
     {
-        ds_Ev_StatusDataStore = FindObjectOfType<Ds_Ev_StatusDataStore>();
+        ds_Ev_StatusDataStore = FindAnyObjectByType<Ds_Ev_StatusDataStore>();
     }
 
     void Start()

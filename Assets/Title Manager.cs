@@ -41,7 +41,7 @@ public class TitleManager : MonoBehaviour
         // PlayerInput を取得
         if (playerInput == null)
         {
-            playerInput = FindObjectOfType<PlayerInput>();
+            playerInput = FindAnyObjectByType<PlayerInput>();
         }
 
         if (playerInput == null)

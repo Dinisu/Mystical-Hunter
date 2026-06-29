@@ -51,7 +51,7 @@ public class Result : MonoBehaviour
         }
         Instance = this;
 
-        dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
+        dss_Ch_StatusDataStores = FindAnyObjectByType<Dss_Ch_StatusDataStores>();
 
         // FindDatabaseWithName を使用してデータベースとAlly Listを取得
         db_allyDataBase = dss_Ch_StatusDataStores.FindDatabaseWithName("Ally List");

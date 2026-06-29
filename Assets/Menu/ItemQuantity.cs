@@ -18,8 +18,8 @@ public class ItemQuantity : MonoBehaviour
 
     private void Awake()
     {
-        ds_It_StatusDataStore = FindObjectOfType<Ds_It_StatusDataStore>();
-        dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
+        ds_It_StatusDataStore = FindAnyObjectByType<Ds_It_StatusDataStore>();
+        dss_Ch_StatusDataStores = FindAnyObjectByType<Dss_Ch_StatusDataStores>();
 
         // "(Clone)" を除いて名前を取得
         string originalName = gameObject.name.Replace("(Clone)", "").Trim();

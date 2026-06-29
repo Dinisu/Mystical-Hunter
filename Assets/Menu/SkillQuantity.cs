@@ -14,7 +14,7 @@ public class SkillQuantity : MonoBehaviour
 
     private void Awake()
     {
-        ds_Sk_StatusDataStore = FindObjectOfType<Ds_Sk_StatusDataStore>();
+        ds_Sk_StatusDataStore = FindAnyObjectByType<Ds_Sk_StatusDataStore>();
 
         // "(Clone)" を除いて名前を取得
         string originalName = gameObject.name.Replace("(Clone)", "").Trim();

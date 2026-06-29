@@ -42,10 +42,10 @@ public class SaveManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
-        dss_It_StatusDataStores = FindObjectOfType<Dss_It_StatusDataStores>();
-        dss_Ev_StatusDataStores = FindObjectOfType<Dss_Ev_StatusDataStores>();
-        dss_Sk_StatusDataStores = FindObjectOfType<Dss_Sk_StatusDataStores>();
+        dss_Ch_StatusDataStores = FindAnyObjectByType<Dss_Ch_StatusDataStores>();
+        dss_It_StatusDataStores = FindAnyObjectByType<Dss_It_StatusDataStores>();
+        dss_Ev_StatusDataStores = FindAnyObjectByType<Dss_Ev_StatusDataStores>();
+        dss_Sk_StatusDataStores = FindAnyObjectByType<Dss_Sk_StatusDataStores>();
 
         db_PlayerItem = dss_It_StatusDataStores.FindDatabaseWithName("Player_Item");
         db_allyDataBase = dss_Ch_StatusDataStores.FindDatabaseWithName("Ally List");

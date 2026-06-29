@@ -15,7 +15,7 @@ public class St_CameraSample : MonoBehaviour
 
     private void Awake()
     {
-        dss_Ch_StatusDataStores = FindObjectOfType<Dss_Ch_StatusDataStores>();
+        dss_Ch_StatusDataStores = FindAnyObjectByType<Dss_Ch_StatusDataStores>();
     }
 
     void Start()
