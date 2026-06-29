@@ -17,7 +17,6 @@ public class TimelineIconController : MonoBehaviour
     public TimelineState state = TimelineState.Moving;
 
     private float speedScale = 0.04f;  // 全体のゲージ進行係数 ゲージ速度調整係数
-    private float speedModifier = 1f;  // 一時的な補正値（スロウ/ヘイストなど）
 
     [Header("キャラデータ参照")]
     public D_Ch_StatusData characterData;
