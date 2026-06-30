@@ -21,6 +21,9 @@ public class St_PlayerController : MonoBehaviour
     private GameObject menuCanvasInstance; // 生成されたインスタンス
     private InventManager inventManager; // InventManagerへの参照
 
+    private Animator animator;//アニメーション
+    private SpriteRenderer spriteRenderer;//キャラクター画像
+
     // ▼ PlayerStopイベント参照
     private D_Ev_StatusData stopEvent;
 
@@ -63,6 +66,20 @@ public class St_PlayerController : MonoBehaviour
         if (stopEvent == null)
         {
             Debug.LogWarning("PlayerStop イベントが見つかりません");
+        }
+
+        animator = GetComponent<Animator>();
+
+        if (animator == null)
+        {
+            Debug.LogError("Animator が見つかりません！");
+        }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer が見つかりません！");
         }
     }
 
@@ -195,6 +212,30 @@ public class St_PlayerController : MonoBehaviour
         
         // Rigidbodyのvelocityを設定
         rb.linearVelocity = velocity;
+
+        // 移動中ならRun、止まっていればIdle
+        bool isRunning = moveDirection.sqrMagnitude > 0.01f;
+        animator.SetBool("IsRun", isRunning);
+
+        // 向きを更新
+        UpdateDirection();
+    }
+
+    /// <summary>
+    /// 移動方向に応じてスプライトの向きを変更する
+    /// </summary>
+    private void UpdateDirection()
+    {
+        // 右へ移動
+        if (moveInput.x > 0.01f)
+        {
+            spriteRenderer.flipX = false;
+        }
+        // 左へ移動
+        else if (moveInput.x < -0.01f)
+        {
+            spriteRenderer.flipX = true;
+        }
     }
 
     /// <summary>

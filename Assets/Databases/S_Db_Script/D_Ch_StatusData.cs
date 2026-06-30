@@ -200,9 +200,6 @@ namespace App.BaseSystem.DataStores.ScriptableObjects.Status
             public int Droprate;
         }
 
-        [SerializeField, Header("インベントリのステータスオブジェクト")]
-        public GameObject Status;//消すかも
-
         [SerializeField, Header("イベント")]
         public D_Ev_StatusData Event;
     }
